@@ -1,0 +1,62 @@
+/* Custom styles to complement Tailwind */
+body {
+    overflow-x: hidden;
+}
+
+/* Sidebar toggle for mobile */
+@media (max-width: 767px) {
+    aside {
+        position: fixed;
+        z-index: 50;
+        height: 100vh;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease-in-out;
+    }
+    
+    aside.active {
+        transform: translateX(0);
+    }
+    
+    main {
+        margin-left: 0;
+    }
+}
+
+/* Chart container responsive behavior */
+canvas {
+    max-width: 100%;
+    height: auto !important;
+}
+
+/* Table responsive behavior */
+@media (max-width: 640px) {
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+}
+
+/* Smooth transitions for interactive elements */
+button, a, input, select {
+    transition: all 0.2s ease;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
