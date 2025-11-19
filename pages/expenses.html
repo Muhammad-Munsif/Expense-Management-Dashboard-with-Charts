@@ -10,68 +10,68 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
     <style>
-      @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-      
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
       body {
-        font-family: 'Poppins', sans-serif;
+        font-family: "Poppins", sans-serif;
       }
-      
+
       .gradient-bg {
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       }
-      
+
       .stats-card {
         transition: all 0.3s ease;
       }
-      
+
       .stats-card:hover {
         transform: translateY(-5px);
       }
-      
+
       .expense-row {
         transition: all 0.2s ease;
       }
-      
+
       .expense-row:hover {
         background-color: #f8fafc;
         transform: scale(1.01);
       }
-      
+
       .progress-bar {
         height: 6px;
         border-radius: 3px;
         overflow: hidden;
       }
-      
+
       .progress-fill {
         height: 100%;
         transition: width 0.5s ease;
       }
-      
+
       .sidebar-link.active {
-        background-color: rgba(255,255,255,0.1);
+        background-color: rgba(255, 255, 255, 0.1);
         border-left: 4px solid white;
       }
-      
+
       .floating-btn {
         box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
         transition: all 0.3s ease;
       }
-      
+
       .floating-btn:hover {
         transform: scale(1.1);
         box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
       }
-      
+
       .filter-btn.active {
         background-color: #4f46e5;
         color: white;
       }
-      
+
       .chart-container {
         background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
       }
-      
+
       .chart-container:nth-child(2) {
         background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
       }
@@ -154,14 +154,20 @@
       <!-- Main Content -->
       <div class="flex-1 flex flex-col">
         <!-- Header -->
-        <header class="bg-white shadow-sm p-4 flex justify-between items-center">
+        <header
+          class="bg-white shadow-sm p-4 flex justify-between items-center"
+        >
           <div>
             <h2 class="text-xl font-semibold text-gray-800">Expenses</h2>
-            <p class="text-gray-600 text-sm">Manage and track school expenses</p>
+            <p class="text-gray-600 text-sm">
+              Manage and track school expenses
+            </p>
           </div>
           <div class="flex items-center space-x-4">
             <div class="relative">
-              <button class="p-2 rounded-full hover:bg-gray-100 transition-colors">
+              <button
+                class="p-2 rounded-full hover:bg-gray-100 transition-colors"
+              >
                 <i class="fas fa-bell text-gray-600"></i>
                 <span
                   class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center"
@@ -170,7 +176,9 @@
               </button>
             </div>
             <div class="flex items-center">
-              <div class="w-10 h-10 bg-gradient-to-r from-purple-400 to-blue-500 rounded-full flex items-center justify-center text-white font-bold">
+              <div
+                class="w-10 h-10 bg-gradient-to-r from-purple-400 to-blue-500 rounded-full flex items-center justify-center text-white font-bold"
+              >
                 A
               </div>
               <div class="ml-3">
@@ -183,7 +191,9 @@
 
         <main class="p-6 flex-1">
           <!-- Stats Cards -->
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+          <div
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8"
+          >
             <div class="stats-card bg-white p-5 rounded-xl shadow">
               <div class="flex justify-between items-start">
                 <div>
@@ -225,7 +235,8 @@
                 </div>
               </div>
               <p class="text-yellow-600 text-xs mt-3">
-                <i class="fas fa-exclamation-circle mr-1"></i> 3 payments pending
+                <i class="fas fa-exclamation-circle mr-1"></i> 3 payments
+                pending
               </p>
             </div>
 
@@ -247,30 +258,49 @@
 
           <!-- Filters and Actions -->
           <div class="bg-white p-6 rounded-xl shadow mb-6">
-            <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center">
+            <div
+              class="flex flex-col lg:flex-row justify-between items-start lg:items-center"
+            >
               <div class="mb-4 lg:mb-0">
-                <h3 class="text-lg font-semibold text-gray-800">Expense Management</h3>
-                <p class="text-gray-600 text-sm">Track and manage all school expenses</p>
+                <h3 class="text-lg font-semibold text-gray-800">
+                  Expense Management
+                </h3>
+                <p class="text-gray-600 text-sm">
+                  Track and manage all school expenses
+                </p>
               </div>
               <div class="flex flex-wrap gap-3">
                 <div class="flex bg-gray-100 p-1 rounded-lg">
-                  <button class="filter-btn active px-3 py-1 rounded text-sm transition-colors">
+                  <button
+                    class="filter-btn active px-3 py-1 rounded text-sm transition-colors"
+                  >
                     All
                   </button>
-                  <button class="filter-btn px-3 py-1 rounded text-sm transition-colors">
+                  <button
+                    class="filter-btn px-3 py-1 rounded text-sm transition-colors"
+                  >
                     This Month
                   </button>
-                  <button class="filter-btn px-3 py-1 rounded text-sm transition-colors">
+                  <button
+                    class="filter-btn px-3 py-1 rounded text-sm transition-colors"
+                  >
                     Last Month
                   </button>
                 </div>
-                <button class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors text-sm flex items-center">
+                <button
+                  class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors text-sm flex items-center"
+                >
                   <i class="fas fa-filter mr-2"></i> Filter
                 </button>
-                <button class="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors text-sm flex items-center">
+                <button
+                  class="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors text-sm flex items-center"
+                >
                   <i class="fas fa-download mr-2"></i> Export
                 </button>
-                <button class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors text-sm flex items-center" id="addExpenseBtn">
+                <button
+                  class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors text-sm flex items-center"
+                  id="addExpenseBtn"
+                >
                   <i class="fas fa-plus mr-2"></i> Add Expense
                 </button>
               </div>
@@ -285,18 +315,44 @@
                 <table class="min-w-full divide-y divide-gray-200">
                   <thead class="bg-gray-50">
                     <tr>
-                      <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
-                      <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
-                      <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
-                      <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Amount</th>
-                      <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                      <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                      <th
+                        class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                      >
+                        Date
+                      </th>
+                      <th
+                        class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                      >
+                        Description
+                      </th>
+                      <th
+                        class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                      >
+                        Category
+                      </th>
+                      <th
+                        class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                      >
+                        Amount
+                      </th>
+                      <th
+                        class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                      >
+                        Status
+                      </th>
+                      <th
+                        class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                      >
+                        Actions
+                      </th>
                     </tr>
                   </thead>
                   <tbody class="bg-white divide-y divide-gray-200">
                     <tr class="expense-row">
                       <td class="px-4 py-4 whitespace-nowrap">
-                        <div class="text-sm font-medium text-gray-900">Jun 15, 2023</div>
+                        <div class="text-sm font-medium text-gray-900">
+                          Jun 15, 2023
+                        </div>
                         <div class="text-sm text-gray-500">10:30 AM</div>
                       </td>
                       <td class="px-4 py-4 whitespace-nowrap">
@@ -305,33 +361,51 @@
                             <i class="fas fa-book text-blue-600"></i>
                           </div>
                           <div>
-                            <div class="font-medium text-gray-900">School Supplies</div>
-                            <div class="text-gray-500 text-sm">Textbooks and notebooks</div>
+                            <div class="font-medium text-gray-900">
+                              School Supplies
+                            </div>
+                            <div class="text-gray-500 text-sm">
+                              Textbooks and notebooks
+                            </div>
                           </div>
                         </div>
                       </td>
                       <td class="px-4 py-4 whitespace-nowrap">
-                        <span class="px-2 py-1 text-xs rounded-full bg-blue-100 text-blue-800">Materials</span>
+                        <span
+                          class="px-2 py-1 text-xs rounded-full bg-blue-100 text-blue-800"
+                          >Materials</span
+                        >
                       </td>
                       <td class="px-4 py-4 whitespace-nowrap">
-                        <div class="text-sm font-medium text-red-600">-$250.00</div>
+                        <div class="text-sm font-medium text-red-600">
+                          -$250.00
+                        </div>
                       </td>
                       <td class="px-4 py-4 whitespace-nowrap">
-                        <span class="px-2 py-1 text-xs rounded-full bg-green-100 text-green-800">Completed</span>
+                        <span
+                          class="px-2 py-1 text-xs rounded-full bg-green-100 text-green-800"
+                          >Completed</span
+                        >
                       </td>
                       <td class="px-4 py-4 whitespace-nowrap text-sm">
-                        <button class="text-blue-600 hover:text-blue-800 p-2 rounded-full hover:bg-blue-50 transition-colors">
+                        <button
+                          class="text-blue-600 hover:text-blue-800 p-2 rounded-full hover:bg-blue-50 transition-colors"
+                        >
                           <i class="fas fa-edit"></i>
                         </button>
-                        <button class="text-red-600 hover:text-red-800 p-2 rounded-full hover:bg-red-50 transition-colors ml-1">
+                        <button
+                          class="text-red-600 hover:text-red-800 p-2 rounded-full hover:bg-red-50 transition-colors ml-1"
+                        >
                           <i class="fas fa-trash"></i>
                         </button>
                       </td>
                     </tr>
-                    
+
                     <tr class="expense-row">
                       <td class="px-4 py-4 whitespace-nowrap">
-                        <div class="text-sm font-medium text-gray-900">Jun 12, 2023</div>
+                        <div class="text-sm font-medium text-gray-900">
+                          Jun 12, 2023
+                        </div>
                         <div class="text-sm text-gray-500">02:15 PM</div>
                       </td>
                       <td class="px-4 py-4 whitespace-nowrap">
@@ -340,33 +414,51 @@
                             <i class="fas fa-utensils text-green-600"></i>
                           </div>
                           <div>
-                            <div class="font-medium text-gray-900">Cafeteria Supplies</div>
-                            <div class="text-gray-500 text-sm">Food and beverages</div>
+                            <div class="font-medium text-gray-900">
+                              Cafeteria Supplies
+                            </div>
+                            <div class="text-gray-500 text-sm">
+                              Food and beverages
+                            </div>
                           </div>
                         </div>
                       </td>
                       <td class="px-4 py-4 whitespace-nowrap">
-                        <span class="px-2 py-1 text-xs rounded-full bg-green-100 text-green-800">Food & Cafeteria</span>
+                        <span
+                          class="px-2 py-1 text-xs rounded-full bg-green-100 text-green-800"
+                          >Food & Cafeteria</span
+                        >
                       </td>
                       <td class="px-4 py-4 whitespace-nowrap">
-                        <div class="text-sm font-medium text-red-600">-$420.50</div>
+                        <div class="text-sm font-medium text-red-600">
+                          -$420.50
+                        </div>
                       </td>
                       <td class="px-4 py-4 whitespace-nowrap">
-                        <span class="px-2 py-1 text-xs rounded-full bg-green-100 text-green-800">Completed</span>
+                        <span
+                          class="px-2 py-1 text-xs rounded-full bg-green-100 text-green-800"
+                          >Completed</span
+                        >
                       </td>
                       <td class="px-4 py-4 whitespace-nowrap text-sm">
-                        <button class="text-blue-600 hover:text-blue-800 p-2 rounded-full hover:bg-blue-50 transition-colors">
+                        <button
+                          class="text-blue-600 hover:text-blue-800 p-2 rounded-full hover:bg-blue-50 transition-colors"
+                        >
                           <i class="fas fa-edit"></i>
                         </button>
-                        <button class="text-red-600 hover:text-red-800 p-2 rounded-full hover:bg-red-50 transition-colors ml-1">
+                        <button
+                          class="text-red-600 hover:text-red-800 p-2 rounded-full hover:bg-red-50 transition-colors ml-1"
+                        >
                           <i class="fas fa-trash"></i>
                         </button>
                       </td>
                     </tr>
-                    
+
                     <tr class="expense-row">
                       <td class="px-4 py-4 whitespace-nowrap">
-                        <div class="text-sm font-medium text-gray-900">Jun 10, 2023</div>
+                        <div class="text-sm font-medium text-gray-900">
+                          Jun 10, 2023
+                        </div>
                         <div class="text-sm text-gray-500">09:45 AM</div>
                       </td>
                       <td class="px-4 py-4 whitespace-nowrap">
@@ -375,33 +467,51 @@
                             <i class="fas fa-bus text-purple-600"></i>
                           </div>
                           <div>
-                            <div class="font-medium text-gray-900">Bus Maintenance</div>
-                            <div class="text-gray-500 text-sm">Regular service and parts</div>
+                            <div class="font-medium text-gray-900">
+                              Bus Maintenance
+                            </div>
+                            <div class="text-gray-500 text-sm">
+                              Regular service and parts
+                            </div>
                           </div>
                         </div>
                       </td>
                       <td class="px-4 py-4 whitespace-nowrap">
-                        <span class="px-2 py-1 text-xs rounded-full bg-purple-100 text-purple-800">Transportation</span>
+                        <span
+                          class="px-2 py-1 text-xs rounded-full bg-purple-100 text-purple-800"
+                          >Transportation</span
+                        >
                       </td>
                       <td class="px-4 py-4 whitespace-nowrap">
-                        <div class="text-sm font-medium text-red-600">-$180.00</div>
+                        <div class="text-sm font-medium text-red-600">
+                          -$180.00
+                        </div>
                       </td>
                       <td class="px-4 py-4 whitespace-nowrap">
-                        <span class="px-2 py-1 text-xs rounded-full bg-yellow-100 text-yellow-800">Pending</span>
+                        <span
+                          class="px-2 py-1 text-xs rounded-full bg-yellow-100 text-yellow-800"
+                          >Pending</span
+                        >
                       </td>
                       <td class="px-4 py-4 whitespace-nowrap text-sm">
-                        <button class="text-blue-600 hover:text-blue-800 p-2 rounded-full hover:bg-blue-50 transition-colors">
+                        <button
+                          class="text-blue-600 hover:text-blue-800 p-2 rounded-full hover:bg-blue-50 transition-colors"
+                        >
                           <i class="fas fa-edit"></i>
                         </button>
-                        <button class="text-red-600 hover:text-red-800 p-2 rounded-full hover:bg-red-50 transition-colors ml-1">
+                        <button
+                          class="text-red-600 hover:text-red-800 p-2 rounded-full hover:bg-red-50 transition-colors ml-1"
+                        >
                           <i class="fas fa-trash"></i>
                         </button>
                       </td>
                     </tr>
-                    
+
                     <tr class="expense-row">
                       <td class="px-4 py-4 whitespace-nowrap">
-                        <div class="text-sm font-medium text-gray-900">Jun 8, 2023</div>
+                        <div class="text-sm font-medium text-gray-900">
+                          Jun 8, 2023
+                        </div>
                         <div class="text-sm text-gray-500">11:20 AM</div>
                       </td>
                       <td class="px-4 py-4 whitespace-nowrap">
@@ -410,33 +520,51 @@
                             <i class="fas fa-tools text-red-600"></i>
                           </div>
                           <div>
-                            <div class="font-medium text-gray-900">Classroom Repairs</div>
-                            <div class="text-gray-500 text-sm">Furniture and fixtures</div>
+                            <div class="font-medium text-gray-900">
+                              Classroom Repairs
+                            </div>
+                            <div class="text-gray-500 text-sm">
+                              Furniture and fixtures
+                            </div>
                           </div>
                         </div>
                       </td>
                       <td class="px-4 py-4 whitespace-nowrap">
-                        <span class="px-2 py-1 text-xs rounded-full bg-red-100 text-red-800">Maintenance</span>
+                        <span
+                          class="px-2 py-1 text-xs rounded-full bg-red-100 text-red-800"
+                          >Maintenance</span
+                        >
                       </td>
                       <td class="px-4 py-4 whitespace-nowrap">
-                        <div class="text-sm font-medium text-red-600">-$320.75</div>
+                        <div class="text-sm font-medium text-red-600">
+                          -$320.75
+                        </div>
                       </td>
                       <td class="px-4 py-4 whitespace-nowrap">
-                        <span class="px-2 py-1 text-xs rounded-full bg-green-100 text-green-800">Completed</span>
+                        <span
+                          class="px-2 py-1 text-xs rounded-full bg-green-100 text-green-800"
+                          >Completed</span
+                        >
                       </td>
                       <td class="px-4 py-4 whitespace-nowrap text-sm">
-                        <button class="text-blue-600 hover:text-blue-800 p-2 rounded-full hover:bg-blue-50 transition-colors">
+                        <button
+                          class="text-blue-600 hover:text-blue-800 p-2 rounded-full hover:bg-blue-50 transition-colors"
+                        >
                           <i class="fas fa-edit"></i>
                         </button>
-                        <button class="text-red-600 hover:text-red-800 p-2 rounded-full hover:bg-red-50 transition-colors ml-1">
+                        <button
+                          class="text-red-600 hover:text-red-800 p-2 rounded-full hover:bg-red-50 transition-colors ml-1"
+                        >
                           <i class="fas fa-trash"></i>
                         </button>
                       </td>
                     </tr>
-                    
+
                     <tr class="expense-row">
                       <td class="px-4 py-4 whitespace-nowrap">
-                        <div class="text-sm font-medium text-gray-900">Jun 5, 2023</div>
+                        <div class="text-sm font-medium text-gray-900">
+                          Jun 5, 2023
+                        </div>
                         <div class="text-sm text-gray-500">03:30 PM</div>
                       </td>
                       <td class="px-4 py-4 whitespace-nowrap">
@@ -445,25 +573,41 @@
                             <i class="fas fa-laptop text-indigo-600"></i>
                           </div>
                           <div>
-                            <div class="font-medium text-gray-900">Computer Lab Upgrade</div>
-                            <div class="text-gray-500 text-sm">New computers and software</div>
+                            <div class="font-medium text-gray-900">
+                              Computer Lab Upgrade
+                            </div>
+                            <div class="text-gray-500 text-sm">
+                              New computers and software
+                            </div>
                           </div>
                         </div>
                       </td>
                       <td class="px-4 py-4 whitespace-nowrap">
-                        <span class="px-2 py-1 text-xs rounded-full bg-indigo-100 text-indigo-800">Technology</span>
+                        <span
+                          class="px-2 py-1 text-xs rounded-full bg-indigo-100 text-indigo-800"
+                          >Technology</span
+                        >
                       </td>
                       <td class="px-4 py-4 whitespace-nowrap">
-                        <div class="text-sm font-medium text-red-600">-$1,250.00</div>
+                        <div class="text-sm font-medium text-red-600">
+                          -$1,250.00
+                        </div>
                       </td>
                       <td class="px-4 py-4 whitespace-nowrap">
-                        <span class="px-2 py-1 text-xs rounded-full bg-green-100 text-green-800">Completed</span>
+                        <span
+                          class="px-2 py-1 text-xs rounded-full bg-green-100 text-green-800"
+                          >Completed</span
+                        >
                       </td>
                       <td class="px-4 py-4 whitespace-nowrap text-sm">
-                        <button class="text-blue-600 hover:text-blue-800 p-2 rounded-full hover:bg-blue-50 transition-colors">
+                        <button
+                          class="text-blue-600 hover:text-blue-800 p-2 rounded-full hover:bg-blue-50 transition-colors"
+                        >
                           <i class="fas fa-edit"></i>
                         </button>
-                        <button class="text-red-600 hover:text-red-800 p-2 rounded-full hover:bg-red-50 transition-colors ml-1">
+                        <button
+                          class="text-red-600 hover:text-red-800 p-2 rounded-full hover:bg-red-50 transition-colors ml-1"
+                        >
                           <i class="fas fa-trash"></i>
                         </button>
                       </td>
@@ -471,37 +615,53 @@
                   </tbody>
                 </table>
               </div>
-              
+
               <!-- Pagination -->
-              <div class="flex flex-col sm:flex-row justify-between items-center mt-6 space-y-3 sm:space-y-0">
+              <div
+                class="flex flex-col sm:flex-row justify-between items-center mt-6 space-y-3 sm:space-y-0"
+              >
                 <div class="text-sm text-gray-700">
-                  Showing <span class="font-medium">1</span> to <span class="font-medium">5</span> of <span class="font-medium">24</span> expenses
+                  Showing <span class="font-medium">1</span> to
+                  <span class="font-medium">5</span> of
+                  <span class="font-medium">24</span> expenses
                 </div>
                 <div class="flex space-x-1">
-                  <button class="px-3 py-1 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors text-sm">
+                  <button
+                    class="px-3 py-1 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors text-sm"
+                  >
                     Previous
                   </button>
-                  <button class="px-3 py-1 bg-indigo-600 text-white rounded-lg text-sm">
+                  <button
+                    class="px-3 py-1 bg-indigo-600 text-white rounded-lg text-sm"
+                  >
                     1
                   </button>
-                  <button class="px-3 py-1 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors text-sm">
+                  <button
+                    class="px-3 py-1 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors text-sm"
+                  >
                     2
                   </button>
-                  <button class="px-3 py-1 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors text-sm">
+                  <button
+                    class="px-3 py-1 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors text-sm"
+                  >
                     3
                   </button>
-                  <button class="px-3 py-1 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors text-sm">
+                  <button
+                    class="px-3 py-1 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors text-sm"
+                  >
                     Next
                   </button>
                 </div>
               </div>
             </div>
-            
+
             <!-- Side Panel -->
             <div class="space-y-6">
               <!-- Quick Stats -->
               <div class="bg-white p-6 rounded-xl shadow">
-                <h3 class="text-lg font-semibold text-gray-800 mb-4">Expense Summary</h3>
+                <h3 class="text-lg font-semibold text-gray-800 mb-4">
+                  Expense Summary
+                </h3>
                 <div class="space-y-4">
                   <div>
                     <div class="flex justify-between mb-1">
@@ -509,16 +669,24 @@
                       <span class="text-sm text-gray-600">$1,250</span>
                     </div>
                     <div class="w-full bg-gray-200 rounded-full progress-bar">
-                      <div class="progress-fill bg-blue-500 rounded-full" style="width: 42%"></div>
+                      <div
+                        class="progress-fill bg-blue-500 rounded-full"
+                        style="width: 42%"
+                      ></div>
                     </div>
                   </div>
                   <div>
                     <div class="flex justify-between mb-1">
-                      <span class="text-sm text-gray-600">Food & Cafeteria</span>
+                      <span class="text-sm text-gray-600"
+                        >Food & Cafeteria</span
+                      >
                       <span class="text-sm text-gray-600">$2,100</span>
                     </div>
                     <div class="w-full bg-gray-200 rounded-full progress-bar">
-                      <div class="progress-fill bg-green-500 rounded-full" style="width: 68%"></div>
+                      <div
+                        class="progress-fill bg-green-500 rounded-full"
+                        style="width: 68%"
+                      ></div>
                     </div>
                   </div>
                   <div>
@@ -527,7 +695,10 @@
                       <span class="text-sm text-gray-600">$950</span>
                     </div>
                     <div class="w-full bg-gray-200 rounded-full progress-bar">
-                      <div class="progress-fill bg-purple-500 rounded-full" style="width: 32%"></div>
+                      <div
+                        class="progress-fill bg-purple-500 rounded-full"
+                        style="width: 32%"
+                      ></div>
                     </div>
                   </div>
                   <div>
@@ -536,15 +707,20 @@
                       <span class="text-sm text-gray-600">$1,520</span>
                     </div>
                     <div class="w-full bg-gray-200 rounded-full progress-bar">
-                      <div class="progress-fill bg-red-500 rounded-full" style="width: 51%"></div>
+                      <div
+                        class="progress-fill bg-red-500 rounded-full"
+                        style="width: 51%"
+                      ></div>
                     </div>
                   </div>
                 </div>
               </div>
-              
+
               <!-- Recent Activity -->
               <div class="bg-white p-6 rounded-xl shadow">
-                <h3 class="text-lg font-semibold text-gray-800 mb-4">Recent Activity</h3>
+                <h3 class="text-lg font-semibold text-gray-800 mb-4">
+                  Recent Activity
+                </h3>
                 <div class="space-y-4">
                   <div class="flex items-start">
                     <div class="bg-green-100 p-2 rounded-full mr-3">
@@ -552,7 +728,9 @@
                     </div>
                     <div>
                       <p class="text-sm font-medium">New expense added</p>
-                      <p class="text-xs text-gray-500">$250 for School Supplies</p>
+                      <p class="text-xs text-gray-500">
+                        $250 for School Supplies
+                      </p>
                       <p class="text-xs text-gray-400">2 hours ago</p>
                     </div>
                   </div>
@@ -562,7 +740,9 @@
                     </div>
                     <div>
                       <p class="text-sm font-medium">Payment completed</p>
-                      <p class="text-xs text-gray-500">Bus Maintenance payment</p>
+                      <p class="text-xs text-gray-500">
+                        Bus Maintenance payment
+                      </p>
                       <p class="text-xs text-gray-400">Yesterday</p>
                     </div>
                   </div>
@@ -572,7 +752,9 @@
                     </div>
                     <div>
                       <p class="text-sm font-medium">Category updated</p>
-                      <p class="text-xs text-gray-500">"Technology" budget increased</p>
+                      <p class="text-xs text-gray-500">
+                        "Technology" budget increased
+                      </p>
                       <p class="text-xs text-gray-400">2 days ago</p>
                     </div>
                   </div>
@@ -585,46 +767,51 @@
     </div>
 
     <!-- Floating Action Button -->
-    <button class="floating-btn fixed bottom-6 right-6 w-14 h-14 bg-indigo-600 text-white rounded-full flex items-center justify-center shadow-lg">
+    <button
+      class="floating-btn fixed bottom-6 right-6 w-14 h-14 bg-indigo-600 text-white rounded-full flex items-center justify-center shadow-lg"
+    >
       <i class="fas fa-plus text-xl"></i>
     </button>
 
     <script>
       // Interactive elements
-      document.addEventListener('DOMContentLoaded', function() {
+      document.addEventListener("DOMContentLoaded", function () {
         // Filter buttons
-        const filterButtons = document.querySelectorAll('.filter-btn');
-        filterButtons.forEach(button => {
-          button.addEventListener('click', function() {
-            filterButtons.forEach(btn => btn.classList.remove('active'));
-            this.classList.add('active');
+        const filterButtons = document.querySelectorAll(".filter-btn");
+        filterButtons.forEach((button) => {
+          button.addEventListener("click", function () {
+            filterButtons.forEach((btn) => btn.classList.remove("active"));
+            this.classList.add("active");
           });
         });
-        
+
         // Add expense button
-        const addExpenseBtn = document.getElementById('addExpenseBtn');
-        addExpenseBtn.addEventListener('click', function() {
-          alert('Add Expense form would open here');
+        const addExpenseBtn = document.getElementById("addExpenseBtn");
+        addExpenseBtn.addEventListener("click", function () {
+          alert("Add Expense form would open here");
           // In a real application, this would open a modal or form
         });
-        
+
         // Simulate progress bar animation
-        const progressBars = document.querySelectorAll('.progress-fill');
-        progressBars.forEach(bar => {
+        const progressBars = document.querySelectorAll(".progress-fill");
+        progressBars.forEach((bar) => {
           const width = bar.style.width;
-          bar.style.width = '0';
+          bar.style.width = "0";
           setTimeout(() => {
             bar.style.width = width;
           }, 300);
         });
-        
+
         // Table row interactions
-        const tableRows = document.querySelectorAll('.expense-row');
-        tableRows.forEach(row => {
-          row.addEventListener('click', function(e) {
-            if (!e.target.closest('button')) {
+        const tableRows = document.querySelectorAll(".expense-row");
+        tableRows.forEach((row) => {
+          row.addEventListener("click", function (e) {
+            if (!e.target.closest("button")) {
               // In a real app, this would open a detail view
-              console.log('Expense details for:', this.querySelector('.font-medium').textContent);
+              console.log(
+                "Expense details for:",
+                this.querySelector(".font-medium").textContent
+              );
             }
           });
         });
