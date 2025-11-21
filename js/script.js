@@ -119,3 +119,4 @@ document.addEventListener("DOMContentLoaded", function () {
       alert("Add Expense form would open here in a real application");
     });
 });
+
