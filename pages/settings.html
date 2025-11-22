@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Settings | SchoolSys</title>
+    <title>SchoolSys | Dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link
       rel="stylesheet"
@@ -14,10 +14,45 @@
 
       body {
         font-family: "Poppins", sans-serif;
+        background-color: #f8fafc;
       }
 
       .gradient-bg {
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      }
+
+      .sidebar {
+        width: 250px;
+        height: 100vh;
+        position: fixed;
+        left: 0;
+        top: 0;
+        transition: all 0.3s;
+        z-index: 100;
+        overflow-y: auto;
+      }
+
+      .navbar {
+        height: 70px;
+        position: fixed;
+        top: 0;
+        left: 250px;
+        right: 0;
+        z-index: 90;
+        transition: all 0.3s;
+      }
+
+      .main-content {
+        margin-left: 250px;
+        margin-top: 70px;
+        padding: 20px;
+        transition: all 0.3s;
+        min-height: calc(100vh - 70px);
+      }
+
+      .sidebar-link.active {
+        background-color: rgba(255, 255, 255, 0.1);
+        border-left: 4px solid white;
       }
 
       .settings-card {
@@ -27,11 +62,6 @@
       .settings-card:hover {
         transform: translateY(-3px);
         box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-      }
-
-      .sidebar-link.active {
-        background-color: rgba(255, 255, 255, 0.1);
-        border-left: 4px solid white;
       }
 
       .toggle-switch {
@@ -88,28 +118,39 @@
         color: white;
       }
 
-      /* Mobile menu styles */
+      .content-section {
+        display: none;
+      }
+
+      .content-section.active {
+        display: block;
+      }
+
       .mobile-menu-btn {
         display: none;
       }
 
-      @media (max-width: 768px) {
-        .mobile-menu-btn {
-          display: block;
-        }
-
+      @media (max-width: 1024px) {
         .sidebar {
           transform: translateX(-100%);
-          transition: transform 0.3s ease;
-          position: fixed;
-          z-index: 50;
-          height: 100vh;
         }
-
+        
         .sidebar.active {
           transform: translateX(0);
         }
-
+        
+        .navbar {
+          left: 0;
+        }
+        
+        .main-content {
+          margin-left: 0;
+        }
+        
+        .mobile-menu-btn {
+          display: block;
+        }
+        
         .overlay {
           display: none;
           position: fixed;
@@ -118,13 +159,15 @@
           right: 0;
           bottom: 0;
           background-color: rgba(0, 0, 0, 0.5);
-          z-index: 40;
+          z-index: 50;
         }
-
+        
         .overlay.active {
           display: block;
         }
-        
+      }
+
+      @media (max-width: 768px) {
         /* Mobile adjustments for toggle switches */
         .toggle-switch {
           width: 50px;
@@ -148,459 +191,594 @@
     <!-- Mobile Overlay -->
     <div class="overlay" id="overlay"></div>
 
-    <div class="flex min-h-screen">
-      <!-- Sidebar -->
-      <aside
-        class="sidebar w-64 gradient-bg text-white min-h-screen flex flex-col"
-      >
-        <div class="p-6 flex justify-between items-center">
-          <h1 class="text-2xl font-bold flex items-center">
-            <i class="fas fa-graduation-cap mr-2"></i>
-            SchoolSys
-          </h1>
-          <button class="md:hidden" id="closeSidebar">
-            <i class="fas fa-times"></i>
+    <!-- Sidebar -->
+    <aside class="sidebar gradient-bg text-white">
+      <div class="p-6 flex justify-between items-center">
+        <h1 class="text-2xl font-bold flex items-center">
+          <i class="fas fa-graduation-cap mr-2"></i>
+          SchoolSys
+        </h1>
+        <button class="md:hidden" id="closeSidebar">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <nav class="mt-4 flex-1">
+        <ul>
+          <li class="mb-1">
+            <a href="#" class="sidebar-link flex items-center p-3 rounded-r-lg hover:bg-indigo-700 transition-colors mx-2 active" data-target="dashboard">
+              <i class="fas fa-home mr-3 w-5 text-center"></i>
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li class="mb-1">
+            <a href="#" class="sidebar-link flex items-center p-3 rounded-r-lg hover:bg-indigo-700 transition-colors mx-2" data-target="expenses">
+              <i class="fas fa-wallet mr-3 w-5 text-center"></i>
+              <span>Expenses</span>
+            </a>
+          </li>
+          <li class="mb-1">
+            <a href="#" class="sidebar-link flex items-center p-3 rounded-r-lg hover:bg-indigo-700 transition-colors mx-2" data-target="reports">
+              <i class="fas fa-chart-pie mr-3 w-5 text-center"></i>
+              <span>Reports</span>
+            </a>
+          </li>
+          <li class="mb-1">
+            <a href="#" class="sidebar-link flex items-center p-3 rounded-r-lg hover:bg-indigo-700 transition-colors mx-2" data-target="categories">
+              <i class="fas fa-tags mr-3 w-5 text-center"></i>
+              <span>Categories</span>
+            </a>
+          </li>
+          <li class="mb-1">
+            <a href="#" class="sidebar-link flex items-center p-3 rounded-r-lg hover:bg-indigo-700 transition-colors mx-2" data-target="settings">
+              <i class="fas fa-cog mr-3 w-5 text-center"></i>
+              <span>Settings</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <div class="p-4 mt-auto">
+        <div class="bg-indigo-900 p-4 rounded-lg">
+          <h3 class="font-semibold text-sm">Upgrade to Premium</h3>
+          <p class="text-xs text-indigo-200 mt-1 mb-2">
+            Advanced settings & features
+          </p>
+          <button class="w-full bg-white text-indigo-700 px-3 py-2 rounded text-sm font-medium hover:bg-indigo-100 transition-colors">
+            Upgrade Now
           </button>
         </div>
-        <nav class="mt-4 flex-1">
-          <ul>
-            <li class="mb-1">
-              <a
-                href="../index.html"
-                class="flex items-center p-3 rounded-r-lg hover:bg-indigo-700 transition-colors mx-2"
-              >
-                <i class="fas fa-home mr-3 w-5 text-center"></i>
-                <span>Dashboard</span>
-              </a>
-            </li>
-            <li class="mb-1">
-              <a
-                href="expenses.html"
-                class="flex items-center p-3 rounded-r-lg hover:bg-indigo-700 transition-colors mx-2"
-              >
-                <i class="fas fa-wallet mr-3 w-5 text-center"></i>
-                <span>Expenses</span>
-              </a>
-            </li>
-            <li class="mb-1">
-              <a
-                href="reports.html"
-                class="flex items-center p-3 rounded-r-lg hover:bg-indigo-700 transition-colors mx-2"
-              >
-                <i class="fas fa-chart-pie mr-3 w-5 text-center"></i>
-                <span>Reports</span>
-              </a>
-            </li>
-            <li class="mb-1">
-              <a
-                href="categories.html"
-                class="flex items-center p-3 rounded-r-lg hover:bg-indigo-700 transition-colors mx-2"
-              >
-                <i class="fas fa-tags mr-3 w-5 text-center"></i>
-                <span>Categories</span>
-              </a>
-            </li>
-            <li class="mb-1">
-              <a
-                href="settings.html"
-                class="flex items-center p-3 rounded-r-lg bg-indigo-700 sidebar-link active mx-2"
-              >
-                <i class="fas fa-cog mr-3 w-5 text-center"></i>
-                <span>Settings</span>
-              </a>
-            </li>
-          </ul>
-        </nav>
-        <div class="p-4 mt-auto">
-          <div class="bg-indigo-900 p-4 rounded-lg">
-            <h3 class="font-semibold text-sm">Upgrade to Premium</h3>
-            <p class="text-xs text-indigo-200 mt-1 mb-2">
-              Advanced settings & features
-            </p>
-            <button
-              class="w-full bg-white text-indigo-700 px-3 py-2 rounded text-sm font-medium hover:bg-indigo-100 transition-colors"
-            >
-              Upgrade Now
-            </button>
+      </div>
+    </aside>
+
+    <!-- Navbar -->
+    <header class="navbar bg-white shadow-sm">
+      <div class="flex items-center justify-between h-full px-6">
+        <div class="flex items-center">
+          <button class="mobile-menu-btn mr-4 text-gray-600" id="mobileToggle">
+            <i class="fas fa-bars text-xl"></i>
+          </button>
+          <div>
+            <h2 class="text-xl font-semibold text-gray-800" id="pageTitle">Dashboard</h2>
+            <p class="text-gray-600 text-sm" id="pageSubtitle">School management overview</p>
           </div>
         </div>
-      </aside>
-
-      <!-- Main Content -->
-      <div class="flex-1 flex flex-col w-full">
-        <!-- Header -->
-        <header
-          class="bg-white shadow-sm p-4 flex justify-between items-center"
-        >
-          <div class="flex items-center">
-            <button
-              class="mobile-menu-btn mr-3 text-gray-600 md:hidden"
-              id="mobileToggle"
-            >
-              <i class="fas fa-bars text-xl"></i>
+        <div class="flex items-center space-x-4">
+          <div class="relative">
+            <button class="p-2 rounded-full hover:bg-gray-100 transition-colors">
+              <i class="fas fa-bell text-gray-600"></i>
+              <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">3</span>
             </button>
-            <div>
-              <h2 class="text-xl font-semibold text-gray-800">Settings</h2>
-              <p class="text-gray-600 text-sm">
-                Manage your school system preferences
-              </p>
+          </div>
+          <div class="flex items-center">
+            <div class="w-10 h-10 bg-gradient-to-r from-purple-400 to-blue-500 rounded-full flex items-center justify-center text-white font-bold">
+              A
+            </div>
+            <div class="ml-3 hidden sm:block">
+              <span class="font-medium">Admin</span>
+              <p class="text-xs text-gray-500">Administrator</p>
             </div>
           </div>
-          <div class="flex items-center space-x-4">
-            <div class="relative">
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+      <!-- Dashboard Content -->
+      <div class="content-section active" id="dashboard">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+          <div class="stats-card bg-white p-6 rounded-xl shadow">
+            <div class="flex justify-between items-start">
+              <div>
+                <p class="text-sm text-gray-500">Total Students</p>
+                <h3 class="text-2xl font-bold mt-1 text-gray-800">1,248</h3>
+              </div>
+              <div class="bg-blue-100 p-3 rounded-full">
+                <i class="fas fa-users text-blue-600 text-xl"></i>
+              </div>
+            </div>
+            <p class="text-green-600 text-xs mt-3">
+              <i class="fas fa-arrow-up mr-1"></i> 5.2% from last month
+            </p>
+          </div>
+
+          <div class="stats-card bg-white p-6 rounded-xl shadow">
+            <div class="flex justify-between items-start">
+              <div>
+                <p class="text-sm text-gray-500">Total Staff</p>
+                <h3 class="text-2xl font-bold mt-1 text-gray-800">84</h3>
+              </div>
+              <div class="bg-green-100 p-3 rounded-full">
+                <i class="fas fa-chalkboard-teacher text-green-600 text-xl"></i>
+              </div>
+            </div>
+            <p class="text-green-600 text-xs mt-3">
+              <i class="fas fa-arrow-up mr-1"></i> 2 new hires
+            </p>
+          </div>
+
+          <div class="stats-card bg-white p-6 rounded-xl shadow">
+            <div class="flex justify-between items-start">
+              <div>
+                <p class="text-sm text-gray-500">Monthly Expenses</p>
+                <h3 class="text-2xl font-bold mt-1 text-gray-800">$24,580</h3>
+              </div>
+              <div class="bg-purple-100 p-3 rounded-full">
+                <i class="fas fa-wallet text-purple-600 text-xl"></i>
+              </div>
+            </div>
+            <p class="text-red-600 text-xs mt-3">
+              <i class="fas fa-arrow-up mr-1"></i> 12% from last month
+            </p>
+          </div>
+
+          <div class="stats-card bg-white p-6 rounded-xl shadow">
+            <div class="flex justify-between items-start">
+              <div>
+                <p class="text-sm text-gray-500">Attendance Rate</p>
+                <h3 class="text-2xl font-bold mt-1 text-gray-800">94.2%</h3>
+              </div>
+              <div class="bg-yellow-100 p-3 rounded-full">
+                <i class="fas fa-user-check text-yellow-600 text-xl"></i>
+              </div>
+            </div>
+            <p class="text-green-600 text-xs mt-3">
+              <i class="fas fa-arrow-up mr-1"></i> 1.5% from last week
+            </p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div class="bg-white p-6 rounded-xl shadow">
+            <h3 class="text-lg font-semibold text-gray-800 mb-4">Recent Activities</h3>
+            <div class="space-y-4">
+              <div class="flex items-start">
+                <div class="bg-blue-100 p-2 rounded-full mr-3">
+                  <i class="fas fa-user-plus text-blue-600 text-sm"></i>
+                </div>
+                <div>
+                  <p class="text-sm font-medium">New student enrolled</p>
+                  <p class="text-xs text-gray-500">Sarah Johnson in Grade 5</p>
+                  <p class="text-xs text-gray-400">2 hours ago</p>
+                </div>
+              </div>
+              <div class="flex items-start">
+                <div class="bg-green-100 p-2 rounded-full mr-3">
+                  <i class="fas fa-money-bill-wave text-green-600 text-sm"></i>
+                </div>
+                <div>
+                  <p class="text-sm font-medium">Fee payment received</p>
+                  <p class="text-xs text-gray-500">From Michael Brown</p>
+                  <p class="text-xs text-gray-400">Yesterday</p>
+                </div>
+              </div>
+              <div class="flex items-start">
+                <div class="bg-purple-100 p-2 rounded-full mr-3">
+                  <i class="fas fa-chalkboard-teacher text-purple-600 text-sm"></i>
+                </div>
+                <div>
+                  <p class="text-sm font-medium">New teacher assigned</p>
+                  <p class="text-xs text-gray-500">Mr. Wilson to Class 7-B</p>
+                  <p class="text-xs text-gray-400">2 days ago</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white p-6 rounded-xl shadow">
+            <h3 class="text-lg font-semibold text-gray-800 mb-4">Upcoming Events</h3>
+            <div class="space-y-4">
+              <div class="flex items-start">
+                <div class="bg-red-100 p-2 rounded-full mr-3">
+                  <i class="fas fa-calendar-alt text-red-600 text-sm"></i>
+                </div>
+                <div>
+                  <p class="text-sm font-medium">Parent-Teacher Meeting</p>
+                  <p class="text-xs text-gray-500">June 25, 2023 • 10:00 AM</p>
+                  <p class="text-xs text-gray-400">Next week</p>
+                </div>
+              </div>
+              <div class="flex items-start">
+                <div class="bg-yellow-100 p-2 rounded-full mr-3">
+                  <i class="fas fa-graduation-cap text-yellow-600 text-sm"></i>
+                </div>
+                <div>
+                  <p class="text-sm font-medium">Annual Sports Day</p>
+                  <p class="text-xs text-gray-500">July 5, 2023 • All day</p>
+                  <p class="text-xs text-gray-400">In 2 weeks</p>
+                </div>
+              </div>
+              <div class="flex items-start">
+                <div class="bg-green-100 p-2 rounded-full mr-3">
+                  <i class="fas fa-music text-green-600 text-sm"></i>
+                </div>
+                <div>
+                  <p class="text-sm font-medium">Music Competition</p>
+                  <p class="text-xs text-gray-500">June 30, 2023 • 2:00 PM</p>
+                  <p class="text-xs text-gray-400">Next Friday</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Add other content sections similarly -->
+      <div class="content-section" id="expenses">
+        <div class="bg-white p-6 rounded-xl shadow mb-6">
+          <h3 class="text-xl font-semibold text-gray-800 mb-2">Expense Management</h3>
+          <p class="text-gray-600">Track and manage all school expenses</p>
+        </div>
+        
+        <!-- Add expenses content here -->
+      </div>
+
+      <div class="content-section" id="reports">
+        <div class="bg-white p-6 rounded-xl shadow mb-6">
+          <h3 class="text-xl font-semibold text-gray-800 mb-2">Reports & Analytics</h3>
+          <p class="text-gray-600">View detailed reports and analytics</p>
+        </div>
+        
+        <!-- Add reports content here -->
+      </div>
+
+      <div class="content-section" id="categories">
+        <div class="bg-white p-6 rounded-xl shadow mb-6">
+          <h3 class="text-xl font-semibold text-gray-800 mb-2">Category Management</h3>
+          <p class="text-gray-600">Manage and organize expense categories</p>
+        </div>
+        
+        <!-- Add categories content here -->
+      </div>
+
+      <!-- Settings Content -->
+      <div class="content-section" id="settings">
+        <!-- Settings Tabs -->
+        <div class="bg-white rounded-xl shadow mb-6 overflow-hidden">
+          <div class="border-b">
+            <div class="flex overflow-x-auto">
               <button
-                class="p-2 rounded-full hover:bg-gray-100 transition-colors"
+                class="tab-button active px-4 py-3 text-sm font-medium whitespace-nowrap"
               >
-                <i class="fas fa-bell text-gray-600"></i>
-                <span
-                  class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center"
-                  >3</span
-                >
+                <i class="fas fa-school mr-2"></i>School Info
+              </button>
+              <button
+                class="tab-button px-4 py-3 text-sm font-medium whitespace-nowrap"
+              >
+                <i class="fas fa-user mr-2"></i>User Preferences
+              </button>
+              <button
+                class="tab-button px-4 py-3 text-sm font-medium whitespace-nowrap"
+              >
+                <i class="fas fa-shield-alt mr-2"></i>Security
+              </button>
+              <button
+                class="tab-button px-4 py-3 text-sm font-medium whitespace-nowrap"
+              >
+                <i class="fas fa-bell mr-2"></i>Notifications
+              </button>
+              <button
+                class="tab-button px-4 py-3 text-sm font-medium whitespace-nowrap"
+              >
+                <i class="fas fa-palette mr-2"></i>Appearance
               </button>
             </div>
-            <div class="flex items-center">
-              <div
-                class="w-10 h-10 bg-gradient-to-r from-purple-400 to-blue-500 rounded-full flex items-center justify-center text-white font-bold"
-              >
-                A
-              </div>
-              <div class="ml-3 hidden sm:block">
-                <span class="font-medium">Admin</span>
-                <p class="text-xs text-gray-500">Administrator</p>
-              </div>
-            </div>
           </div>
-        </header>
+        </div>
 
-        <main class="p-4 md:p-6 flex-1">
-          <!-- Settings Tabs -->
-          <div class="bg-white rounded-xl shadow mb-6 overflow-hidden">
-            <div class="border-b">
-              <div class="flex overflow-x-auto">
-                <button
-                  class="tab-button active px-4 py-3 text-sm font-medium whitespace-nowrap"
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6">
+          <!-- Main Settings Content -->
+          <div class="lg:col-span-2 space-y-4 md:space-y-6">
+            <!-- School Information Card -->
+            <div class="settings-card bg-white p-4 md:p-6 rounded-xl shadow">
+              <div class="flex items-center justify-between mb-4 md:mb-6">
+                <h3
+                  class="text-lg font-semibold text-gray-800 flex items-center"
                 >
-                  <i class="fas fa-school mr-2"></i>School Info
-                </button>
-                <button
-                  class="tab-button px-4 py-3 text-sm font-medium whitespace-nowrap"
+                  <i class="fas fa-school mr-2 text-indigo-600"></i>
+                  School Information
+                </h3>
+                <span
+                  class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full"
+                  >Active</span
                 >
-                  <i class="fas fa-user mr-2"></i>User Preferences
-                </button>
-                <button
-                  class="tab-button px-4 py-3 text-sm font-medium whitespace-nowrap"
-                >
-                  <i class="fas fa-shield-alt mr-2"></i>Security
-                </button>
-                <button
-                  class="tab-button px-4 py-3 text-sm font-medium whitespace-nowrap"
-                >
-                  <i class="fas fa-bell mr-2"></i>Notifications
-                </button>
-                <button
-                  class="tab-button px-4 py-3 text-sm font-medium whitespace-nowrap"
-                >
-                  <i class="fas fa-palette mr-2"></i>Appearance
-                </button>
               </div>
-            </div>
-          </div>
 
-          <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6">
-            <!-- Main Settings Content -->
-            <div class="lg:col-span-2 space-y-4 md:space-y-6">
-              <!-- School Information Card -->
-              <div class="settings-card bg-white p-4 md:p-6 rounded-xl shadow">
-                <div class="flex items-center justify-between mb-4 md:mb-6">
-                  <h3
-                    class="text-lg font-semibold text-gray-800 flex items-center"
-                  >
-                    <i class="fas fa-school mr-2 text-indigo-600"></i>
-                    School Information
-                  </h3>
-                  <span
-                    class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full"
-                    >Active</span
-                  >
-                </div>
-
-                <div class="space-y-4 md:space-y-5">
-                  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
-                    <div>
-                      <label
-                        class="block text-sm font-medium text-gray-700 mb-2"
-                        >School Name</label
-                      >
-                      <input
-                        type="text"
-                        class="w-full px-3 md:px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors"
-                        value="Greenwood High School"
-                      />
-                    </div>
-                    <div>
-                      <label
-                        class="block text-sm font-medium text-gray-700 mb-2"
-                        >School ID</label
-                      >
-                      <input
-                        type="text"
-                        class="w-full px-3 md:px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors"
-                        value="SCH-2023-001"
-                      />
-                    </div>
-                  </div>
-
+              <div class="space-y-4 md:space-y-5">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
                   <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2"
-                      >Address</label
+                    <label
+                      class="block text-sm font-medium text-gray-700 mb-2"
+                      >School Name</label
                     >
                     <input
                       type="text"
                       class="w-full px-3 md:px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors"
-                      value="123 Education Avenue"
+                      value="Greenwood High School"
                     />
                   </div>
-
-                  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
-                    <div>
-                      <label
-                        class="block text-sm font-medium text-gray-700 mb-2"
-                        >City</label
-                      >
-                      <input
-                        type="text"
-                        class="w-full px-3 md:px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors"
-                        value="Springfield"
-                      />
-                    </div>
-                    <div>
-                      <label
-                        class="block text-sm font-medium text-gray-700 mb-2"
-                        >Zip Code</label
-                      >
-                      <input
-                        type="text"
-                        class="w-full px-3 md:px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors"
-                        value="12345"
-                      />
-                    </div>
-                  </div>
-
                   <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2"
-                      >School Description</label
+                    <label
+                      class="block text-sm font-medium text-gray-700 mb-2"
+                      >School ID</label
                     >
-                    <textarea
-                      class="w-full px-3 md:px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors h-24"
+                    <input
+                      type="text"
+                      class="w-full px-3 md:px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors"
+                      value="SCH-2023-001"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2"
+                    >Address</label
+                  >
+                  <input
+                    type="text"
+                    class="w-full px-3 md:px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors"
+                    value="123 Education Avenue"
+                  />
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
+                  <div>
+                    <label
+                      class="block text-sm font-medium text-gray-700 mb-2"
+                      >City</label
                     >
+                    <input
+                      type="text"
+                      class="w-full px-3 md:px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors"
+                      value="Springfield"
+                    />
+                  </div>
+                  <div>
+                    <label
+                      class="block text-sm font-medium text-gray-700 mb-2"
+                      >Zip Code</label
+                    >
+                    <input
+                      type="text"
+                      class="w-full px-3 md:px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors"
+                      value="12345"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2"
+                    >School Description</label
+                  >
+                  <textarea
+                    class="w-full px-3 md:px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors h-24"
+                  >
 Greenwood High School is committed to providing quality education and fostering student development in a supportive learning environment.</textarea
-                    >
-                  </div>
-                </div>
-              </div>
-
-              <!-- User Preferences Card -->
-              <div class="settings-card bg-white p-4 md:p-6 rounded-xl shadow">
-                <h3
-                  class="text-lg font-semibold text-gray-800 flex items-center mb-4 md:mb-6"
-                >
-                  <i class="fas fa-user-cog mr-2 text-indigo-600"></i>
-                  User Preferences
-                </h3>
-
-                <div class="space-y-3 md:space-y-4">
-                  <div
-                    class="flex items-center justify-between p-3 bg-gray-50 rounded-lg"
                   >
-                    <div class="flex-1 mr-4">
-                      <p class="font-medium text-gray-800">
-                        Email Notifications
-                      </p>
-                      <p class="text-sm text-gray-600">
-                        Receive updates via email
-                      </p>
-                    </div>
-                    <label class="toggle-switch flex-shrink-0">
-                      <input type="checkbox" checked />
-                      <span class="toggle-slider"></span>
-                    </label>
-                  </div>
-
-                  <div
-                    class="flex items-center justify-between p-3 bg-gray-50 rounded-lg"
-                  >
-                    <div class="flex-1 mr-4">
-                      <p class="font-medium text-gray-800">SMS Notifications</p>
-                      <p class="text-sm text-gray-600">
-                        Receive important alerts via SMS
-                      </p>
-                    </div>
-                    <label class="toggle-switch flex-shrink-0">
-                      <input type="checkbox" />
-                      <span class="toggle-slider"></span>
-                    </label>
-                  </div>
-
-                  <div
-                    class="flex items-center justify-between p-3 bg-gray-50 rounded-lg"
-                  >
-                    <div class="flex-1 mr-4">
-                      <p class="font-medium text-gray-800">Auto Backup</p>
-                      <p class="text-sm text-gray-600">
-                        Automatically backup data daily
-                      </p>
-                    </div>
-                    <label class="toggle-switch flex-shrink-0">
-                      <input type="checkbox" checked />
-                      <span class="toggle-slider"></span>
-                    </label>
-                  </div>
-
-                  <div
-                    class="flex items-center justify-between p-3 bg-gray-50 rounded-lg"
-                  >
-                    <div class="flex-1 mr-4">
-                      <p class="font-medium text-gray-800">
-                        Two-Factor Authentication
-                      </p>
-                      <p class="text-sm text-gray-600">
-                        Enhanced security for your account
-                      </p>
-                    </div>
-                    <label class="toggle-switch flex-shrink-0">
-                      <input type="checkbox" />
-                      <span class="toggle-slider"></span>
-                    </label>
-                  </div>
                 </div>
               </div>
             </div>
 
-            <!-- Side Panel -->
-            <div class="space-y-4 md:space-y-6">
-              <!-- Quick Actions -->
-              <div class="settings-card bg-white p-4 md:p-6 rounded-xl shadow">
-                <h3 class="text-lg font-semibold text-gray-800 mb-4">
-                  Quick Actions
-                </h3>
-                <div class="space-y-3">
-                  <button
-                    class="w-full flex items-center justify-between p-3 bg-blue-50 text-blue-700 rounded-lg hover:bg-blue-100 transition-colors"
-                  >
-                    <span class="font-medium">Export Data</span>
-                    <i class="fas fa-download"></i>
-                  </button>
-                  <button
-                    class="w-full flex items-center justify-between p-3 bg-green-50 text-green-700 rounded-lg hover:bg-green-100 transition-colors"
-                  >
-                    <span class="font-medium">Backup Now</span>
-                    <i class="fas fa-save"></i>
-                  </button>
-                  <button
-                    class="w-full flex items-center justify-between p-3 bg-purple-50 text-purple-700 rounded-lg hover:bg-purple-100 transition-colors"
-                  >
-                    <span class="font-medium">System Check</span>
-                    <i class="fas fa-cogs"></i>
-                  </button>
-                  <button
-                    class="w-full flex items-center justify-between p-3 bg-red-50 text-red-700 rounded-lg hover:bg-red-100 transition-colors"
-                  >
-                    <span class="font-medium">Reset Settings</span>
-                    <i class="fas fa-redo"></i>
-                  </button>
-                </div>
-              </div>
-
-              <!-- System Status -->
-              <div class="settings-card bg-white p-4 md:p-6 rounded-xl shadow">
-                <h3 class="text-lg font-semibold text-gray-800 mb-4">
-                  System Status
-                </h3>
-                <div class="space-y-4">
-                  <div class="flex justify-between items-center">
-                    <span class="text-gray-600">Storage Usage</span>
-                    <span class="font-medium">65%</span>
-                  </div>
-                  <div class="w-full bg-gray-200 rounded-full h-2">
-                    <div
-                      class="bg-blue-600 h-2 rounded-full"
-                      style="width: 65%"
-                    ></div>
-                  </div>
-
-                  <div class="flex justify-between items-center">
-                    <span class="text-gray-600">Database Health</span>
-                    <span class="font-medium text-green-600">Excellent</span>
-                  </div>
-
-                  <div class="flex justify-between items-center">
-                    <span class="text-gray-600">Last Backup</span>
-                    <span class="font-medium">Today, 02:30 AM</span>
-                  </div>
-
-                  <div class="flex justify-between items-center">
-                    <span class="text-gray-600">System Version</span>
-                    <span class="font-medium">v2.4.1</span>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Support Card -->
-              <div
-                class="settings-card bg-gradient-to-r from-indigo-500 to-purple-600 p-4 md:p-6 rounded-xl shadow text-white"
+            <!-- User Preferences Card -->
+            <div class="settings-card bg-white p-4 md:p-6 rounded-xl shadow">
+              <h3
+                class="text-lg font-semibold text-gray-800 flex items-center mb-4 md:mb-6"
               >
-                <h3 class="text-lg font-semibold mb-2">Need Help?</h3>
-                <p class="text-indigo-100 text-sm mb-4">
-                  Our support team is here to assist you
-                </p>
-                <div class="space-y-3">
-                  <button
-                    class="w-full flex items-center justify-center p-3 bg-white text-indigo-600 rounded-lg hover:bg-indigo-50 transition-colors font-medium"
-                  >
-                    <i class="fas fa-life-ring mr-2"></i> Contact Support
-                  </button>
-                  <button
-                    class="w-full flex items-center justify-center p-3 bg-indigo-700 text-white rounded-lg hover:bg-indigo-800 transition-colors font-medium"
-                  >
-                    <i class="fas fa-book mr-2"></i> Documentation
-                  </button>
+                <i class="fas fa-user-cog mr-2 text-indigo-600"></i>
+                User Preferences
+              </h3>
+
+              <div class="space-y-3 md:space-y-4">
+                <div
+                  class="flex items-center justify-between p-3 bg-gray-50 rounded-lg"
+                >
+                  <div class="flex-1 mr-4">
+                    <p class="font-medium text-gray-800">
+                      Email Notifications
+                    </p>
+                    <p class="text-sm text-gray-600">
+                      Receive updates via email
+                    </p>
+                  </div>
+                  <label class="toggle-switch flex-shrink-0">
+                    <input type="checkbox" checked />
+                    <span class="toggle-slider"></span>
+                  </label>
+                </div>
+
+                <div
+                  class="flex items-center justify-between p-3 bg-gray-50 rounded-lg"
+                >
+                  <div class="flex-1 mr-4">
+                    <p class="font-medium text-gray-800">SMS Notifications</p>
+                    <p class="text-sm text-gray-600">
+                      Receive important alerts via SMS
+                    </p>
+                  </div>
+                  <label class="toggle-switch flex-shrink-0">
+                    <input type="checkbox" />
+                    <span class="toggle-slider"></span>
+                  </label>
+                </div>
+
+                <div
+                  class="flex items-center justify-between p-3 bg-gray-50 rounded-lg"
+                >
+                  <div class="flex-1 mr-4">
+                    <p class="font-medium text-gray-800">Auto Backup</p>
+                    <p class="text-sm text-gray-600">
+                      Automatically backup data daily
+                    </p>
+                  </div>
+                  <label class="toggle-switch flex-shrink-0">
+                    <input type="checkbox" checked />
+                    <span class="toggle-slider"></span>
+                  </label>
+                </div>
+
+                <div
+                  class="flex items-center justify-between p-3 bg-gray-50 rounded-lg"
+                >
+                  <div class="flex-1 mr-4">
+                    <p class="font-medium text-gray-800">
+                      Two-Factor Authentication
+                    </p>
+                    <p class="text-sm text-gray-600">
+                      Enhanced security for your account
+                    </p>
+                  </div>
+                  <label class="toggle-switch flex-shrink-0">
+                    <input type="checkbox" />
+                    <span class="toggle-slider"></span>
+                  </label>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- Save Actions -->
-          <div class="mt-6 md:mt-8 bg-white p-4 md:p-6 rounded-xl shadow">
-            <div
-              class="flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0"
-            >
-              <div class="text-center sm:text-left">
-                <h3 class="font-semibold text-gray-800">Apply Changes</h3>
-                <p class="text-gray-600 text-sm">
-                  Save your settings configuration
-                </p>
-              </div>
-              <div class="flex space-x-3">
+          <!-- Side Panel -->
+          <div class="space-y-4 md:space-y-6">
+            <!-- Quick Actions -->
+            <div class="settings-card bg-white p-4 md:p-6 rounded-xl shadow">
+              <h3 class="text-lg font-semibold text-gray-800 mb-4">
+                Quick Actions
+              </h3>
+              <div class="space-y-3">
                 <button
-                  class="px-4 md:px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors font-medium"
+                  class="w-full flex items-center justify-between p-3 bg-blue-50 text-blue-700 rounded-lg hover:bg-blue-100 transition-colors"
                 >
-                  Reset
+                  <span class="font-medium">Export Data</span>
+                  <i class="fas fa-download"></i>
                 </button>
                 <button
-                  class="px-4 md:px-6 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors font-medium flex items-center"
+                  class="w-full flex items-center justify-between p-3 bg-green-50 text-green-700 rounded-lg hover:bg-green-100 transition-colors"
                 >
-                  <i class="fas fa-save mr-2"></i> Save Changes
+                  <span class="font-medium">Backup Now</span>
+                  <i class="fas fa-save"></i>
+                </button>
+                <button
+                  class="w-full flex items-center justify-between p-3 bg-purple-50 text-purple-700 rounded-lg hover:bg-purple-100 transition-colors"
+                >
+                  <span class="font-medium">System Check</span>
+                  <i class="fas fa-cogs"></i>
+                </button>
+                <button
+                  class="w-full flex items-center justify-between p-3 bg-red-50 text-red-700 rounded-lg hover:bg-red-100 transition-colors"
+                >
+                  <span class="font-medium">Reset Settings</span>
+                  <i class="fas fa-redo"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- System Status -->
+            <div class="settings-card bg-white p-4 md:p-6 rounded-xl shadow">
+              <h3 class="text-lg font-semibold text-gray-800 mb-4">
+                System Status
+              </h3>
+              <div class="space-y-4">
+                <div class="flex justify-between items-center">
+                  <span class="text-gray-600">Storage Usage</span>
+                  <span class="font-medium">65%</span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-2">
+                  <div
+                    class="bg-blue-600 h-2 rounded-full"
+                    style="width: 65%"
+                  ></div>
+                </div>
+
+                <div class="flex justify-between items-center">
+                  <span class="text-gray-600">Database Health</span>
+                  <span class="font-medium text-green-600">Excellent</span>
+                </div>
+
+                <div class="flex justify-between items-center">
+                  <span class="text-gray-600">Last Backup</span>
+                  <span class="font-medium">Today, 02:30 AM</span>
+                </div>
+
+                <div class="flex justify-between items-center">
+                  <span class="text-gray-600">System Version</span>
+                  <span class="font-medium">v2.4.1</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Support Card -->
+            <div
+              class="settings-card bg-gradient-to-r from-indigo-500 to-purple-600 p-4 md:p-6 rounded-xl shadow text-white"
+            >
+              <h3 class="text-lg font-semibold mb-2">Need Help?</h3>
+              <p class="text-indigo-100 text-sm mb-4">
+                Our support team is here to assist you
+              </p>
+              <div class="space-y-3">
+                <button
+                  class="w-full flex items-center justify-center p-3 bg-white text-indigo-600 rounded-lg hover:bg-indigo-50 transition-colors font-medium"
+                >
+                  <i class="fas fa-life-ring mr-2"></i> Contact Support
+                </button>
+                <button
+                  class="w-full flex items-center justify-center p-3 bg-indigo-700 text-white rounded-lg hover:bg-indigo-800 transition-colors font-medium"
+                >
+                  <i class="fas fa-book mr-2"></i> Documentation
                 </button>
               </div>
             </div>
           </div>
-        </main>
+        </div>
+
+        <!-- Save Actions -->
+        <div class="mt-6 md:mt-8 bg-white p-4 md:p-6 rounded-xl shadow">
+          <div
+            class="flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0"
+          >
+            <div class="text-center sm:text-left">
+              <h3 class="font-semibold text-gray-800">Apply Changes</h3>
+              <p class="text-gray-600 text-sm">
+                Save your settings configuration
+              </p>
+            </div>
+            <div class="flex space-x-3">
+              <button
+                class="px-4 md:px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors font-medium"
+              >
+                Reset
+              </button>
+              <button
+                class="px-4 md:px-6 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors font-medium flex items-center"
+              >
+                <i class="fas fa-save mr-2"></i> Save Changes
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
+    </main>
 
     <script>
-      // Mobile sidebar functionality
       document.addEventListener("DOMContentLoaded", function () {
+        // Mobile sidebar functionality
         const mobileToggle = document.getElementById("mobileToggle");
         const closeSidebar = document.getElementById("closeSidebar");
         const sidebar = document.querySelector(".sidebar");
@@ -621,6 +799,49 @@ Greenwood High School is committed to providing quality education and fostering 
         mobileToggle.addEventListener("click", openSidebar);
         closeSidebar.addEventListener("click", closeSidebarFunc);
         overlay.addEventListener("click", closeSidebarFunc);
+
+        // Navigation between sections
+        const sidebarLinks = document.querySelectorAll('.sidebar-link');
+        const contentSections = document.querySelectorAll('.content-section');
+        const pageTitle = document.getElementById('pageTitle');
+        const pageSubtitle = document.getElementById('pageSubtitle');
+        
+        // Page titles and subtitles for each section
+        const pageData = {
+          dashboard: { title: 'Dashboard', subtitle: 'School management overview' },
+          expenses: { title: 'Expenses', subtitle: 'Track and manage school expenses' },
+          reports: { title: 'Reports & Analytics', subtitle: 'View detailed reports and analytics' },
+          categories: { title: 'Categories', subtitle: 'Manage expense categories' },
+          settings: { title: 'Settings', subtitle: 'Manage your school system preferences' }
+        };
+        
+        sidebarLinks.forEach(link => {
+          link.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Get the target section
+            const target = this.getAttribute('data-target');
+            
+            // Update active states
+            sidebarLinks.forEach(l => l.classList.remove('active'));
+            this.classList.add('active');
+            
+            // Show the target section
+            contentSections.forEach(section => {
+              section.classList.remove('active');
+            });
+            document.getElementById(target).classList.add('active');
+            
+            // Update page title and subtitle
+            pageTitle.textContent = pageData[target].title;
+            pageSubtitle.textContent = pageData[target].subtitle;
+            
+            // Close sidebar on mobile after selection
+            if (window.innerWidth < 1024) {
+              closeSidebarFunc();
+            }
+          });
+        });
 
         // Tab functionality
         const tabButtons = document.querySelectorAll(".tab-button");
