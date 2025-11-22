@@ -134,23 +134,23 @@
         .sidebar {
           transform: translateX(-100%);
         }
-        
+
         .sidebar.active {
           transform: translateX(0);
         }
-        
+
         .navbar {
           left: 0;
         }
-        
+
         .main-content {
           margin-left: 0;
         }
-        
+
         .mobile-menu-btn {
           display: block;
         }
-        
+
         .overlay {
           display: none;
           position: fixed;
@@ -161,7 +161,7 @@
           background-color: rgba(0, 0, 0, 0.5);
           z-index: 50;
         }
-        
+
         .overlay.active {
           display: block;
         }
@@ -173,14 +173,14 @@
           width: 50px;
           height: 25px;
         }
-        
+
         .toggle-slider:before {
           height: 18px;
           width: 18px;
           left: 3px;
           bottom: 3px;
         }
-        
+
         input:checked + .toggle-slider:before {
           transform: translateX(25px);
         }
@@ -205,31 +205,51 @@
       <nav class="mt-4 flex-1">
         <ul>
           <li class="mb-1">
-            <a href="#" class="sidebar-link flex items-center p-3 rounded-r-lg hover:bg-indigo-700 transition-colors mx-2 active" data-target="dashboard">
+            <a
+              href="#"
+              class="sidebar-link flex items-center p-3 rounded-r-lg hover:bg-indigo-700 transition-colors mx-2 active"
+              data-target="dashboard"
+            >
               <i class="fas fa-home mr-3 w-5 text-center"></i>
               <span>Dashboard</span>
             </a>
           </li>
           <li class="mb-1">
-            <a href="#" class="sidebar-link flex items-center p-3 rounded-r-lg hover:bg-indigo-700 transition-colors mx-2" data-target="expenses">
+            <a
+              href="#"
+              class="sidebar-link flex items-center p-3 rounded-r-lg hover:bg-indigo-700 transition-colors mx-2"
+              data-target="expenses"
+            >
               <i class="fas fa-wallet mr-3 w-5 text-center"></i>
               <span>Expenses</span>
             </a>
           </li>
           <li class="mb-1">
-            <a href="#" class="sidebar-link flex items-center p-3 rounded-r-lg hover:bg-indigo-700 transition-colors mx-2" data-target="reports">
+            <a
+              href="#"
+              class="sidebar-link flex items-center p-3 rounded-r-lg hover:bg-indigo-700 transition-colors mx-2"
+              data-target="reports"
+            >
               <i class="fas fa-chart-pie mr-3 w-5 text-center"></i>
               <span>Reports</span>
             </a>
           </li>
           <li class="mb-1">
-            <a href="#" class="sidebar-link flex items-center p-3 rounded-r-lg hover:bg-indigo-700 transition-colors mx-2" data-target="categories">
+            <a
+              href="#"
+              class="sidebar-link flex items-center p-3 rounded-r-lg hover:bg-indigo-700 transition-colors mx-2"
+              data-target="categories"
+            >
               <i class="fas fa-tags mr-3 w-5 text-center"></i>
               <span>Categories</span>
             </a>
           </li>
           <li class="mb-1">
-            <a href="#" class="sidebar-link flex items-center p-3 rounded-r-lg hover:bg-indigo-700 transition-colors mx-2" data-target="settings">
+            <a
+              href="#"
+              class="sidebar-link flex items-center p-3 rounded-r-lg hover:bg-indigo-700 transition-colors mx-2"
+              data-target="settings"
+            >
               <i class="fas fa-cog mr-3 w-5 text-center"></i>
               <span>Settings</span>
             </a>
@@ -242,7 +262,9 @@
           <p class="text-xs text-indigo-200 mt-1 mb-2">
             Advanced settings & features
           </p>
-          <button class="w-full bg-white text-indigo-700 px-3 py-2 rounded text-sm font-medium hover:bg-indigo-100 transition-colors">
+          <button
+            class="w-full bg-white text-indigo-700 px-3 py-2 rounded text-sm font-medium hover:bg-indigo-100 transition-colors"
+          >
             Upgrade Now
           </button>
         </div>
@@ -257,19 +279,30 @@
             <i class="fas fa-bars text-xl"></i>
           </button>
           <div>
-            <h2 class="text-xl font-semibold text-gray-800" id="pageTitle">Dashboard</h2>
-            <p class="text-gray-600 text-sm" id="pageSubtitle">School management overview</p>
+            <h2 class="text-xl font-semibold text-gray-800" id="pageTitle">
+              Dashboard
+            </h2>
+            <p class="text-gray-600 text-sm" id="pageSubtitle">
+              School management overview
+            </p>
           </div>
         </div>
         <div class="flex items-center space-x-4">
           <div class="relative">
-            <button class="p-2 rounded-full hover:bg-gray-100 transition-colors">
+            <button
+              class="p-2 rounded-full hover:bg-gray-100 transition-colors"
+            >
               <i class="fas fa-bell text-gray-600"></i>
-              <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">3</span>
+              <span
+                class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center"
+                >3</span
+              >
             </button>
           </div>
           <div class="flex items-center">
-            <div class="w-10 h-10 bg-gradient-to-r from-purple-400 to-blue-500 rounded-full flex items-center justify-center text-white font-bold">
+            <div
+              class="w-10 h-10 bg-gradient-to-r from-purple-400 to-blue-500 rounded-full flex items-center justify-center text-white font-bold"
+            >
               A
             </div>
             <div class="ml-3 hidden sm:block">
@@ -349,7 +382,9 @@
 
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <div class="bg-white p-6 rounded-xl shadow">
-            <h3 class="text-lg font-semibold text-gray-800 mb-4">Recent Activities</h3>
+            <h3 class="text-lg font-semibold text-gray-800 mb-4">
+              Recent Activities
+            </h3>
             <div class="space-y-4">
               <div class="flex items-start">
                 <div class="bg-blue-100 p-2 rounded-full mr-3">
@@ -373,7 +408,9 @@
               </div>
               <div class="flex items-start">
                 <div class="bg-purple-100 p-2 rounded-full mr-3">
-                  <i class="fas fa-chalkboard-teacher text-purple-600 text-sm"></i>
+                  <i
+                    class="fas fa-chalkboard-teacher text-purple-600 text-sm"
+                  ></i>
                 </div>
                 <div>
                   <p class="text-sm font-medium">New teacher assigned</p>
@@ -385,7 +422,9 @@
           </div>
 
           <div class="bg-white p-6 rounded-xl shadow">
-            <h3 class="text-lg font-semibold text-gray-800 mb-4">Upcoming Events</h3>
+            <h3 class="text-lg font-semibold text-gray-800 mb-4">
+              Upcoming Events
+            </h3>
             <div class="space-y-4">
               <div class="flex items-start">
                 <div class="bg-red-100 p-2 rounded-full mr-3">
@@ -425,28 +464,34 @@
       <!-- Add other content sections similarly -->
       <div class="content-section" id="expenses">
         <div class="bg-white p-6 rounded-xl shadow mb-6">
-          <h3 class="text-xl font-semibold text-gray-800 mb-2">Expense Management</h3>
+          <h3 class="text-xl font-semibold text-gray-800 mb-2">
+            Expense Management
+          </h3>
           <p class="text-gray-600">Track and manage all school expenses</p>
         </div>
-        
+
         <!-- Add expenses content here -->
       </div>
 
       <div class="content-section" id="reports">
         <div class="bg-white p-6 rounded-xl shadow mb-6">
-          <h3 class="text-xl font-semibold text-gray-800 mb-2">Reports & Analytics</h3>
+          <h3 class="text-xl font-semibold text-gray-800 mb-2">
+            Reports & Analytics
+          </h3>
           <p class="text-gray-600">View detailed reports and analytics</p>
         </div>
-        
+
         <!-- Add reports content here -->
       </div>
 
       <div class="content-section" id="categories">
         <div class="bg-white p-6 rounded-xl shadow mb-6">
-          <h3 class="text-xl font-semibold text-gray-800 mb-2">Category Management</h3>
+          <h3 class="text-xl font-semibold text-gray-800 mb-2">
+            Category Management
+          </h3>
           <p class="text-gray-600">Manage and organize expense categories</p>
         </div>
-        
+
         <!-- Add categories content here -->
       </div>
 
@@ -506,8 +551,7 @@
               <div class="space-y-4 md:space-y-5">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
                   <div>
-                    <label
-                      class="block text-sm font-medium text-gray-700 mb-2"
+                    <label class="block text-sm font-medium text-gray-700 mb-2"
                       >School Name</label
                     >
                     <input
@@ -517,8 +561,7 @@
                     />
                   </div>
                   <div>
-                    <label
-                      class="block text-sm font-medium text-gray-700 mb-2"
+                    <label class="block text-sm font-medium text-gray-700 mb-2"
                       >School ID</label
                     >
                     <input
@@ -542,8 +585,7 @@
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
                   <div>
-                    <label
-                      class="block text-sm font-medium text-gray-700 mb-2"
+                    <label class="block text-sm font-medium text-gray-700 mb-2"
                       >City</label
                     >
                     <input
@@ -553,8 +595,7 @@
                     />
                   </div>
                   <div>
-                    <label
-                      class="block text-sm font-medium text-gray-700 mb-2"
+                    <label class="block text-sm font-medium text-gray-700 mb-2"
                       >Zip Code</label
                     >
                     <input
@@ -592,9 +633,7 @@ Greenwood High School is committed to providing quality education and fostering 
                   class="flex items-center justify-between p-3 bg-gray-50 rounded-lg"
                 >
                   <div class="flex-1 mr-4">
-                    <p class="font-medium text-gray-800">
-                      Email Notifications
-                    </p>
+                    <p class="font-medium text-gray-800">Email Notifications</p>
                     <p class="text-sm text-gray-600">
                       Receive updates via email
                     </p>
@@ -801,41 +840,56 @@ Greenwood High School is committed to providing quality education and fostering 
         overlay.addEventListener("click", closeSidebarFunc);
 
         // Navigation between sections
-        const sidebarLinks = document.querySelectorAll('.sidebar-link');
-        const contentSections = document.querySelectorAll('.content-section');
-        const pageTitle = document.getElementById('pageTitle');
-        const pageSubtitle = document.getElementById('pageSubtitle');
-        
+        const sidebarLinks = document.querySelectorAll(".sidebar-link");
+        const contentSections = document.querySelectorAll(".content-section");
+        const pageTitle = document.getElementById("pageTitle");
+        const pageSubtitle = document.getElementById("pageSubtitle");
+
         // Page titles and subtitles for each section
         const pageData = {
-          dashboard: { title: 'Dashboard', subtitle: 'School management overview' },
-          expenses: { title: 'Expenses', subtitle: 'Track and manage school expenses' },
-          reports: { title: 'Reports & Analytics', subtitle: 'View detailed reports and analytics' },
-          categories: { title: 'Categories', subtitle: 'Manage expense categories' },
-          settings: { title: 'Settings', subtitle: 'Manage your school system preferences' }
+          dashboard: {
+            title: "Dashboard",
+            subtitle: "School management overview",
+          },
+          expenses: {
+            title: "Expenses",
+            subtitle: "Track and manage school expenses",
+          },
+          reports: {
+            title: "Reports & Analytics",
+            subtitle: "View detailed reports and analytics",
+          },
+          categories: {
+            title: "Categories",
+            subtitle: "Manage expense categories",
+          },
+          settings: {
+            title: "Settings",
+            subtitle: "Manage your school system preferences",
+          },
         };
-        
-        sidebarLinks.forEach(link => {
-          link.addEventListener('click', function(e) {
+
+        sidebarLinks.forEach((link) => {
+          link.addEventListener("click", function (e) {
             e.preventDefault();
-            
+
             // Get the target section
-            const target = this.getAttribute('data-target');
-            
+            const target = this.getAttribute("data-target");
+
             // Update active states
-            sidebarLinks.forEach(l => l.classList.remove('active'));
-            this.classList.add('active');
-            
+            sidebarLinks.forEach((l) => l.classList.remove("active"));
+            this.classList.add("active");
+
             // Show the target section
-            contentSections.forEach(section => {
-              section.classList.remove('active');
+            contentSections.forEach((section) => {
+              section.classList.remove("active");
             });
-            document.getElementById(target).classList.add('active');
-            
+            document.getElementById(target).classList.add("active");
+
             // Update page title and subtitle
             pageTitle.textContent = pageData[target].title;
             pageSubtitle.textContent = pageData[target].subtitle;
-            
+
             // Close sidebar on mobile after selection
             if (window.innerWidth < 1024) {
               closeSidebarFunc();
@@ -864,7 +918,9 @@ Greenwood High School is committed to providing quality education and fostering 
         });
 
         // Toggle switch functionality
-        const toggleSwitches = document.querySelectorAll(".toggle-switch input");
+        const toggleSwitches = document.querySelectorAll(
+          ".toggle-switch input"
+        );
         toggleSwitches.forEach((toggle) => {
           toggle.addEventListener("change", function () {
             const label = this.parentElement;
