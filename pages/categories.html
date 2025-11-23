@@ -1,1383 +1,1283 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SchoolSys | Dashboard</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SchoolSys | Categories</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
-      body {
-        font-family: "Poppins", sans-serif;
-        background-color: #f8fafc;
-      }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-      .gradient-bg {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
 
-      .sidebar {
-        width: 250px;
-        height: 100vh;
-        position: fixed;
-        left: 0;
-        top: 0;
-        transition: all 0.3s;
-        z-index: 100;
-        overflow-y: auto;
-      }
+        .app-container {
+            display: flex;
+            min-height: 100vh;
+            background: #f8fafc;
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.1);
+            overflow-x: hidden;
+        }
 
-      .navbar {
-        height: 70px;
-        position: fixed;
-        top: 0;
-        left: 250px;
-        right: 0;
-        z-index: 90;
-        transition: all 0.3s;
-      }
-
-      .main-content {
-        margin-left: 250px;
-        margin-top: 70px;
-        padding: 20px;
-        transition: all 0.3s;
-        min-height: calc(100vh - 70px);
-      }
-
-      .sidebar-link.active {
-        background-color: rgba(255, 255, 255, 0.1);
-        border-left: 4px solid white;
-      }
-
-      .stats-card {
-        transition: all 0.3s ease;
-      }
-
-      .stats-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-      }
-
-      .category-row {
-        transition: all 0.2s ease;
-      }
-
-      .category-row:hover {
-        background-color: #f8fafc;
-      }
-
-      .progress-bar {
-        height: 6px;
-        border-radius: 3px;
-        overflow: hidden;
-      }
-
-      .progress-fill {
-        height: 100%;
-        transition: width 0.5s ease;
-      }
-
-      .floating-btn {
-        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-        transition: all 0.3s ease;
-      }
-
-      .floating-btn:hover {
-        transform: scale(1.1);
-        box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
-      }
-
-      .filter-btn.active {
-        background-color: #4f46e5;
-        color: white;
-      }
-
-      .content-section {
-        display: none;
-      }
-
-      .content-section.active {
-        display: block;
-      }
-
-      .mobile-menu-btn {
-        display: none;
-      }
-
-      @media (max-width: 1024px) {
+        /* Sidebar Styles */
         .sidebar {
-          transform: translateX(-100%);
+            width: 280px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1000;
+            box-shadow: 4px 0 20px rgba(0, 0, 0, 0.1);
         }
 
-        .sidebar.active {
-          transform: translateX(0);
+        .sidebar-header {
+            padding: 2rem 1.5rem 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
+        .sidebar-header h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        /* Close Sidebar Button */
+        .close-sidebar-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.25rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .close-sidebar-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .sidebar-nav {
+            padding: 1rem 0;
+        }
+
+        .sidebar-link {
+            display: flex;
+            align-items: center;
+            padding: 0.875rem 1.5rem;
+            margin: 0.25rem 0.75rem;
+            border-radius: 12px;
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            gap: 0.75rem;
+            border: 1px solid transparent;
+        }
+
+        .sidebar-link:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateX(5px);
+        }
+
+        .sidebar-link.active {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+        }
+
+        .sidebar-link i {
+            width: 20px;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        .sidebar-upgrade {
+            margin: 1.5rem;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        /* Main Content Area */
+        .main-wrapper {
+            flex: 1;
+            margin-left: 280px;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            width: calc(100% - 280px);
+        }
+
+        /* Navbar */
         .navbar {
-          left: 0;
+            background: white;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
         }
 
+        .navbar-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .navbar-title h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 0.25rem;
+        }
+
+        .navbar-title p {
+            color: #6b7280;
+            font-size: 0.875rem;
+        }
+
+        .navbar-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .notification-btn {
+            position: relative;
+            padding: 0.5rem;
+            border-radius: 12px;
+            background: #f8fafc;
+            border: 1px solid #e5e7eb;
+            transition: all 0.3s ease;
+        }
+
+        .notification-btn:hover {
+            background: #f1f5f9;
+            transform: translateY(-2px);
+        }
+
+        .notification-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: #ef4444;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-size: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.5rem;
+            border-radius: 12px;
+            background: #f8fafc;
+            border: 1px solid #e5e7eb;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            color: white;
+        }
+
+        /* Main Content */
         .main-content {
-          margin-left: 0;
+            flex: 1;
+            padding: 2rem;
+            background: #f8fafc;
+            overflow-x: hidden;
         }
 
+        /* Stats Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 20px;
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.08);
+            border: 1px solid #f1f5f9;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .stat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .stat-info h3 {
+            font-size: 0.875rem;
+            color: #6b7280;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-info .value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1f2937;
+        }
+
+        .stat-icon {
+            padding: 0.75rem;
+            border-radius: 12px;
+            background: #f1f5f9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .stat-trend {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .trend-up {
+            color: #10b981;
+        }
+
+        .trend-down {
+            color: #ef4444;
+        }
+
+        /* Category Cards */
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .category-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.08);
+            border: 1px solid #f1f5f9;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        .category-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid #f1f5f9;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .category-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+
+        .category-info h3 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 0.25rem;
+        }
+
+        .category-info p {
+            color: #6b7280;
+            font-size: 0.875rem;
+        }
+
+        .category-content {
+            padding: 1.5rem;
+        }
+
+        .budget-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        .budget-amount {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1f2937;
+        }
+
+        .budget-spent {
+            color: #6b7280;
+            font-size: 0.875rem;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: #f1f5f9;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+
+        .progress-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.5s ease;
+        }
+
+        .category-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .action-btn {
+            flex: 1;
+            padding: 0.5rem;
+            border-radius: 8px;
+            border: 1px solid #e5e7eb;
+            background: white;
+            color: #6b7280;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .action-btn:hover {
+            background: #f8fafc;
+            color: #374151;
+        }
+
+        .action-btn.edit:hover {
+            background: #eff6ff;
+            color: #3b82f6;
+            border-color: #bfdbfe;
+        }
+
+        .action-btn.delete:hover {
+            background: #fef2f2;
+            color: #ef4444;
+            border-color: #fecaca;
+        }
+
+        /* Add Category Button */
+        .add-category-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            padding: 1rem 1.5rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            margin-bottom: 2rem;
+        }
+
+        .add-category-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+            color: white;
+            padding: 3rem 0 1.5rem;
+            margin-top: auto;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-brand h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .footer-brand p {
+            color: #d1d5db;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #d1d5db;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .social-link:hover {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .footer-section h4 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 1.25rem;
+            position: relative;
+        }
+
+        .footer-section h4::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 40px;
+            height: 3px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 2px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: #d1d5db;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-links a:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .footer-links a i {
+            width: 16px;
+            font-size: 0.875rem;
+        }
+
+        .contact-info {
+            list-style: none;
+        }
+
+        .contact-info li {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            color: #d1d5db;
+        }
+
+        .contact-info i {
+            width: 20px;
+            color: #667eea;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 1.5rem;
+            text-align: center;
+        }
+
+        .footer-bottom p {
+            color: #9ca3af;
+            font-size: 0.875rem;
+        }
+
+        /* Mobile Styles */
         .mobile-menu-btn {
-          display: block;
+            display: none;
+            background: none;
+            border: none;
+            color: #6b7280;
+            font-size: 1.25rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-btn:hover {
+            background: #f1f5f9;
         }
 
         .overlay {
-          display: none;
-          position: fixed;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          background-color: rgba(0, 0, 0, 0.5);
-          z-index: 50;
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            z-index: 999;
         }
 
         .overlay.active {
-          display: block;
-        }
-      }
-
-      @media (max-width: 768px) {
-        /* Mobile table styles */
-        .table-header-group {
-          display: none;
+            display: block;
         }
 
-        .table-row-mobile {
-          display: flex;
-          flex-direction: column;
-          border-bottom: 1px solid #e5e7eb;
-          padding: 1rem 0;
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+            
+            .sidebar.active {
+                transform: translateX(0);
+            }
+            
+            .main-wrapper {
+                margin-left: 0;
+                width: 100%;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .close-sidebar-btn {
+                display: block;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 2rem;
+            }
         }
 
-        .table-cell-mobile {
-          display: flex;
-          justify-content: space-between;
-          padding: 0.5rem 0;
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 1rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .categories-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .navbar {
+                padding: 1rem;
+            }
+            
+            .navbar-content {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: flex-start;
+            }
+            
+            .navbar-actions {
+                width: 100%;
+                justify-content: space-between;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .footer-content {
+                padding: 0 1rem;
+            }
+            
+            /* Fix for horizontal scroll on mobile */
+            body, .app-container, .main-wrapper, .main-content {
+                max-width: 100vw;
+                overflow-x: hidden;
+            }
         }
 
-        .table-cell-mobile:before {
-          content: attr(data-label);
-          font-weight: 500;
-          color: #6b7280;
+        @media (max-width: 480px) {
+            .stat-card {
+                padding: 1.25rem;
+            }
+            
+            .stat-info .value {
+                font-size: 1.75rem;
+            }
+            
+            .category-card {
+                padding: 1rem;
+            }
+            
+            .footer {
+                padding: 2rem 0 1rem;
+            }
+            
+            .category-actions {
+                flex-direction: column;
+            }
         }
-      }
+
+        /* Animation Classes */
+        .fade-in {
+            animation: fadeIn 0.6s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Custom Scrollbar */
+        .sidebar::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .sidebar::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .sidebar::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 3px;
+        }
+
+        .sidebar::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.5);
+        }
     </style>
-  </head>
-  <body class="bg-gray-50">
-    <!-- Mobile Overlay -->
-    <div class="overlay" id="overlay"></div>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Mobile Overlay -->
+        <div class="overlay" id="overlay"></div>
 
-    <!-- Sidebar -->
-    <aside class="sidebar gradient-bg text-white">
-      <div class="p-6 flex justify-between items-center">
-        <h1 class="text-2xl font-bold flex items-center">
-          <i class="fas fa-graduation-cap mr-2"></i>
-          SchoolSys
-        </h1>
-        <button class="md:hidden" id="closeSidebar">
-          <i class="fas fa-times"></i>
-        </button>
-      </div>
-      <nav class="mt-4 flex-1">
-        <ul>
-          <li class="mb-1">
-            <a
-              href="#"
-              class="sidebar-link flex items-center p-3 rounded-r-lg hover:bg-indigo-700 transition-colors mx-2 active"
-              data-target="dashboard"
-            >
-              <i class="fas fa-home mr-3 w-5 text-center"></i>
-              <span>Dashboard</span>
-            </a>
-          </li>
-          <li class="mb-1">
-            <a
-              href="#"
-              class="sidebar-link flex items-center p-3 rounded-r-lg hover:bg-indigo-700 transition-colors mx-2"
-              data-target="expenses"
-            >
-              <i class="fas fa-wallet mr-3 w-5 text-center"></i>
-              <span>Expenses</span>
-            </a>
-          </li>
-          <li class="mb-1">
-            <a
-              href="#"
-              class="sidebar-link flex items-center p-3 rounded-r-lg hover:bg-indigo-700 transition-colors mx-2"
-              data-target="reports"
-            >
-              <i class="fas fa-chart-pie mr-3 w-5 text-center"></i>
-              <span>Reports</span>
-            </a>
-          </li>
-          <li class="mb-1">
-            <a
-              href="#"
-              class="sidebar-link flex items-center p-3 rounded-r-lg hover:bg-indigo-700 transition-colors mx-2"
-              data-target="categories"
-            >
-              <i class="fas fa-tags mr-3 w-5 text-center"></i>
-              <span>Categories</span>
-            </a>
-          </li>
-          <li class="mb-1">
-            <a
-              href="#"
-              class="sidebar-link flex items-center p-3 rounded-r-lg hover:bg-indigo-700 transition-colors mx-2"
-              data-target="settings"
-            >
-              <i class="fas fa-cog mr-3 w-5 text-center"></i>
-              <span>Settings</span>
-            </a>
-          </li>
-        </ul>
-      </nav>
-      <div class="p-4 mt-auto">
-        <div class="bg-indigo-900 p-4 rounded-lg">
-          <h3 class="font-semibold text-sm">Upgrade to Premium</h3>
-          <p class="text-xs text-indigo-200 mt-1 mb-2">
-            Unlock advanced features
-          </p>
-          <button
-            class="w-full bg-white text-indigo-700 px-3 py-2 rounded text-sm font-medium hover:bg-indigo-100 transition-colors"
-          >
-            Upgrade Now
-          </button>
-        </div>
-      </div>
-    </aside>
-
-    <!-- Navbar -->
-    <header class="navbar bg-white shadow-sm">
-      <div class="flex items-center justify-between h-full px-6">
-        <div class="flex items-center">
-          <button class="mobile-menu-btn mr-4 text-gray-600" id="mobileToggle">
-            <i class="fas fa-bars text-xl"></i>
-          </button>
-          <div>
-            <h2 class="text-xl font-semibold text-gray-800" id="pageTitle">
-              Dashboard
-            </h2>
-            <p class="text-gray-600 text-sm" id="pageSubtitle">
-              School management overview
-            </p>
-          </div>
-        </div>
-        <div class="flex items-center space-x-4">
-          <div class="relative">
-            <button
-              class="p-2 rounded-full hover:bg-gray-100 transition-colors"
-            >
-              <i class="fas fa-bell text-gray-600"></i>
-              <span
-                class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center"
-                >3</span
-              >
-            </button>
-          </div>
-          <div class="flex items-center">
-            <div
-              class="w-10 h-10 bg-gradient-to-r from-purple-400 to-blue-500 rounded-full flex items-center justify-center text-white font-bold"
-            >
-              A
-            </div>
-            <div class="ml-3 hidden sm:block">
-              <span class="font-medium">Admin</span>
-              <p class="text-xs text-gray-500">Administrator</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </header>
-
-    <!-- Main Content Area -->
-    <main class="main-content">
-      <!-- Dashboard Content -->
-      <div class="content-section active" id="dashboard">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          <div class="stats-card bg-white p-6 rounded-xl shadow">
-            <div class="flex justify-between items-start">
-              <div>
-                <p class="text-sm text-gray-500">Total Students</p>
-                <h3 class="text-2xl font-bold mt-1 text-gray-800">1,248</h3>
-              </div>
-              <div class="bg-blue-100 p-3 rounded-full">
-                <i class="fas fa-users text-blue-600 text-xl"></i>
-              </div>
-            </div>
-            <p class="text-green-600 text-xs mt-3">
-              <i class="fas fa-arrow-up mr-1"></i> 5.2% from last month
-            </p>
-          </div>
-
-          <div class="stats-card bg-white p-6 rounded-xl shadow">
-            <div class="flex justify-between items-start">
-              <div>
-                <p class="text-sm text-gray-500">Total Staff</p>
-                <h3 class="text-2xl font-bold mt-1 text-gray-800">84</h3>
-              </div>
-              <div class="bg-green-100 p-3 rounded-full">
-                <i class="fas fa-chalkboard-teacher text-green-600 text-xl"></i>
-              </div>
-            </div>
-            <p class="text-green-600 text-xs mt-3">
-              <i class="fas fa-arrow-up mr-1"></i> 2 new hires
-            </p>
-          </div>
-
-          <div class="stats-card bg-white p-6 rounded-xl shadow">
-            <div class="flex justify-between items-start">
-              <div>
-                <p class="text-sm text-gray-500">Monthly Expenses</p>
-                <h3 class="text-2xl font-bold mt-1 text-gray-800">$24,580</h3>
-              </div>
-              <div class="bg-purple-100 p-3 rounded-full">
-                <i class="fas fa-wallet text-purple-600 text-xl"></i>
-              </div>
-            </div>
-            <p class="text-red-600 text-xs mt-3">
-              <i class="fas fa-arrow-up mr-1"></i> 12% from last month
-            </p>
-          </div>
-
-          <div class="stats-card bg-white p-6 rounded-xl shadow">
-            <div class="flex justify-between items-start">
-              <div>
-                <p class="text-sm text-gray-500">Attendance Rate</p>
-                <h3 class="text-2xl font-bold mt-1 text-gray-800">94.2%</h3>
-              </div>
-              <div class="bg-yellow-100 p-3 rounded-full">
-                <i class="fas fa-user-check text-yellow-600 text-xl"></i>
-              </div>
-            </div>
-            <p class="text-green-600 text-xs mt-3">
-              <i class="fas fa-arrow-up mr-1"></i> 1.5% from last week
-            </p>
-          </div>
-        </div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <div class="bg-white p-6 rounded-xl shadow">
-            <h3 class="text-lg font-semibold text-gray-800 mb-4">
-              Recent Activities
-            </h3>
-            <div class="space-y-4">
-              <div class="flex items-start">
-                <div class="bg-blue-100 p-2 rounded-full mr-3">
-                  <i class="fas fa-user-plus text-blue-600 text-sm"></i>
-                </div>
-                <div>
-                  <p class="text-sm font-medium">New student enrolled</p>
-                  <p class="text-xs text-gray-500">Sarah Johnson in Grade 5</p>
-                  <p class="text-xs text-gray-400">2 hours ago</p>
-                </div>
-              </div>
-              <div class="flex items-start">
-                <div class="bg-green-100 p-2 rounded-full mr-3">
-                  <i class="fas fa-money-bill-wave text-green-600 text-sm"></i>
-                </div>
-                <div>
-                  <p class="text-sm font-medium">Fee payment received</p>
-                  <p class="text-xs text-gray-500">From Michael Brown</p>
-                  <p class="text-xs text-gray-400">Yesterday</p>
-                </div>
-              </div>
-              <div class="flex items-start">
-                <div class="bg-purple-100 p-2 rounded-full mr-3">
-                  <i
-                    class="fas fa-chalkboard-teacher text-purple-600 text-sm"
-                  ></i>
-                </div>
-                <div>
-                  <p class="text-sm font-medium">New teacher assigned</p>
-                  <p class="text-xs text-gray-500">Mr. Wilson to Class 7-B</p>
-                  <p class="text-xs text-gray-400">2 days ago</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="bg-white p-6 rounded-xl shadow">
-            <h3 class="text-lg font-semibold text-gray-800 mb-4">
-              Upcoming Events
-            </h3>
-            <div class="space-y-4">
-              <div class="flex items-start">
-                <div class="bg-red-100 p-2 rounded-full mr-3">
-                  <i class="fas fa-calendar-alt text-red-600 text-sm"></i>
-                </div>
-                <div>
-                  <p class="text-sm font-medium">Parent-Teacher Meeting</p>
-                  <p class="text-xs text-gray-500">June 25, 2023 • 10:00 AM</p>
-                  <p class="text-xs text-gray-400">Next week</p>
-                </div>
-              </div>
-              <div class="flex items-start">
-                <div class="bg-yellow-100 p-2 rounded-full mr-3">
-                  <i class="fas fa-graduation-cap text-yellow-600 text-sm"></i>
-                </div>
-                <div>
-                  <p class="text-sm font-medium">Annual Sports Day</p>
-                  <p class="text-xs text-gray-500">July 5, 2023 • All day</p>
-                  <p class="text-xs text-gray-400">In 2 weeks</p>
-                </div>
-              </div>
-              <div class="flex items-start">
-                <div class="bg-green-100 p-2 rounded-full mr-3">
-                  <i class="fas fa-music text-green-600 text-sm"></i>
-                </div>
-                <div>
-                  <p class="text-sm font-medium">Music Competition</p>
-                  <p class="text-xs text-gray-500">June 30, 2023 • 2:00 PM</p>
-                  <p class="text-xs text-gray-400">Next Friday</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Expenses Content -->
-      <div class="content-section" id="expenses">
-        <div class="bg-white p-6 rounded-xl shadow mb-6">
-          <h3 class="text-xl font-semibold text-gray-800 mb-2">
-            Expense Management
-          </h3>
-          <p class="text-gray-600">Track and manage all school expenses</p>
-        </div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          <div class="bg-white p-6 rounded-xl shadow lg:col-span-2">
-            <h4 class="text-lg font-semibold text-gray-800 mb-4">
-              Recent Expenses
-            </h4>
-            <div class="space-y-4">
-              <div class="flex justify-between items-center p-4 border-b">
-                <div class="flex items-center">
-                  <div class="bg-blue-100 p-2 rounded-lg mr-3">
-                    <i class="fas fa-book text-blue-600"></i>
-                  </div>
-                  <div>
-                    <div class="font-medium text-gray-900">School Supplies</div>
-                    <div class="text-gray-500 text-sm">June 15, 2023</div>
-                  </div>
-                </div>
-                <div class="text-red-600 font-medium">-$250.00</div>
-              </div>
-
-              <div class="flex justify-between items-center p-4 border-b">
-                <div class="flex items-center">
-                  <div class="bg-green-100 p-2 rounded-lg mr-3">
-                    <i class="fas fa-utensils text-green-600"></i>
-                  </div>
-                  <div>
-                    <div class="font-medium text-gray-900">
-                      Cafeteria Supplies
-                    </div>
-                    <div class="text-gray-500 text-sm">June 12, 2023</div>
-                  </div>
-                </div>
-                <div class="text-red-600 font-medium">-$420.50</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="bg-white p-6 rounded-xl shadow">
-            <h4 class="text-lg font-semibold text-gray-800 mb-4">
-              Expense Summary
-            </h4>
-            <div class="space-y-4">
-              <div>
-                <div class="flex justify-between mb-1">
-                  <span class="text-sm text-gray-600">Materials</span>
-                  <span class="text-sm text-gray-600">$1,250</span>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full progress-bar">
-                  <div
-                    class="progress-fill bg-blue-500 rounded-full"
-                    style="width: 42%"
-                  ></div>
-                </div>
-              </div>
-              <div>
-                <div class="flex justify-between mb-1">
-                  <span class="text-sm text-gray-600">Food & Cafeteria</span>
-                  <span class="text-sm text-gray-600">$2,100</span>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full progress-bar">
-                  <div
-                    class="progress-fill bg-green-500 rounded-full"
-                    style="width: 68%"
-                  ></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Reports Content -->
-      <div class="content-section" id="reports">
-        <div class="bg-white p-6 rounded-xl shadow mb-6">
-          <h3 class="text-xl font-semibold text-gray-800 mb-2">
-            Reports & Analytics
-          </h3>
-          <p class="text-gray-600">View detailed reports and analytics</p>
-        </div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <div class="bg-white p-6 rounded-xl shadow">
-            <h4 class="text-lg font-semibold text-gray-800 mb-4">
-              Monthly Expense Report
-            </h4>
-            <div
-              class="h-64 flex items-center justify-center bg-gray-100 rounded-lg"
-            >
-              <p class="text-gray-500">Chart visualization would appear here</p>
-            </div>
-          </div>
-
-          <div class="bg-white p-6 rounded-xl shadow">
-            <h4 class="text-lg font-semibold text-gray-800 mb-4">
-              Budget vs Actual
-            </h4>
-            <div
-              class="h-64 flex items-center justify-center bg-gray-100 rounded-lg"
-            >
-              <p class="text-gray-500">Comparison chart would appear here</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Categories Content -->
-      <div class="content-section" id="categories">
-        <!-- Stats Cards -->
-        <div
-          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-6 md:mb-8"
-        >
-          <div class="stats-card bg-white p-4 md:p-5 rounded-xl shadow">
-            <div class="flex justify-between items-start">
-              <div>
-                <p class="text-sm text-gray-500">Total Categories</p>
-                <h3 class="text-lg md:text-2xl font-bold mt-1 text-gray-800">
-                  12
-                </h3>
-              </div>
-              <div class="bg-blue-100 p-2 md:p-3 rounded-full">
-                <i class="fas fa-tags text-blue-600 text-lg md:text-xl"></i>
-              </div>
-            </div>
-            <p class="text-green-600 text-xs mt-3">
-              <i class="fas fa-arrow-up mr-1"></i> 2 added this month
-            </p>
-          </div>
-
-          <div class="stats-card bg-white p-4 md:p-5 rounded-xl shadow">
-            <div class="flex justify-between items-start">
-              <div>
-                <p class="text-sm text-gray-500">Active Budgets</p>
-                <h3 class="text-lg md:text-2xl font-bold mt-1 text-gray-800">
-                  8
-                </h3>
-              </div>
-              <div class="bg-green-100 p-2 md:p-3 rounded-full">
-                <i class="fas fa-wallet text-green-600 text-lg md:text-xl"></i>
-              </div>
-            </div>
-            <p class="text-yellow-600 text-xs mt-3">
-              <i class="fas fa-exclamation-circle mr-1"></i> 4 nearing limit
-            </p>
-          </div>
-
-          <div class="stats-card bg-white p-4 md:p-5 rounded-xl shadow">
-            <div class="flex justify-between items-start">
-              <div>
-                <p class="text-sm text-gray-500">Total Budget</p>
-                <h3 class="text-lg md:text-2xl font-bold mt-1 text-gray-800">
-                  $15,240
-                </h3>
-              </div>
-              <div class="bg-purple-100 p-2 md:p-3 rounded-full">
-                <i
-                  class="fas fa-dollar-sign text-purple-600 text-lg md:text-xl"
-                ></i>
-              </div>
-            </div>
-            <p class="text-green-600 text-xs mt-3">
-              <i class="fas fa-arrow-up mr-1"></i> 12% from last month
-            </p>
-          </div>
-
-          <div class="stats-card bg-white p-4 md:p-5 rounded-xl shadow">
-            <div class="flex justify-between items-start">
-              <div>
-                <p class="text-sm text-gray-500">Spent This Month</p>
-                <h3 class="text-lg md:text-2xl font-bold mt-1 text-gray-800">
-                  $8,560
-                </h3>
-              </div>
-              <div class="bg-red-100 p-2 md:p-3 rounded-full">
-                <i
-                  class="fas fa-chart-line text-red-600 text-lg md:text-xl"
-                ></i>
-              </div>
-            </div>
-            <p class="text-red-600 text-xs mt-3">
-              <i class="fas fa-exclamation-triangle mr-1"></i> 56% of budget
-            </p>
-          </div>
-        </div>
-
-        <!-- Filters and Actions -->
-        <div class="bg-white p-4 md:p-6 rounded-xl shadow mb-6">
-          <div
-            class="flex flex-col md:flex-row justify-between items-start md:items-center"
-          >
-            <div class="mb-4 md:mb-0">
-              <h3 class="text-lg font-semibold text-gray-800">
-                Category Management
-              </h3>
-              <p class="text-gray-600 text-sm">
-                Manage and organize expense categories
-              </p>
-            </div>
-            <div class="flex flex-wrap gap-3">
-              <div class="flex bg-gray-100 p-1 rounded-lg">
-                <button
-                  class="filter-btn active px-3 py-1 rounded text-sm transition-colors"
-                >
-                  All
-                </button>
-                <button
-                  class="filter-btn px-3 py-1 rounded text-sm transition-colors"
-                >
-                  Active
-                </button>
-                <button
-                  class="filter-btn px-3 py-1 rounded text-sm transition-colors"
-                >
-                  Archived
-                </button>
-              </div>
-              <button
-                class="px-3 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors text-sm flex items-center"
-              >
-                <i class="fas fa-filter mr-2"></i> Filter
-              </button>
-              <button
-                class="px-3 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors text-sm flex items-center"
-                id="addCategoryBtn"
-              >
-                <i class="fas fa-plus mr-2"></i> Add Category
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Main Content Area -->
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6">
-          <!-- Categories Table -->
-          <div class="bg-white p-4 md:p-6 rounded-xl shadow lg:col-span-2">
-            <!-- Desktop Table -->
-            <div
-              class="overflow-x-auto rounded-lg border border-gray-200 hidden md:block"
-            >
-              <table class="min-w-full divide-y divide-gray-200">
-                <thead class="bg-gray-50">
-                  <tr>
-                    <th
-                      class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                    >
-                      Category
-                    </th>
-                    <th
-                      class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                    >
-                      Description
-                    </th>
-                    <th
-                      class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                    >
-                      Budget
-                    </th>
-                    <th
-                      class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                    >
-                      Spent
-                    </th>
-                    <th
-                      class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                    >
-                      Status
-                    </th>
-                    <th
-                      class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                    >
-                      Actions
-                    </th>
-                  </tr>
-                </thead>
-                <tbody class="bg-white divide-y divide-gray-200">
-                  <tr class="category-row">
-                    <td class="px-4 py-4 whitespace-nowrap">
-                      <div class="flex items-center">
-                        <div class="bg-blue-100 p-2 rounded-lg mr-3">
-                          <i class="fas fa-book text-blue-600"></i>
-                        </div>
-                        <div>
-                          <div class="font-medium text-gray-900">Materials</div>
-                        </div>
-                      </div>
-                    </td>
-                    <td class="px-4 py-4 whitespace-nowrap text-gray-500">
-                      School supplies and materials
-                    </td>
-                    <td class="px-4 py-4 whitespace-nowrap font-medium">
-                      $1,000.00
-                    </td>
-                    <td class="px-4 py-4 whitespace-nowrap">
-                      <div>
-                        <div class="text-gray-700">$650.00</div>
-                        <div
-                          class="w-full bg-gray-200 rounded-full progress-bar mt-1"
-                        >
-                          <div
-                            class="progress-fill bg-blue-500 rounded-full"
-                            style="width: 65%"
-                          ></div>
-                        </div>
-                      </div>
-                    </td>
-                    <td class="px-4 py-4 whitespace-nowrap">
-                      <span
-                        class="px-2 py-1 text-xs rounded-full bg-green-100 text-green-800"
-                        >Active</span
-                      >
-                    </td>
-                    <td class="px-4 py-4 whitespace-nowrap text-sm">
-                      <button
-                        class="text-blue-600 hover:text-blue-800 p-2 rounded-full hover:bg-blue-50 transition-colors"
-                      >
-                        <i class="fas fa-edit"></i>
-                      </button>
-                      <button
-                        class="text-red-600 hover:text-red-800 p-2 rounded-full hover:bg-red-50 transition-colors ml-1"
-                      >
-                        <i class="fas fa-trash"></i>
-                      </button>
-                    </td>
-                  </tr>
-
-                  <tr class="category-row">
-                    <td class="px-4 py-4 whitespace-nowrap">
-                      <div class="flex items-center">
-                        <div class="bg-green-100 p-2 rounded-lg mr-3">
-                          <i class="fas fa-utensils text-green-600"></i>
-                        </div>
-                        <div>
-                          <div class="font-medium text-gray-900">
-                            Food & Cafeteria
-                          </div>
-                        </div>
-                      </div>
-                    </td>
-                    <td class="px-4 py-4 whitespace-nowrap text-gray-500">
-                      School meals and snacks
-                    </td>
-                    <td class="px-4 py-4 whitespace-nowrap font-medium">
-                      $2,500.00
-                    </td>
-                    <td class="px-4 py-4 whitespace-nowrap">
-                      <div>
-                        <div class="text-gray-700">$2,100.00</div>
-                        <div
-                          class="w-full bg-gray-200 rounded-full progress-bar mt-1"
-                        >
-                          <div
-                            class="progress-fill bg-yellow-500 rounded-full"
-                            style="width: 84%"
-                          ></div>
-                        </div>
-                      </div>
-                    </td>
-                    <td class="px-4 py-4 whitespace-nowrap">
-                      <span
-                        class="px-2 py-1 text-xs rounded-full bg-yellow-100 text-yellow-800"
-                        >Warning</span
-                      >
-                    </td>
-                    <td class="px-4 py-4 whitespace-nowrap text-sm">
-                      <button
-                        class="text-blue-600 hover:text-blue-800 p-2 rounded-full hover:bg-blue-50 transition-colors"
-                      >
-                        <i class="fas fa-edit"></i>
-                      </button>
-                      <button
-                        class="text-red-600 hover:text-red-800 p-2 rounded-full hover:bg-red-50 transition-colors ml-1"
-                      >
-                        <i class="fas fa-trash"></i>
-                      </button>
-                    </td>
-                  </tr>
-
-                  <tr class="category-row">
-                    <td class="px-4 py-4 whitespace-nowrap">
-                      <div class="flex items-center">
-                        <div class="bg-purple-100 p-2 rounded-lg mr-3">
-                          <i class="fas fa-bus text-purple-600"></i>
-                        </div>
-                        <div>
-                          <div class="font-medium text-gray-900">
-                            Transportation
-                          </div>
-                        </div>
-                      </div>
-                    </td>
-                    <td class="px-4 py-4 whitespace-nowrap text-gray-500">
-                      Student transportation services
-                    </td>
-                    <td class="px-4 py-4 whitespace-nowrap font-medium">
-                      $1,800.00
-                    </td>
-                    <td class="px-4 py-4 whitespace-nowrap">
-                      <div>
-                        <div class="text-gray-700">$950.00</div>
-                        <div
-                          class="w-full bg-gray-200 rounded-full progress-bar mt-1"
-                        >
-                          <div
-                            class="progress-fill bg-green-500 rounded-full"
-                            style="width: 53%"
-                          ></div>
-                        </div>
-                      </div>
-                    </td>
-                    <td class="px-4 py-4 whitespace-nowrap">
-                      <span
-                        class="px-2 py-1 text-xs rounded-full bg-green-100 text-green-800"
-                        >Active</span
-                      >
-                    </td>
-                    <td class="px-4 py-4 whitespace-nowrap text-sm">
-                      <button
-                        class="text-blue-600 hover:text-blue-800 p-2 rounded-full hover:bg-blue-50 transition-colors"
-                      >
-                        <i class="fas fa-edit"></i>
-                      </button>
-                      <button
-                        class="text-red-600 hover:text-red-800 p-2 rounded-full hover:bg-red-50 transition-colors ml-1"
-                      >
-                        <i class="fas fa-trash"></i>
-                      </button>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-
-            <!-- Mobile Table -->
-            <div class="md:hidden space-y-4">
-              <div class="table-row-mobile">
-                <div class="table-cell-mobile" data-label="Category">
-                  <div class="flex items-center">
-                    <div class="bg-blue-100 p-2 rounded-lg mr-3">
-                      <i class="fas fa-book text-blue-600"></i>
-                    </div>
-                    <span class="font-medium text-gray-900">Materials</span>
-                  </div>
-                </div>
-                <div class="table-cell-mobile" data-label="Description">
-                  <span class="text-gray-500"
-                    >School supplies and materials</span
-                  >
-                </div>
-                <div class="table-cell-mobile" data-label="Budget">
-                  <span class="font-medium">$1,000.00</span>
-                </div>
-                <div class="table-cell-mobile" data-label="Spent">
-                  <div>
-                    <div class="text-gray-700">$650.00</div>
-                    <div
-                      class="w-full bg-gray-200 rounded-full progress-bar mt-1"
-                    >
-                      <div
-                        class="progress-fill bg-blue-500 rounded-full"
-                        style="width: 65%"
-                      ></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="table-cell-mobile" data-label="Status">
-                  <span
-                    class="px-2 py-1 text-xs rounded-full bg-green-100 text-green-800"
-                    >Active</span
-                  >
-                </div>
-                <div class="table-cell-mobile" data-label="Actions">
-                  <div class="flex">
-                    <button
-                      class="text-blue-600 hover:text-blue-800 p-2 rounded-full hover:bg-blue-50 transition-colors"
-                    >
-                      <i class="fas fa-edit"></i>
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="flex justify-between items-center">
+                    <h1>
+                        <i class="fas fa-graduation-cap"></i>
+                        SchoolSys
+                    </h1>
+                    <button class="close-sidebar-btn lg:hidden" id="closeSidebar">
+                        <i class="fas fa-times text-white"></i>
                     </button>
-                    <button
-                      class="text-red-600 hover:text-red-800 p-2 rounded-full hover:bg-red-50 transition-colors ml-1"
-                    >
-                      <i class="fas fa-trash"></i>
-                    </button>
-                  </div>
                 </div>
-              </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="index.html" class="sidebar-link">
+                    <i class="fas fa-home"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="expenses.html" class="sidebar-link">
+                    <i class="fas fa-wallet"></i>
+                    <span>Expenses</span>
+                </a>
+                <a href="reports.html" class="sidebar-link">
+                    <i class="fas fa-chart-pie"></i>
+                    <span>Reports</span>
+                </a>
+                <a href="categories.html" class="sidebar-link active">
+                    <i class="fas fa-tags"></i>
+                    <span>Categories</span>
+                </a>
+                <a href="settings.html" class="sidebar-link">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                </a>
+            </nav>
 
-              <div class="table-row-mobile">
-                <div class="table-cell-mobile" data-label="Category">
-                  <div class="flex items-center">
-                    <div class="bg-green-100 p-2 rounded-lg mr-3">
-                      <i class="fas fa-utensils text-green-600"></i>
+            <div class="sidebar-upgrade">
+                <h4 class="font-semibold mb-2">Upgrade to Pro</h4>
+                <p class="text-sm opacity-80 mb-3">Unlock advanced features and analytics</p>
+                <button class="w-full bg-white text-indigo-600 py-2 px-4 rounded-lg font-semibold text-sm hover:bg-opacity-90 transition-all">
+                    Upgrade Now
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Wrapper -->
+        <div class="main-wrapper">
+            <!-- Navbar -->
+            <header class="navbar">
+                <div class="navbar-content">
+                    <div class="flex items-center gap-4">
+                        <button class="mobile-menu-btn" id="mobileToggle">
+                            <i class="fas fa-bars"></i>
+                        </button>
+                        <div class="navbar-title">
+                            <h2>Category Management</h2>
+                            <p>Organize and manage expense categories</p>
+                        </div>
                     </div>
-                    <span class="font-medium text-gray-900"
-                      >Food & Cafeteria</span
-                    >
-                  </div>
-                </div>
-                <div class="table-cell-mobile" data-label="Description">
-                  <span class="text-gray-500">School meals and snacks</span>
-                </div>
-                <div class="table-cell-mobile" data-label="Budget">
-                  <span class="font-medium">$2,500.00</span>
-                </div>
-                <div class="table-cell-mobile" data-label="Spent">
-                  <div>
-                    <div class="text-gray-700">$2,100.00</div>
-                    <div
-                      class="w-full bg-gray-200 rounded-full progress-bar mt-1"
-                    >
-                      <div
-                        class="progress-fill bg-yellow-500 rounded-full"
-                        style="width: 84%"
-                      ></div>
+                    
+                    <div class="navbar-actions">
+                        <button class="notification-btn">
+                            <i class="fas fa-bell"></i>
+                            <span class="notification-badge">3</span>
+                        </button>
+                        
+                        <div class="user-profile">
+                            <div class="user-avatar">A</div>
+                            <div class="hidden sm:block">
+                                <div class="font-semibold text-sm">Admin User</div>
+                                <div class="text-xs text-gray-500">Administrator</div>
+                            </div>
+                        </div>
                     </div>
-                  </div>
                 </div>
-                <div class="table-cell-mobile" data-label="Status">
-                  <span
-                    class="px-2 py-1 text-xs rounded-full bg-yellow-100 text-yellow-800"
-                    >Warning</span
-                  >
-                </div>
-                <div class="table-cell-mobile" data-label="Actions">
-                  <div class="flex">
-                    <button
-                      class="text-blue-600 hover:text-blue-800 p-2 rounded-full hover:bg-blue-50 transition-colors"
-                    >
-                      <i class="fas fa-edit"></i>
-                    </button>
-                    <button
-                      class="text-red-600 hover:text-red-800 p-2 rounded-full hover:bg-red-50 transition-colors ml-1"
-                    >
-                      <i class="fas fa-trash"></i>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
+            </header>
 
-            <!-- Pagination -->
-            <div
-              class="flex flex-col sm:flex-row justify-between items-center mt-6 space-y-3 sm:space-y-0"
-            >
-              <div class="text-sm text-gray-700">
-                Showing <span class="font-medium">1</span> to
-                <span class="font-medium">3</span> of
-                <span class="font-medium">12</span> categories
-              </div>
-              <div class="flex space-x-1">
-                <button
-                  class="px-3 py-1 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors text-sm"
-                >
-                  Previous
-                </button>
-                <button
-                  class="px-3 py-1 bg-indigo-600 text-white rounded-lg text-sm"
-                >
-                  1
-                </button>
-                <button
-                  class="px-3 py-1 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors text-sm"
-                >
-                  2
-                </button>
-                <button
-                  class="px-3 py-1 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors text-sm"
-                >
-                  3
-                </button>
-                <button
-                  class="px-3 py-1 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors text-sm"
-                >
-                  Next
-                </button>
-              </div>
-            </div>
-          </div>
+            <!-- Main Content -->
+            <main class="main-content">
+                <!-- Stats Grid -->
+                <div class="stats-grid">
+                    <div class="stat-card fade-in">
+                        <div class="stat-header">
+                            <div class="stat-info">
+                                <h3>Total Categories</h3>
+                                <div class="value">12</div>
+                            </div>
+                            <div class="stat-icon">
+                                <i class="fas fa-tags text-blue-600 text-xl"></i>
+                            </div>
+                        </div>
+                        <div class="stat-trend trend-up">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>2 added this month</span>
+                        </div>
+                    </div>
 
-          <!-- Side Panel -->
-          <div class="space-y-4 md:space-y-6">
-            <!-- Quick Stats -->
-            <div class="bg-white p-4 md:p-6 rounded-xl shadow">
-              <h3 class="text-lg font-semibold text-gray-800 mb-4">
-                Budget Overview
-              </h3>
-              <div class="space-y-4">
-                <div>
-                  <div class="flex justify-between mb-1">
-                    <span class="text-sm text-gray-600">Materials</span>
-                    <span class="text-sm text-gray-600">65%</span>
-                  </div>
-                  <div class="w-full bg-gray-200 rounded-full progress-bar">
-                    <div
-                      class="progress-fill bg-blue-500 rounded-full"
-                      style="width: 65%"
-                    ></div>
-                  </div>
-                </div>
-                <div>
-                  <div class="flex justify-between mb-1">
-                    <span class="text-sm text-gray-600">Food & Cafeteria</span>
-                    <span class="text-sm text-gray-600">84%</span>
-                  </div>
-                  <div class="w-full bg-gray-200 rounded-full progress-bar">
-                    <div
-                      class="progress-fill bg-yellow-500 rounded-full"
-                      style="width: 84%"
-                    ></div>
-                  </div>
-                </div>
-                <div>
-                  <div class="flex justify-between mb-1">
-                    <span class="text-sm text-gray-600">Transportation</span>
-                    <span class="text-sm text-gray-600">53%</span>
-                  </div>
-                  <div class="w-full bg-gray-200 rounded-full progress-bar">
-                    <div
-                      class="progress-fill bg-green-500 rounded-full"
-                      style="width: 53%"
-                    ></div>
-                  </div>
-                </div>
-                <div>
-                  <div class="flex justify-between mb-1">
-                    <span class="text-sm text-gray-600">Maintenance</span>
-                    <span class="text-sm text-gray-600">40%</span>
-                  </div>
-                  <div class="w-full bg-gray-200 rounded-full progress-bar">
-                    <div
-                      class="progress-fill bg-purple-500 rounded-full"
-                      style="width: 40%"
-                    ></div>
-                  </div>
-                </div>
-              </div>
-            </div>
+                    <div class="stat-card fade-in">
+                        <div class="stat-header">
+                            <div class="stat-info">
+                                <h3>Active Budgets</h3>
+                                <div class="value">8</div>
+                            </div>
+                            <div class="stat-icon">
+                                <i class="fas fa-wallet text-green-600 text-xl"></i>
+                            </div>
+                        </div>
+                        <div class="stat-trend trend-down">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <span>4 nearing limit</span>
+                        </div>
+                    </div>
 
-            <!-- Recent Activity -->
-            <div class="bg-white p-4 md:p-6 rounded-xl shadow">
-              <h3 class="text-lg font-semibold text-gray-800 mb-4">
-                Recent Activity
-              </h3>
-              <div class="space-y-4">
-                <div class="flex items-start">
-                  <div class="bg-green-100 p-2 rounded-full mr-3">
-                    <i class="fas fa-plus text-green-600 text-sm"></i>
-                  </div>
-                  <div>
-                    <p class="text-sm font-medium">New category added</p>
-                    <p class="text-xs text-gray-500">
-                      "Field Trips" category created
-                    </p>
-                    <p class="text-xs text-gray-400">2 hours ago</p>
-                  </div>
+                    <div class="stat-card fade-in">
+                        <div class="stat-header">
+                            <div class="stat-info">
+                                <h3>Total Budget</h3>
+                                <div class="value">$15,240</div>
+                            </div>
+                            <div class="stat-icon">
+                                <i class="fas fa-dollar-sign text-purple-600 text-xl"></i>
+                            </div>
+                        </div>
+                        <div class="stat-trend trend-up">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>12% from last month</span>
+                        </div>
+                    </div>
+
+                    <div class="stat-card fade-in">
+                        <div class="stat-header">
+                            <div class="stat-info">
+                                <h3>Spent This Month</h3>
+                                <div class="value">$8,560</div>
+                            </div>
+                            <div class="stat-icon">
+                                <i class="fas fa-chart-line text-red-600 text-xl"></i>
+                            </div>
+                        </div>
+                        <div class="stat-trend trend-down">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <span>56% of budget</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="flex items-start">
-                  <div class="bg-blue-100 p-2 rounded-full mr-3">
-                    <i class="fas fa-edit text-blue-600 text-sm"></i>
-                  </div>
-                  <div>
-                    <p class="text-sm font-medium">Category updated</p>
-                    <p class="text-xs text-gray-500">
-                      "Materials" budget increased
-                    </p>
-                    <p class="text-xs text-gray-400">Yesterday</p>
-                  </div>
+
+                <!-- Add Category Button -->
+                <button class="add-category-btn fade-in">
+                    <i class="fas fa-plus"></i>
+                    Add New Category
+                </button>
+
+                <!-- Categories Grid -->
+                <div class="categories-grid">
+                    <!-- Category 1 -->
+                    <div class="category-card fade-in">
+                        <div class="category-header">
+                            <div class="category-icon" style="background-color: #dbeafe; color: #3b82f6;">
+                                <i class="fas fa-book"></i>
+                            </div>
+                            <div class="category-info">
+                                <h3>Materials</h3>
+                                <p>School supplies and materials</p>
+                            </div>
+                        </div>
+                        <div class="category-content">
+                            <div class="budget-info">
+                                <div class="budget-amount">$1,000</div>
+                                <div class="budget-spent">$650 spent</div>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 65%; background-color: #3b82f6;"></div>
+                            </div>
+                            <div class="category-actions">
+                                <button class="action-btn edit">
+                                    <i class="fas fa-edit"></i>
+                                    Edit
+                                </button>
+                                <button class="action-btn delete">
+                                    <i class="fas fa-trash"></i>
+                                    Delete
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Category 2 -->
+                    <div class="category-card fade-in">
+                        <div class="category-header">
+                            <div class="category-icon" style="background-color: #dcfce7; color: #16a34a;">
+                                <i class="fas fa-utensils"></i>
+                            </div>
+                            <div class="category-info">
+                                <h3>Food & Cafeteria</h3>
+                                <p>School meals and snacks</p>
+                            </div>
+                        </div>
+                        <div class="category-content">
+                            <div class="budget-info">
+                                <div class="budget-amount">$2,500</div>
+                                <div class="budget-spent">$2,100 spent</div>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 84%; background-color: #16a34a;"></div>
+                            </div>
+                            <div class="category-actions">
+                                <button class="action-btn edit">
+                                    <i class="fas fa-edit"></i>
+                                    Edit
+                                </button>
+                                <button class="action-btn delete">
+                                    <i class="fas fa-trash"></i>
+                                    Delete
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Category 3 -->
+                    <div class="category-card fade-in">
+                        <div class="category-header">
+                            <div class="category-icon" style="background-color: #f3e8ff; color: #9333ea;">
+                                <i class="fas fa-bus"></i>
+                            </div>
+                            <div class="category-info">
+                                <h3>Transportation</h3>
+                                <p>Student transportation services</p>
+                            </div>
+                        </div>
+                        <div class="category-content">
+                            <div class="budget-info">
+                                <div class="budget-amount">$1,800</div>
+                                <div class="budget-spent">$950 spent</div>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 53%; background-color: #9333ea;"></div>
+                            </div>
+                            <div class="category-actions">
+                                <button class="action-btn edit">
+                                    <i class="fas fa-edit"></i>
+                                    Edit
+                                </button>
+                                <button class="action-btn delete">
+                                    <i class="fas fa-trash"></i>
+                                    Delete
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Category 4 -->
+                    <div class="category-card fade-in">
+                        <div class="category-header">
+                            <div class="category-icon" style="background-color: #fef3c7; color: #d97706;">
+                                <i class="fas fa-tools"></i>
+                            </div>
+                            <div class="category-info">
+                                <h3>Maintenance</h3>
+                                <p>School building and equipment</p>
+                            </div>
+                        </div>
+                        <div class="category-content">
+                            <div class="budget-info">
+                                <div class="budget-amount">$3,000</div>
+                                <div class="budget-spent">$1,200 spent</div>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 40%; background-color: #d97706;"></div>
+                            </div>
+                            <div class="category-actions">
+                                <button class="action-btn edit">
+                                    <i class="fas fa-edit"></i>
+                                    Edit
+                                </button>
+                                <button class="action-btn delete">
+                                    <i class="fas fa-trash"></i>
+                                    Delete
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Category 5 -->
+                    <div class="category-card fade-in">
+                        <div class="category-header">
+                            <div class="category-icon" style="background-color: #fce7f3; color: #db2777;">
+                                <i class="fas fa-laptop"></i>
+                            </div>
+                            <div class="category-info">
+                                <h3>Technology</h3>
+                                <p>Computers and software</p>
+                            </div>
+                        </div>
+                        <div class="category-content">
+                            <div class="budget-info">
+                                <div class="budget-amount">$5,000</div>
+                                <div class="budget-spent">$3,250 spent</div>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 65%; background-color: #db2777;"></div>
+                            </div>
+                            <div class="category-actions">
+                                <button class="action-btn edit">
+                                    <i class="fas fa-edit"></i>
+                                    Edit
+                                </button>
+                                <button class="action-btn delete">
+                                    <i class="fas fa-trash"></i>
+                                    Delete
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Category 6 -->
+                    <div class="category-card fade-in">
+                        <div class="category-header">
+                            <div class="category-icon" style="background-color: #e0f2fe; color: #0284c7;">
+                                <i class="fas fa-flask"></i>
+                            </div>
+                            <div class="category-info">
+                                <h3>Science Lab</h3>
+                                <p>Laboratory equipment and supplies</p>
+                            </div>
+                        </div>
+                        <div class="category-content">
+                            <div class="budget-info">
+                                <div class="budget-amount">$2,200</div>
+                                <div class="budget-spent">$1,100 spent</div>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 50%; background-color: #0284c7;"></div>
+                            </div>
+                            <div class="category-actions">
+                                <button class="action-btn edit">
+                                    <i class="fas fa-edit"></i>
+                                    Edit
+                                </button>
+                                <button class="action-btn delete">
+                                    <i class="fas fa-trash"></i>
+                                    Delete
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="flex items-start">
-                  <div class="bg-purple-100 p-2 rounded-full mr-3">
-                    <i
-                      class="fas fa-money-bill-wave text-purple-600 text-sm"
-                    ></i>
-                  </div>
-                  <div>
-                    <p class="text-sm font-medium">Expense recorded</p>
-                    <p class="text-xs text-gray-500">
-                      $250 in "Food & Cafeteria"
-                    </p>
-                    <p class="text-xs text-gray-400">2 days ago</p>
-                  </div>
+            </main>
+
+            <!-- Footer -->
+            <footer class="footer">
+                <div class="footer-content">
+                    <div class="footer-grid">
+                        <!-- Brand Section -->
+                        <div class="footer-brand">
+                            <h3>SchoolSys</h3>
+                            <p>Modern school management system designed to streamline educational administration and enhance learning experiences.</p>
+                            <div class="social-links">
+                                <a href="#" class="social-link">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="#" class="social-link">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#" class="social-link">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                                <a href="#" class="social-link">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Quick Links -->
+                        <div class="footer-section">
+                            <h4>Quick Links</h4>
+                            <ul class="footer-links">
+                                <li><a href="index.html"><i class="fas fa-chevron-right"></i> Dashboard</a></li>
+                                <li><a href="expenses.html"><i class="fas fa-chevron-right"></i> Expenses</a></li>
+                                <li><a href="reports.html"><i class="fas fa-chevron-right"></i> Reports</a></li>
+                                <li><a href="categories.html"><i class="fas fa-chevron-right"></i> Categories</a></li>
+                            </ul>
+                        </div>
+
+                        <!-- Resources -->
+                        <div class="footer-section">
+                            <h4>Resources</h4>
+                            <ul class="footer-links">
+                                <li><a href="#"><i class="fas fa-chevron-right"></i> Documentation</a></li>
+                                <li><a href="#"><i class="fas fa-chevron-right"></i> Tutorials</a></li>
+                                <li><a href="#"><i class="fas fa-chevron-right"></i> Support</a></li>
+                                <li><a href="#"><i class="fas fa-chevron-right"></i> API</a></li>
+                            </ul>
+                        </div>
+
+                        <!-- Contact Info -->
+                        <div class="footer-section">
+                            <h4>Contact Info</h4>
+                            <ul class="contact-info">
+                                <li>
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span>123 Education Street, Learning City</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-phone"></i>
+                                    <span>+1 (555) 123-4567</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-envelope"></i>
+                                    <span>info@schoolsys.com</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-clock"></i>
+                                    <span>Mon - Fri: 8:00 - 17:00</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="footer-bottom">
+                        <p>&copy; 2024 SchoolSys. All rights reserved. | Designed with ❤️ for better education</p>
+                    </div>
                 </div>
-              </div>
-            </div>
-          </div>
+            </footer>
         </div>
-      </div>
-
-      <!-- Settings Content -->
-      <div class="content-section" id="settings">
-        <div class="bg-white p-6 rounded-xl shadow mb-6">
-          <h3 class="text-xl font-semibold text-gray-800 mb-2">
-            System Settings
-          </h3>
-          <p class="text-gray-600">Configure system preferences and options</p>
-        </div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <div class="bg-white p-6 rounded-xl shadow">
-            <h4 class="text-lg font-semibold text-gray-800 mb-4">
-              General Settings
-            </h4>
-            <div class="space-y-4">
-              <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1"
-                  >School Name</label
-                >
-                <input
-                  type="text"
-                  class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                  value="Greenwood High School"
-                />
-              </div>
-              <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1"
-                  >Currency</label
-                >
-                <select
-                  class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                >
-                  <option>USD ($)</option>
-                  <option>EUR (€)</option>
-                  <option>GBP (£)</option>
-                </select>
-              </div>
-              <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1"
-                  >Date Format</label
-                >
-                <select
-                  class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                >
-                  <option>MM/DD/YYYY</option>
-                  <option>DD/MM/YYYY</option>
-                  <option>YYYY-MM-DD</option>
-                </select>
-              </div>
-            </div>
-          </div>
-
-          <div class="bg-white p-6 rounded-xl shadow">
-            <h4 class="text-lg font-semibold text-gray-800 mb-4">
-              Notification Settings
-            </h4>
-            <div class="space-y-4">
-              <div class="flex items-center justify-between">
-                <div>
-                  <p class="text-sm font-medium text-gray-700">
-                    Email Notifications
-                  </p>
-                  <p class="text-xs text-gray-500">Receive updates via email</p>
-                </div>
-                <label class="relative inline-flex items-center cursor-pointer">
-                  <input type="checkbox" class="sr-only peer" checked />
-                  <div
-                    class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-indigo-600"
-                  ></div>
-                </label>
-              </div>
-              <div class="flex items-center justify-between">
-                <div>
-                  <p class="text-sm font-medium text-gray-700">Budget Alerts</p>
-                  <p class="text-xs text-gray-500">
-                    Get notified when budgets are close to limit
-                  </p>
-                </div>
-                <label class="relative inline-flex items-center cursor-pointer">
-                  <input type="checkbox" class="sr-only peer" checked />
-                  <div
-                    class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-indigo-600"
-                  ></div>
-                </label>
-              </div>
-              <div class="flex items-center justify-between">
-                <div>
-                  <p class="text-sm font-medium text-gray-700">
-                    Weekly Reports
-                  </p>
-                  <p class="text-xs text-gray-500">
-                    Receive weekly summary reports
-                  </p>
-                </div>
-                <label class="relative inline-flex items-center cursor-pointer">
-                  <input type="checkbox" class="sr-only peer" />
-                  <div
-                    class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-indigo-600"
-                  ></div>
-                </label>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </main>
-
-    <!-- Floating Action Button -->
-    <button
-      class="floating-btn fixed bottom-6 right-6 w-14 h-14 bg-indigo-600 text-white rounded-full flex items-center justify-center shadow-lg"
-    >
-      <i class="fas fa-plus text-xl"></i>
-    </button>
+    </div>
 
     <script>
-      document.addEventListener("DOMContentLoaded", function () {
         // Mobile sidebar functionality
-        const mobileToggle = document.getElementById("mobileToggle");
-        const closeSidebar = document.getElementById("closeSidebar");
-        const sidebar = document.querySelector(".sidebar");
-        const overlay = document.getElementById("overlay");
+        document.addEventListener("DOMContentLoaded", function () {
+            const mobileToggle = document.getElementById("mobileToggle");
+            const closeSidebar = document.getElementById("closeSidebar");
+            const sidebar = document.querySelector(".sidebar");
+            const overlay = document.getElementById("overlay");
 
-        function openSidebar() {
-          sidebar.classList.add("active");
-          overlay.classList.add("active");
-          document.body.style.overflow = "hidden";
-        }
+            function openSidebar() {
+                sidebar.classList.add("active");
+                overlay.classList.add("active");
+                document.body.style.overflow = "hidden";
+            }
 
-        function closeSidebarFunc() {
-          sidebar.classList.remove("active");
-          overlay.classList.remove("active");
-          document.body.style.overflow = "auto";
-        }
+            function closeSidebarFunc() {
+                sidebar.classList.remove("active");
+                overlay.classList.remove("active");
+                document.body.style.overflow = "auto";
+            }
 
-        mobileToggle.addEventListener("click", openSidebar);
-        closeSidebar.addEventListener("click", closeSidebarFunc);
-        overlay.addEventListener("click", closeSidebarFunc);
+            if (mobileToggle) {
+                mobileToggle.addEventListener("click", openSidebar);
+            }
+            
+            if (closeSidebar) {
+                closeSidebar.addEventListener("click", closeSidebarFunc);
+            }
+            
+            if (overlay) {
+                overlay.addEventListener("click", closeSidebarFunc);
+            }
 
-        // Navigation between sections
-        const sidebarLinks = document.querySelectorAll(".sidebar-link");
-        const contentSections = document.querySelectorAll(".content-section");
-        const pageTitle = document.getElementById("pageTitle");
-        const pageSubtitle = document.getElementById("pageSubtitle");
-
-        // Page titles and subtitles for each section
-        const pageData = {
-          dashboard: {
-            title: "Dashboard",
-            subtitle: "School management overview",
-          },
-          expenses: {
-            title: "Expenses",
-            subtitle: "Track and manage school expenses",
-          },
-          reports: {
-            title: "Reports",
-            subtitle: "View detailed reports and analytics",
-          },
-          categories: {
-            title: "Categories",
-            subtitle: "Manage expense categories",
-          },
-          settings: {
-            title: "Settings",
-            subtitle: "Configure system preferences",
-          },
-        };
-
-        sidebarLinks.forEach((link) => {
-          link.addEventListener("click", function (e) {
-            e.preventDefault();
-
-            // Get the target section
-            const target = this.getAttribute("data-target");
-
-            // Update active states
-            sidebarLinks.forEach((l) => l.classList.remove("active"));
-            this.classList.add("active");
-
-            // Show the target section
-            contentSections.forEach((section) => {
-              section.classList.remove("active");
+            // Close sidebar when clicking on a link (mobile)
+            const sidebarLinks = document.querySelectorAll(".sidebar-link");
+            sidebarLinks.forEach((link) => {
+                link.addEventListener("click", () => {
+                    if (window.innerWidth < 1024) {
+                        closeSidebarFunc();
+                    }
+                });
             });
-            document.getElementById(target).classList.add("active");
 
-            // Update page title and subtitle
-            pageTitle.textContent = pageData[target].title;
-            pageSubtitle.textContent = pageData[target].subtitle;
-
-            // Close sidebar on mobile after selection
-            if (window.innerWidth < 1024) {
-              closeSidebarFunc();
+            // Add category button functionality
+            const addCategoryBtn = document.querySelector('.add-category-btn');
+            if (addCategoryBtn) {
+                addCategoryBtn.addEventListener('click', function() {
+                    alert('Add Category functionality would open a modal or form here');
+                    // In a real application, this would open a modal or form
+                });
             }
-          });
+
+            // Category action buttons
+            const editButtons = document.querySelectorAll('.action-btn.edit');
+            const deleteButtons = document.querySelectorAll('.action-btn.delete');
+
+            editButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const categoryName = this.closest('.category-card').querySelector('h3').textContent;
+                    alert(`Edit category: ${categoryName}`);
+                });
+            });
+
+            deleteButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const categoryName = this.closest('.category-card').querySelector('h3').textContent;
+                    if (confirm(`Are you sure you want to delete the category "${categoryName}"?`)) {
+                        alert(`Category "${categoryName}" would be deleted`);
+                    }
+                });
+            });
+
+            // Category card click for details
+            const categoryCards = document.querySelectorAll('.category-card');
+            categoryCards.forEach(card => {
+                card.addEventListener('click', function(e) {
+                    if (!e.target.closest('.action-btn')) {
+                        const categoryName = this.querySelector('h3').textContent;
+                        alert(`View details for: ${categoryName}`);
+                    }
+                });
+            });
         });
 
-        // Filter buttons
-        const filterButtons = document.querySelectorAll(".filter-btn");
-        filterButtons.forEach((button) => {
-          button.addEventListener("click", function () {
-            filterButtons.forEach((btn) => btn.classList.remove("active"));
-            this.classList.add("active");
-          });
-        });
-
-        // Add category button
-        const addCategoryBtn = document.getElementById("addCategoryBtn");
-        addCategoryBtn.addEventListener("click", function () {
-          alert("Add Category form would open here");
-          // In a real application, this would open a modal or form
-        });
-
-        // Simulate progress bar animation
-        const progressBars = document.querySelectorAll(".progress-fill");
-        progressBars.forEach((bar) => {
-          const width = bar.style.width;
-          bar.style.width = "0";
-          setTimeout(() => {
-            bar.style.width = width;
-          }, 300);
-        });
-
-        // Table row interactions
-        const tableRows = document.querySelectorAll(".category-row");
-        tableRows.forEach((row) => {
-          row.addEventListener("click", function (e) {
-            if (!e.target.closest("button")) {
-              // In a real app, this would open a detail view
-              console.log(
-                "Category details for:",
-                this.querySelector(".font-medium").textContent
-              );
+        // Handle window resize
+        window.addEventListener('resize', function() {
+            if (window.innerWidth >= 1024) {
+                const sidebar = document.querySelector('.sidebar');
+                const overlay = document.getElementById('overlay');
+                if (sidebar) sidebar.classList.remove('active');
+                if (overlay) overlay.classList.remove('active');
+                document.body.style.overflow = 'auto';
             }
-          });
         });
-      });
     </script>
-  </body>
+</body>
 </html>
