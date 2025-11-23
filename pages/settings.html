@@ -1,937 +1,1608 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SchoolSys | Dashboard</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SchoolSys | Settings</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
-      body {
-        font-family: "Poppins", sans-serif;
-        background-color: #f8fafc;
-      }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-      .gradient-bg {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
 
-      .sidebar {
-        width: 250px;
-        height: 100vh;
-        position: fixed;
-        left: 0;
-        top: 0;
-        transition: all 0.3s;
-        z-index: 100;
-        overflow-y: auto;
-      }
+        .app-container {
+            display: flex;
+            min-height: 100vh;
+            background: #f8fafc;
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.1);
+            overflow-x: hidden;
+        }
 
-      .navbar {
-        height: 70px;
-        position: fixed;
-        top: 0;
-        left: 250px;
-        right: 0;
-        z-index: 90;
-        transition: all 0.3s;
-      }
-
-      .main-content {
-        margin-left: 250px;
-        margin-top: 70px;
-        padding: 20px;
-        transition: all 0.3s;
-        min-height: calc(100vh - 70px);
-      }
-
-      .sidebar-link.active {
-        background-color: rgba(255, 255, 255, 0.1);
-        border-left: 4px solid white;
-      }
-
-      .settings-card {
-        transition: all 0.3s ease;
-      }
-
-      .settings-card:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-      }
-
-      .toggle-switch {
-        position: relative;
-        display: inline-block;
-        width: 60px;
-        height: 30px;
-      }
-
-      .toggle-switch input {
-        opacity: 0;
-        width: 0;
-        height: 0;
-      }
-
-      .toggle-slider {
-        position: absolute;
-        cursor: pointer;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-color: #ccc;
-        transition: 0.4s;
-        border-radius: 34px;
-      }
-
-      .toggle-slider:before {
-        position: absolute;
-        content: "";
-        height: 22px;
-        width: 22px;
-        left: 4px;
-        bottom: 4px;
-        background-color: white;
-        transition: 0.4s;
-        border-radius: 50%;
-      }
-
-      input:checked + .toggle-slider {
-        background-color: #4f46e5;
-      }
-
-      input:checked + .toggle-slider:before {
-        transform: translateX(30px);
-      }
-
-      .tab-button {
-        transition: all 0.3s ease;
-      }
-
-      .tab-button.active {
-        background-color: #4f46e5;
-        color: white;
-      }
-
-      .content-section {
-        display: none;
-      }
-
-      .content-section.active {
-        display: block;
-      }
-
-      .mobile-menu-btn {
-        display: none;
-      }
-
-      @media (max-width: 1024px) {
+        /* Sidebar Styles */
         .sidebar {
-          transform: translateX(-100%);
+            width: 280px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1000;
+            box-shadow: 4px 0 20px rgba(0, 0, 0, 0.1);
         }
 
-        .sidebar.active {
-          transform: translateX(0);
+        .sidebar-header {
+            padding: 2rem 1.5rem 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
+        .sidebar-header h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        /* Close Sidebar Button */
+        .close-sidebar-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.25rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .close-sidebar-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .sidebar-nav {
+            padding: 1rem 0;
+        }
+
+        .sidebar-link {
+            display: flex;
+            align-items: center;
+            padding: 0.875rem 1.5rem;
+            margin: 0.25rem 0.75rem;
+            border-radius: 12px;
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            gap: 0.75rem;
+            border: 1px solid transparent;
+        }
+
+        .sidebar-link:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateX(5px);
+        }
+
+        .sidebar-link.active {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+        }
+
+        .sidebar-link i {
+            width: 20px;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        .sidebar-upgrade {
+            margin: 1.5rem;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        /* Main Content Area */
+        .main-wrapper {
+            flex: 1;
+            margin-left: 280px;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            width: calc(100% - 280px);
+        }
+
+        /* Navbar */
         .navbar {
-          left: 0;
+            background: white;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
         }
 
+        .navbar-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .navbar-title h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 0.25rem;
+        }
+
+        .navbar-title p {
+            color: #6b7280;
+            font-size: 0.875rem;
+        }
+
+        .navbar-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .notification-btn {
+            position: relative;
+            padding: 0.5rem;
+            border-radius: 12px;
+            background: #f8fafc;
+            border: 1px solid #e5e7eb;
+            transition: all 0.3s ease;
+        }
+
+        .notification-btn:hover {
+            background: #f1f5f9;
+            transform: translateY(-2px);
+        }
+
+        .notification-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: #ef4444;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-size: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.5rem;
+            border-radius: 12px;
+            background: #f8fafc;
+            border: 1px solid #e5e7eb;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            color: white;
+        }
+
+        /* Main Content */
         .main-content {
-          margin-left: 0;
+            flex: 1;
+            padding: 2rem;
+            background: #f8fafc;
+            overflow-x: hidden;
         }
 
-        .mobile-menu-btn {
-          display: block;
+        /* Settings Tabs */
+        .settings-tabs {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.08);
+            margin-bottom: 2rem;
+            overflow: hidden;
         }
 
-        .overlay {
-          display: none;
-          position: fixed;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          background-color: rgba(0, 0, 0, 0.5);
-          z-index: 50;
+        .tabs-header {
+            display: flex;
+            overflow-x: auto;
+            border-bottom: 1px solid #f1f5f9;
         }
 
-        .overlay.active {
-          display: block;
+        .tab-btn {
+            padding: 1.25rem 2rem;
+            background: none;
+            border: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #6b7280;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            border-bottom: 3px solid transparent;
         }
-      }
 
-      @media (max-width: 768px) {
-        /* Mobile adjustments for toggle switches */
+        .tab-btn:hover {
+            color: #374151;
+            background: #f8fafc;
+        }
+
+        .tab-btn.active {
+            color: #4f46e5;
+            border-bottom-color: #4f46e5;
+            background: #f8fafc;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 2rem;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Settings Cards */
+        .settings-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+        }
+
+        .settings-card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.08);
+            border: 1px solid #f1f5f9;
+            transition: all 0.3s ease;
+        }
+
+        .settings-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .card-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid #f1f5f9;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .card-header i {
+            width: 24px;
+            text-align: center;
+            font-size: 1.25rem;
+            color: #4f46e5;
+        }
+
+        .card-header h3 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #374151;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #4f46e5;
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+        }
+
+        .form-text {
+            font-size: 0.75rem;
+            color: #6b7280;
+            margin-top: 0.5rem;
+        }
+
+        /* Toggle Switch */
+        .toggle-group {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem;
+            background: #f8fafc;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .toggle-group:hover {
+            background: #f1f5f9;
+        }
+
+        .toggle-info h4 {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #1f2937;
+            margin-bottom: 0.25rem;
+        }
+
+        .toggle-info p {
+            font-size: 0.75rem;
+            color: #6b7280;
+        }
+
         .toggle-switch {
-          width: 50px;
-          height: 25px;
+            position: relative;
+            display: inline-block;
+            width: 52px;
+            height: 28px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #d1d5db;
+            transition: 0.4s;
+            border-radius: 34px;
         }
 
         .toggle-slider:before {
-          height: 18px;
-          width: 18px;
-          left: 3px;
-          bottom: 3px;
+            position: absolute;
+            content: "";
+            height: 20px;
+            width: 20px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: 0.4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .toggle-slider {
+            background-color: #4f46e5;
         }
 
         input:checked + .toggle-slider:before {
-          transform: translateX(25px);
+            transform: translateX(24px);
         }
-      }
+
+        /* Quick Actions */
+        .quick-actions {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        .action-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 1px solid #f1f5f9;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .action-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            border-color: #e5e7eb;
+        }
+
+        .action-card.danger {
+            border-left: 4px solid #ef4444;
+        }
+
+        .action-card.warning {
+            border-left: 4px solid #f59e0b;
+        }
+
+        .action-card.success {
+            border-left: 4px solid #10b981;
+        }
+
+        .action-card.info {
+            border-left: 4px solid #3b82f6;
+        }
+
+        .action-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .action-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.125rem;
+        }
+
+        .action-card.danger .action-icon {
+            background: #fef2f2;
+            color: #ef4444;
+        }
+
+        .action-card.warning .action-icon {
+            background: #fffbeb;
+            color: #f59e0b;
+        }
+
+        .action-card.success .action-icon {
+            background: #f0fdf4;
+            color: #10b981;
+        }
+
+        .action-card.info .action-icon {
+            background: #eff6ff;
+            color: #3b82f6;
+        }
+
+        .action-content h4 {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 0.25rem;
+        }
+
+        .action-content p {
+            font-size: 0.75rem;
+            color: #6b7280;
+        }
+
+        /* System Status */
+        .status-card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.08);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .status-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .status-header i {
+            font-size: 1.5rem;
+            color: #4f46e5;
+        }
+
+        .status-header h3 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        .status-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .status-item:last-child {
+            border-bottom: none;
+        }
+
+        .status-label {
+            font-size: 0.875rem;
+            color: #6b7280;
+        }
+
+        .status-value {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #1f2937;
+        }
+
+        .status-value.good {
+            color: #10b981;
+        }
+
+        .status-value.warning {
+            color: #f59e0b;
+        }
+
+        .status-value.danger {
+            color: #ef4444;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: #f1f5f9;
+            border-radius: 3px;
+            overflow: hidden;
+            margin-top: 0.5rem;
+        }
+
+        .progress-fill {
+            height: 100%;
+            border-radius: 3px;
+            transition: width 0.5s ease;
+        }
+
+        /* Save Actions */
+        .save-actions {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.08);
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .save-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .save-info h3 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 0.25rem;
+        }
+
+        .save-info p {
+            font-size: 0.875rem;
+            color: #6b7280;
+        }
+
+        .save-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid #d1d5db;
+            background: white;
+            color: #374151;
+        }
+
+        .btn:hover {
+            background: #f8fafc;
+        }
+
+        .btn-primary {
+            background: #4f46e5;
+            color: white;
+            border-color: #4f46e5;
+        }
+
+        .btn-primary:hover {
+            background: #4338ca;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(79, 70, 229, 0.3);
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+            color: white;
+            padding: 3rem 0 1.5rem;
+            margin-top: auto;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-brand h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .footer-brand p {
+            color: #d1d5db;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #d1d5db;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .social-link:hover {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .footer-section h4 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 1.25rem;
+            position: relative;
+        }
+
+        .footer-section h4::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 40px;
+            height: 3px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 2px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: #d1d5db;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-links a:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .footer-links a i {
+            width: 16px;
+            font-size: 0.875rem;
+        }
+
+        .contact-info {
+            list-style: none;
+        }
+
+        .contact-info li {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            color: #d1d5db;
+        }
+
+        .contact-info i {
+            width: 20px;
+            color: #667eea;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 1.5rem;
+            text-align: center;
+        }
+
+        .footer-bottom p {
+            color: #9ca3af;
+            font-size: 0.875rem;
+        }
+
+        /* Mobile Styles */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: #6b7280;
+            font-size: 1.25rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-btn:hover {
+            background: #f1f5f9;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            z-index: 999;
+        }
+
+        .overlay.active {
+            display: block;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+            
+            .sidebar.active {
+                transform: translateX(0);
+            }
+            
+            .main-wrapper {
+                margin-left: 0;
+                width: 100%;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .close-sidebar-btn {
+                display: block;
+            }
+            
+            .settings-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 1rem;
+            }
+            
+            .tabs-header {
+                flex-direction: column;
+            }
+            
+            .tab-btn {
+                padding: 1rem 1.5rem;
+                justify-content: flex-start;
+            }
+            
+            .tab-content {
+                padding: 1.5rem;
+            }
+            
+            .save-content {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: flex-start;
+            }
+            
+            .save-buttons {
+                width: 100%;
+            }
+            
+            .btn {
+                flex: 1;
+            }
+            
+            .navbar {
+                padding: 1rem;
+            }
+            
+            .navbar-content {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: flex-start;
+            }
+            
+            .navbar-actions {
+                width: 100%;
+                justify-content: space-between;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .footer-content {
+                padding: 0 1rem;
+            }
+            
+            /* Fix for horizontal scroll on mobile */
+            body, .app-container, .main-wrapper, .main-content {
+                max-width: 100vw;
+                overflow-x: hidden;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .card-content {
+                padding: 1rem;
+            }
+            
+            .toggle-group {
+                padding: 0.875rem;
+            }
+            
+            .action-card {
+                padding: 1.25rem;
+            }
+            
+            .status-card {
+                padding: 1.25rem;
+            }
+            
+            .save-actions {
+                padding: 1.25rem;
+            }
+            
+            .footer {
+                padding: 2rem 0 1rem;
+            }
+            
+            .save-buttons {
+                flex-direction: column;
+            }
+        }
+
+        /* Animation Classes */
+        .fade-in {
+            animation: fadeIn 0.6s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Custom Scrollbar */
+        .sidebar::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .sidebar::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .sidebar::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 3px;
+        }
+
+        .sidebar::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.5);
+        }
     </style>
-  </head>
-  <body class="bg-gray-50">
-    <!-- Mobile Overlay -->
-    <div class="overlay" id="overlay"></div>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Mobile Overlay -->
+        <div class="overlay" id="overlay"></div>
 
-    <!-- Sidebar -->
-    <aside class="sidebar gradient-bg text-white">
-      <div class="p-6 flex justify-between items-center">
-        <h1 class="text-2xl font-bold flex items-center">
-          <i class="fas fa-graduation-cap mr-2"></i>
-          SchoolSys
-        </h1>
-        <button class="md:hidden" id="closeSidebar">
-          <i class="fas fa-times"></i>
-        </button>
-      </div>
-      <nav class="mt-4 flex-1">
-        <ul>
-          <li class="mb-1">
-            <a
-              href="#"
-              class="sidebar-link flex items-center p-3 rounded-r-lg hover:bg-indigo-700 transition-colors mx-2 active"
-              data-target="dashboard"
-            >
-              <i class="fas fa-home mr-3 w-5 text-center"></i>
-              <span>Dashboard</span>
-            </a>
-          </li>
-          <li class="mb-1">
-            <a
-              href="#"
-              class="sidebar-link flex items-center p-3 rounded-r-lg hover:bg-indigo-700 transition-colors mx-2"
-              data-target="expenses"
-            >
-              <i class="fas fa-wallet mr-3 w-5 text-center"></i>
-              <span>Expenses</span>
-            </a>
-          </li>
-          <li class="mb-1">
-            <a
-              href="#"
-              class="sidebar-link flex items-center p-3 rounded-r-lg hover:bg-indigo-700 transition-colors mx-2"
-              data-target="reports"
-            >
-              <i class="fas fa-chart-pie mr-3 w-5 text-center"></i>
-              <span>Reports</span>
-            </a>
-          </li>
-          <li class="mb-1">
-            <a
-              href="#"
-              class="sidebar-link flex items-center p-3 rounded-r-lg hover:bg-indigo-700 transition-colors mx-2"
-              data-target="categories"
-            >
-              <i class="fas fa-tags mr-3 w-5 text-center"></i>
-              <span>Categories</span>
-            </a>
-          </li>
-          <li class="mb-1">
-            <a
-              href="#"
-              class="sidebar-link flex items-center p-3 rounded-r-lg hover:bg-indigo-700 transition-colors mx-2"
-              data-target="settings"
-            >
-              <i class="fas fa-cog mr-3 w-5 text-center"></i>
-              <span>Settings</span>
-            </a>
-          </li>
-        </ul>
-      </nav>
-      <div class="p-4 mt-auto">
-        <div class="bg-indigo-900 p-4 rounded-lg">
-          <h3 class="font-semibold text-sm">Upgrade to Premium</h3>
-          <p class="text-xs text-indigo-200 mt-1 mb-2">
-            Advanced settings & features
-          </p>
-          <button
-            class="w-full bg-white text-indigo-700 px-3 py-2 rounded text-sm font-medium hover:bg-indigo-100 transition-colors"
-          >
-            Upgrade Now
-          </button>
-        </div>
-      </div>
-    </aside>
-
-    <!-- Navbar -->
-    <header class="navbar bg-white shadow-sm">
-      <div class="flex items-center justify-between h-full px-6">
-        <div class="flex items-center">
-          <button class="mobile-menu-btn mr-4 text-gray-600" id="mobileToggle">
-            <i class="fas fa-bars text-xl"></i>
-          </button>
-          <div>
-            <h2 class="text-xl font-semibold text-gray-800" id="pageTitle">
-              Dashboard
-            </h2>
-            <p class="text-gray-600 text-sm" id="pageSubtitle">
-              School management overview
-            </p>
-          </div>
-        </div>
-        <div class="flex items-center space-x-4">
-          <div class="relative">
-            <button
-              class="p-2 rounded-full hover:bg-gray-100 transition-colors"
-            >
-              <i class="fas fa-bell text-gray-600"></i>
-              <span
-                class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center"
-                >3</span
-              >
-            </button>
-          </div>
-          <div class="flex items-center">
-            <div
-              class="w-10 h-10 bg-gradient-to-r from-purple-400 to-blue-500 rounded-full flex items-center justify-center text-white font-bold"
-            >
-              A
-            </div>
-            <div class="ml-3 hidden sm:block">
-              <span class="font-medium">Admin</span>
-              <p class="text-xs text-gray-500">Administrator</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </header>
-
-    <!-- Main Content Area -->
-    <main class="main-content">
-      <!-- Dashboard Content -->
-      <div class="content-section active" id="dashboard">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          <div class="stats-card bg-white p-6 rounded-xl shadow">
-            <div class="flex justify-between items-start">
-              <div>
-                <p class="text-sm text-gray-500">Total Students</p>
-                <h3 class="text-2xl font-bold mt-1 text-gray-800">1,248</h3>
-              </div>
-              <div class="bg-blue-100 p-3 rounded-full">
-                <i class="fas fa-users text-blue-600 text-xl"></i>
-              </div>
-            </div>
-            <p class="text-green-600 text-xs mt-3">
-              <i class="fas fa-arrow-up mr-1"></i> 5.2% from last month
-            </p>
-          </div>
-
-          <div class="stats-card bg-white p-6 rounded-xl shadow">
-            <div class="flex justify-between items-start">
-              <div>
-                <p class="text-sm text-gray-500">Total Staff</p>
-                <h3 class="text-2xl font-bold mt-1 text-gray-800">84</h3>
-              </div>
-              <div class="bg-green-100 p-3 rounded-full">
-                <i class="fas fa-chalkboard-teacher text-green-600 text-xl"></i>
-              </div>
-            </div>
-            <p class="text-green-600 text-xs mt-3">
-              <i class="fas fa-arrow-up mr-1"></i> 2 new hires
-            </p>
-          </div>
-
-          <div class="stats-card bg-white p-6 rounded-xl shadow">
-            <div class="flex justify-between items-start">
-              <div>
-                <p class="text-sm text-gray-500">Monthly Expenses</p>
-                <h3 class="text-2xl font-bold mt-1 text-gray-800">$24,580</h3>
-              </div>
-              <div class="bg-purple-100 p-3 rounded-full">
-                <i class="fas fa-wallet text-purple-600 text-xl"></i>
-              </div>
-            </div>
-            <p class="text-red-600 text-xs mt-3">
-              <i class="fas fa-arrow-up mr-1"></i> 12% from last month
-            </p>
-          </div>
-
-          <div class="stats-card bg-white p-6 rounded-xl shadow">
-            <div class="flex justify-between items-start">
-              <div>
-                <p class="text-sm text-gray-500">Attendance Rate</p>
-                <h3 class="text-2xl font-bold mt-1 text-gray-800">94.2%</h3>
-              </div>
-              <div class="bg-yellow-100 p-3 rounded-full">
-                <i class="fas fa-user-check text-yellow-600 text-xl"></i>
-              </div>
-            </div>
-            <p class="text-green-600 text-xs mt-3">
-              <i class="fas fa-arrow-up mr-1"></i> 1.5% from last week
-            </p>
-          </div>
-        </div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <div class="bg-white p-6 rounded-xl shadow">
-            <h3 class="text-lg font-semibold text-gray-800 mb-4">
-              Recent Activities
-            </h3>
-            <div class="space-y-4">
-              <div class="flex items-start">
-                <div class="bg-blue-100 p-2 rounded-full mr-3">
-                  <i class="fas fa-user-plus text-blue-600 text-sm"></i>
-                </div>
-                <div>
-                  <p class="text-sm font-medium">New student enrolled</p>
-                  <p class="text-xs text-gray-500">Sarah Johnson in Grade 5</p>
-                  <p class="text-xs text-gray-400">2 hours ago</p>
-                </div>
-              </div>
-              <div class="flex items-start">
-                <div class="bg-green-100 p-2 rounded-full mr-3">
-                  <i class="fas fa-money-bill-wave text-green-600 text-sm"></i>
-                </div>
-                <div>
-                  <p class="text-sm font-medium">Fee payment received</p>
-                  <p class="text-xs text-gray-500">From Michael Brown</p>
-                  <p class="text-xs text-gray-400">Yesterday</p>
-                </div>
-              </div>
-              <div class="flex items-start">
-                <div class="bg-purple-100 p-2 rounded-full mr-3">
-                  <i
-                    class="fas fa-chalkboard-teacher text-purple-600 text-sm"
-                  ></i>
-                </div>
-                <div>
-                  <p class="text-sm font-medium">New teacher assigned</p>
-                  <p class="text-xs text-gray-500">Mr. Wilson to Class 7-B</p>
-                  <p class="text-xs text-gray-400">2 days ago</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="bg-white p-6 rounded-xl shadow">
-            <h3 class="text-lg font-semibold text-gray-800 mb-4">
-              Upcoming Events
-            </h3>
-            <div class="space-y-4">
-              <div class="flex items-start">
-                <div class="bg-red-100 p-2 rounded-full mr-3">
-                  <i class="fas fa-calendar-alt text-red-600 text-sm"></i>
-                </div>
-                <div>
-                  <p class="text-sm font-medium">Parent-Teacher Meeting</p>
-                  <p class="text-xs text-gray-500">June 25, 2023 • 10:00 AM</p>
-                  <p class="text-xs text-gray-400">Next week</p>
-                </div>
-              </div>
-              <div class="flex items-start">
-                <div class="bg-yellow-100 p-2 rounded-full mr-3">
-                  <i class="fas fa-graduation-cap text-yellow-600 text-sm"></i>
-                </div>
-                <div>
-                  <p class="text-sm font-medium">Annual Sports Day</p>
-                  <p class="text-xs text-gray-500">July 5, 2023 • All day</p>
-                  <p class="text-xs text-gray-400">In 2 weeks</p>
-                </div>
-              </div>
-              <div class="flex items-start">
-                <div class="bg-green-100 p-2 rounded-full mr-3">
-                  <i class="fas fa-music text-green-600 text-sm"></i>
-                </div>
-                <div>
-                  <p class="text-sm font-medium">Music Competition</p>
-                  <p class="text-xs text-gray-500">June 30, 2023 • 2:00 PM</p>
-                  <p class="text-xs text-gray-400">Next Friday</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Add other content sections similarly -->
-      <div class="content-section" id="expenses">
-        <div class="bg-white p-6 rounded-xl shadow mb-6">
-          <h3 class="text-xl font-semibold text-gray-800 mb-2">
-            Expense Management
-          </h3>
-          <p class="text-gray-600">Track and manage all school expenses</p>
-        </div>
-
-        <!-- Add expenses content here -->
-      </div>
-
-      <div class="content-section" id="reports">
-        <div class="bg-white p-6 rounded-xl shadow mb-6">
-          <h3 class="text-xl font-semibold text-gray-800 mb-2">
-            Reports & Analytics
-          </h3>
-          <p class="text-gray-600">View detailed reports and analytics</p>
-        </div>
-
-        <!-- Add reports content here -->
-      </div>
-
-      <div class="content-section" id="categories">
-        <div class="bg-white p-6 rounded-xl shadow mb-6">
-          <h3 class="text-xl font-semibold text-gray-800 mb-2">
-            Category Management
-          </h3>
-          <p class="text-gray-600">Manage and organize expense categories</p>
-        </div>
-
-        <!-- Add categories content here -->
-      </div>
-
-      <!-- Settings Content -->
-      <div class="content-section" id="settings">
-        <!-- Settings Tabs -->
-        <div class="bg-white rounded-xl shadow mb-6 overflow-hidden">
-          <div class="border-b">
-            <div class="flex overflow-x-auto">
-              <button
-                class="tab-button active px-4 py-3 text-sm font-medium whitespace-nowrap"
-              >
-                <i class="fas fa-school mr-2"></i>School Info
-              </button>
-              <button
-                class="tab-button px-4 py-3 text-sm font-medium whitespace-nowrap"
-              >
-                <i class="fas fa-user mr-2"></i>User Preferences
-              </button>
-              <button
-                class="tab-button px-4 py-3 text-sm font-medium whitespace-nowrap"
-              >
-                <i class="fas fa-shield-alt mr-2"></i>Security
-              </button>
-              <button
-                class="tab-button px-4 py-3 text-sm font-medium whitespace-nowrap"
-              >
-                <i class="fas fa-bell mr-2"></i>Notifications
-              </button>
-              <button
-                class="tab-button px-4 py-3 text-sm font-medium whitespace-nowrap"
-              >
-                <i class="fas fa-palette mr-2"></i>Appearance
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6">
-          <!-- Main Settings Content -->
-          <div class="lg:col-span-2 space-y-4 md:space-y-6">
-            <!-- School Information Card -->
-            <div class="settings-card bg-white p-4 md:p-6 rounded-xl shadow">
-              <div class="flex items-center justify-between mb-4 md:mb-6">
-                <h3
-                  class="text-lg font-semibold text-gray-800 flex items-center"
-                >
-                  <i class="fas fa-school mr-2 text-indigo-600"></i>
-                  School Information
-                </h3>
-                <span
-                  class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full"
-                  >Active</span
-                >
-              </div>
-
-              <div class="space-y-4 md:space-y-5">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
-                  <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2"
-                      >School Name</label
-                    >
-                    <input
-                      type="text"
-                      class="w-full px-3 md:px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors"
-                      value="Greenwood High School"
-                    />
-                  </div>
-                  <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2"
-                      >School ID</label
-                    >
-                    <input
-                      type="text"
-                      class="w-full px-3 md:px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors"
-                      value="SCH-2023-001"
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-2"
-                    >Address</label
-                  >
-                  <input
-                    type="text"
-                    class="w-full px-3 md:px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors"
-                    value="123 Education Avenue"
-                  />
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
-                  <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2"
-                      >City</label
-                    >
-                    <input
-                      type="text"
-                      class="w-full px-3 md:px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors"
-                      value="Springfield"
-                    />
-                  </div>
-                  <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2"
-                      >Zip Code</label
-                    >
-                    <input
-                      type="text"
-                      class="w-full px-3 md:px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors"
-                      value="12345"
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-2"
-                    >School Description</label
-                  >
-                  <textarea
-                    class="w-full px-3 md:px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors h-24"
-                  >
-Greenwood High School is committed to providing quality education and fostering student development in a supportive learning environment.</textarea
-                  >
-                </div>
-              </div>
-            </div>
-
-            <!-- User Preferences Card -->
-            <div class="settings-card bg-white p-4 md:p-6 rounded-xl shadow">
-              <h3
-                class="text-lg font-semibold text-gray-800 flex items-center mb-4 md:mb-6"
-              >
-                <i class="fas fa-user-cog mr-2 text-indigo-600"></i>
-                User Preferences
-              </h3>
-
-              <div class="space-y-3 md:space-y-4">
-                <div
-                  class="flex items-center justify-between p-3 bg-gray-50 rounded-lg"
-                >
-                  <div class="flex-1 mr-4">
-                    <p class="font-medium text-gray-800">Email Notifications</p>
-                    <p class="text-sm text-gray-600">
-                      Receive updates via email
-                    </p>
-                  </div>
-                  <label class="toggle-switch flex-shrink-0">
-                    <input type="checkbox" checked />
-                    <span class="toggle-slider"></span>
-                  </label>
-                </div>
-
-                <div
-                  class="flex items-center justify-between p-3 bg-gray-50 rounded-lg"
-                >
-                  <div class="flex-1 mr-4">
-                    <p class="font-medium text-gray-800">SMS Notifications</p>
-                    <p class="text-sm text-gray-600">
-                      Receive important alerts via SMS
-                    </p>
-                  </div>
-                  <label class="toggle-switch flex-shrink-0">
-                    <input type="checkbox" />
-                    <span class="toggle-slider"></span>
-                  </label>
-                </div>
-
-                <div
-                  class="flex items-center justify-between p-3 bg-gray-50 rounded-lg"
-                >
-                  <div class="flex-1 mr-4">
-                    <p class="font-medium text-gray-800">Auto Backup</p>
-                    <p class="text-sm text-gray-600">
-                      Automatically backup data daily
-                    </p>
-                  </div>
-                  <label class="toggle-switch flex-shrink-0">
-                    <input type="checkbox" checked />
-                    <span class="toggle-slider"></span>
-                  </label>
-                </div>
-
-                <div
-                  class="flex items-center justify-between p-3 bg-gray-50 rounded-lg"
-                >
-                  <div class="flex-1 mr-4">
-                    <p class="font-medium text-gray-800">
-                      Two-Factor Authentication
-                    </p>
-                    <p class="text-sm text-gray-600">
-                      Enhanced security for your account
-                    </p>
-                  </div>
-                  <label class="toggle-switch flex-shrink-0">
-                    <input type="checkbox" />
-                    <span class="toggle-slider"></span>
-                  </label>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Side Panel -->
-          <div class="space-y-4 md:space-y-6">
-            <!-- Quick Actions -->
-            <div class="settings-card bg-white p-4 md:p-6 rounded-xl shadow">
-              <h3 class="text-lg font-semibold text-gray-800 mb-4">
-                Quick Actions
-              </h3>
-              <div class="space-y-3">
-                <button
-                  class="w-full flex items-center justify-between p-3 bg-blue-50 text-blue-700 rounded-lg hover:bg-blue-100 transition-colors"
-                >
-                  <span class="font-medium">Export Data</span>
-                  <i class="fas fa-download"></i>
-                </button>
-                <button
-                  class="w-full flex items-center justify-between p-3 bg-green-50 text-green-700 rounded-lg hover:bg-green-100 transition-colors"
-                >
-                  <span class="font-medium">Backup Now</span>
-                  <i class="fas fa-save"></i>
-                </button>
-                <button
-                  class="w-full flex items-center justify-between p-3 bg-purple-50 text-purple-700 rounded-lg hover:bg-purple-100 transition-colors"
-                >
-                  <span class="font-medium">System Check</span>
-                  <i class="fas fa-cogs"></i>
-                </button>
-                <button
-                  class="w-full flex items-center justify-between p-3 bg-red-50 text-red-700 rounded-lg hover:bg-red-100 transition-colors"
-                >
-                  <span class="font-medium">Reset Settings</span>
-                  <i class="fas fa-redo"></i>
-                </button>
-              </div>
-            </div>
-
-            <!-- System Status -->
-            <div class="settings-card bg-white p-4 md:p-6 rounded-xl shadow">
-              <h3 class="text-lg font-semibold text-gray-800 mb-4">
-                System Status
-              </h3>
-              <div class="space-y-4">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
                 <div class="flex justify-between items-center">
-                  <span class="text-gray-600">Storage Usage</span>
-                  <span class="font-medium">65%</span>
+                    <h1>
+                        <i class="fas fa-graduation-cap"></i>
+                        SchoolSys
+                    </h1>
+                    <button class="close-sidebar-btn lg:hidden" id="closeSidebar">
+                        <i class="fas fa-times text-white"></i>
+                    </button>
                 </div>
-                <div class="w-full bg-gray-200 rounded-full h-2">
-                  <div
-                    class="bg-blue-600 h-2 rounded-full"
-                    style="width: 65%"
-                  ></div>
-                </div>
-
-                <div class="flex justify-between items-center">
-                  <span class="text-gray-600">Database Health</span>
-                  <span class="font-medium text-green-600">Excellent</span>
-                </div>
-
-                <div class="flex justify-between items-center">
-                  <span class="text-gray-600">Last Backup</span>
-                  <span class="font-medium">Today, 02:30 AM</span>
-                </div>
-
-                <div class="flex justify-between items-center">
-                  <span class="text-gray-600">System Version</span>
-                  <span class="font-medium">v2.4.1</span>
-                </div>
-              </div>
             </div>
+            
+            <nav class="sidebar-nav">
+                <a href="index.html" class="sidebar-link">
+                    <i class="fas fa-home"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="expenses.html" class="sidebar-link">
+                    <i class="fas fa-wallet"></i>
+                    <span>Expenses</span>
+                </a>
+                <a href="reports.html" class="sidebar-link">
+                    <i class="fas fa-chart-pie"></i>
+                    <span>Reports</span>
+                </a>
+                <a href="categories.html" class="sidebar-link">
+                    <i class="fas fa-tags"></i>
+                    <span>Categories</span>
+                </a>
+                <a href="settings.html" class="sidebar-link active">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                </a>
+            </nav>
 
-            <!-- Support Card -->
-            <div
-              class="settings-card bg-gradient-to-r from-indigo-500 to-purple-600 p-4 md:p-6 rounded-xl shadow text-white"
-            >
-              <h3 class="text-lg font-semibold mb-2">Need Help?</h3>
-              <p class="text-indigo-100 text-sm mb-4">
-                Our support team is here to assist you
-              </p>
-              <div class="space-y-3">
-                <button
-                  class="w-full flex items-center justify-center p-3 bg-white text-indigo-600 rounded-lg hover:bg-indigo-50 transition-colors font-medium"
-                >
-                  <i class="fas fa-life-ring mr-2"></i> Contact Support
+            <div class="sidebar-upgrade">
+                <h4 class="font-semibold mb-2">Upgrade to Pro</h4>
+                <p class="text-sm opacity-80 mb-3">Advanced settings & features</p>
+                <button class="w-full bg-white text-indigo-600 py-2 px-4 rounded-lg font-semibold text-sm hover:bg-opacity-90 transition-all">
+                    Upgrade Now
                 </button>
-                <button
-                  class="w-full flex items-center justify-center p-3 bg-indigo-700 text-white rounded-lg hover:bg-indigo-800 transition-colors font-medium"
-                >
-                  <i class="fas fa-book mr-2"></i> Documentation
-                </button>
-              </div>
             </div>
-          </div>
-        </div>
+        </aside>
 
-        <!-- Save Actions -->
-        <div class="mt-6 md:mt-8 bg-white p-4 md:p-6 rounded-xl shadow">
-          <div
-            class="flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0"
-          >
-            <div class="text-center sm:text-left">
-              <h3 class="font-semibold text-gray-800">Apply Changes</h3>
-              <p class="text-gray-600 text-sm">
-                Save your settings configuration
-              </p>
-            </div>
-            <div class="flex space-x-3">
-              <button
-                class="px-4 md:px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors font-medium"
-              >
-                Reset
-              </button>
-              <button
-                class="px-4 md:px-6 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors font-medium flex items-center"
-              >
-                <i class="fas fa-save mr-2"></i> Save Changes
-              </button>
-            </div>
-          </div>
+        <!-- Main Wrapper -->
+        <div class="main-wrapper">
+            <!-- Navbar -->
+            <header class="navbar">
+                <div class="navbar-content">
+                    <div class="flex items-center gap-4">
+                        <button class="mobile-menu-btn" id="mobileToggle">
+                            <i class="fas fa-bars"></i>
+                        </button>
+                        <div class="navbar-title">
+                            <h2>System Settings</h2>
+                            <p>Manage your school system preferences</p>
+                        </div>
+                    </div>
+                    
+                    <div class="navbar-actions">
+                        <button class="notification-btn">
+                            <i class="fas fa-bell"></i>
+                            <span class="notification-badge">3</span>
+                        </button>
+                        
+                        <div class="user-profile">
+                            <div class="user-avatar">A</div>
+                            <div class="hidden sm:block">
+                                <div class="font-semibold text-sm">Admin User</div>
+                                <div class="text-xs text-gray-500">Administrator</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Main Content -->
+            <main class="main-content">
+                <!-- Settings Tabs -->
+                <div class="settings-tabs fade-in">
+                    <div class="tabs-header">
+                        <button class="tab-btn active" data-tab="general">
+                            <i class="fas fa-school"></i>
+                            School Info
+                        </button>
+                        <button class="tab-btn" data-tab="preferences">
+                            <i class="fas fa-user-cog"></i>
+                            User Preferences
+                        </button>
+                        <button class="tab-btn" data-tab="security">
+                            <i class="fas fa-shield-alt"></i>
+                            Security
+                        </button>
+                        <button class="tab-btn" data-tab="notifications">
+                            <i class="fas fa-bell"></i>
+                            Notifications
+                        </button>
+                        <button class="tab-btn" data-tab="appearance">
+                            <i class="fas fa-palette"></i>
+                            Appearance
+                        </button>
+                    </div>
+
+                    <!-- General Settings Tab -->
+                    <div class="tab-content active" id="general">
+                        <div class="settings-grid">
+                            <div class="settings-card">
+                                <div class="card-header">
+                                    <i class="fas fa-school"></i>
+                                    <h3>School Information</h3>
+                                </div>
+                                <div class="card-content">
+                                    <div class="form-group">
+                                        <label for="schoolName">School Name</label>
+                                        <input type="text" id="schoolName" class="form-control" value="Greenwood High School">
+                                        <div class="form-text">The official name of your educational institution</div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="schoolId">School ID</label>
+                                        <input type="text" id="schoolId" class="form-control" value="SCH-2023-001">
+                                        <div class="form-text">Unique identifier for your school</div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="schoolAddress">Address</label>
+                                        <input type="text" id="schoolAddress" class="form-control" value="123 Education Avenue">
+                                    </div>
+                                    
+                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                                        <div class="form-group">
+                                            <label for="schoolCity">City</label>
+                                            <input type="text" id="schoolCity" class="form-control" value="Springfield">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="schoolZip">Zip Code</label>
+                                            <input type="text" id="schoolZip" class="form-control" value="12345">
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="schoolDescription">School Description</label>
+                                        <textarea id="schoolDescription" class="form-control" rows="4">Greenwood High School is committed to providing quality education and fostering student development in a supportive learning environment.</textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="quick-actions">
+                                <div class="action-card success">
+                                    <div class="action-header">
+                                        <div class="action-icon">
+                                            <i class="fas fa-save"></i>
+                                        </div>
+                                        <div class="action-content">
+                                            <h4>Backup Data</h4>
+                                            <p>Create a backup of all school data</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="action-card info">
+                                    <div class="action-header">
+                                        <div class="action-icon">
+                                            <i class="fas fa-download"></i>
+                                        </div>
+                                        <div class="action-content">
+                                            <h4>Export Data</h4>
+                                            <p>Export school data for analysis</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="action-card warning">
+                                    <div class="action-header">
+                                        <div class="action-icon">
+                                            <i class="fas fa-cogs"></i>
+                                        </div>
+                                        <div class="action-content">
+                                            <h4>System Check</h4>
+                                            <p>Run diagnostic tests</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="action-card danger">
+                                    <div class="action-header">
+                                        <div class="action-icon">
+                                            <i class="fas fa-redo"></i>
+                                        </div>
+                                        <div class="action-content">
+                                            <h4>Reset Settings</h4>
+                                            <p>Restore default configurations</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- User Preferences Tab -->
+                    <div class="tab-content" id="preferences">
+                        <div class="settings-card">
+                            <div class="card-header">
+                                <i class="fas fa-user-cog"></i>
+                                <h3>User Preferences</h3>
+                            </div>
+                            <div class="card-content">
+                                <div class="toggle-group">
+                                    <div class="toggle-info">
+                                        <h4>Email Notifications</h4>
+                                        <p>Receive updates and alerts via email</p>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" checked>
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                                
+                                <div class="toggle-group">
+                                    <div class="toggle-info">
+                                        <h4>SMS Notifications</h4>
+                                        <p>Get important alerts via SMS</p>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox">
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                                
+                                <div class="toggle-group">
+                                    <div class="toggle-info">
+                                        <h4>Auto Backup</h4>
+                                        <p>Automatically backup data daily</p>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" checked>
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                                
+                                <div class="toggle-group">
+                                    <div class="toggle-info">
+                                        <h4>Two-Factor Authentication</h4>
+                                        <p>Enhanced security for your account</p>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox">
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                                
+                                <div class="form-group" style="margin-top: 2rem;">
+                                    <label for="language">Language</label>
+                                    <select id="language" class="form-control">
+                                        <option>English</option>
+                                        <option>Spanish</option>
+                                        <option>French</option>
+                                        <option>German</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="timezone">Timezone</label>
+                                    <select id="timezone" class="form-control">
+                                        <option>UTC-05:00 Eastern Time</option>
+                                        <option>UTC-06:00 Central Time</option>
+                                        <option>UTC-07:00 Mountain Time</option>
+                                        <option>UTC-08:00 Pacific Time</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Security Tab -->
+                    <div class="tab-content" id="security">
+                        <div class="settings-grid">
+                            <div class="settings-card">
+                                <div class="card-header">
+                                    <i class="fas fa-shield-alt"></i>
+                                    <h3>Security Settings</h3>
+                                </div>
+                                <div class="card-content">
+                                    <div class="form-group">
+                                        <label for="currentPassword">Current Password</label>
+                                        <input type="password" id="currentPassword" class="form-control">
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="newPassword">New Password</label>
+                                        <input type="password" id="newPassword" class="form-control">
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="confirmPassword">Confirm New Password</label>
+                                        <input type="password" id="confirmPassword" class="form-control">
+                                    </div>
+                                    
+                                    <div class="toggle-group">
+                                        <div class="toggle-info">
+                                            <h4>Session Timeout</h4>
+                                            <p>Automatically log out after 30 minutes of inactivity</p>
+                                        </div>
+                                        <label class="toggle-switch">
+                                            <input type="checkbox" checked>
+                                            <span class="toggle-slider"></span>
+                                        </label>
+                                    </div>
+                                    
+                                    <div class="toggle-group">
+                                        <div class="toggle-info">
+                                            <h4>Login Notifications</h4>
+                                            <p>Get notified of new login attempts</p>
+                                        </div>
+                                        <label class="toggle-switch">
+                                            <input type="checkbox" checked>
+                                            <span class="toggle-slider"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="status-card">
+                                <div class="status-header">
+                                    <i class="fas fa-lock"></i>
+                                    <h3>Security Status</h3>
+                                </div>
+                                <div class="status-item">
+                                    <span class="status-label">Password Strength</span>
+                                    <span class="status-value good">Strong</span>
+                                </div>
+                                <div class="status-item">
+                                    <span class="status-label">Last Password Change</span>
+                                    <span class="status-value">45 days ago</span>
+                                </div>
+                                <div class="status-item">
+                                    <span class="status-label">Two-Factor Auth</span>
+                                    <span class="status-value warning">Not Enabled</span>
+                                </div>
+                                <div class="status-item">
+                                    <span class="status-label">Last Login</span>
+                                    <span class="status-value">Today, 09:24 AM</span>
+                                </div>
+                                <div class="status-item">
+                                    <span class="status-label">Active Sessions</span>
+                                    <span class="status-value">1 device</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Add other tabs similarly -->
+                    <div class="tab-content" id="notifications">
+                        <div class="settings-card">
+                            <div class="card-header">
+                                <i class="fas fa-bell"></i>
+                                <h3>Notification Settings</h3>
+                            </div>
+                            <div class="card-content">
+                                <!-- Notification settings content -->
+                                <p>Notification settings will be implemented here...</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-content" id="appearance">
+                        <div class="settings-card">
+                            <div class="card-header">
+                                <i class="fas fa-palette"></i>
+                                <h3>Appearance Settings</h3>
+                            </div>
+                            <div class="card-content">
+                                <!-- Appearance settings content -->
+                                <p>Appearance settings will be implemented here...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- System Status -->
+                <div class="status-card fade-in">
+                    <div class="status-header">
+                        <i class="fas fa-heartbeat"></i>
+                        <h3>System Status</h3>
+                    </div>
+                    <div class="status-item">
+                        <span class="status-label">Storage Usage</span>
+                        <span class="status-value">65%</span>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 65%; background: #3b82f6;"></div>
+                        </div>
+                    </div>
+                    <div class="status-item">
+                        <span class="status-label">Database Health</span>
+                        <span class="status-value good">Excellent</span>
+                    </div>
+                    <div class="status-item">
+                        <span class="status-label">Last Backup</span>
+                        <span class="status-value">Today, 02:30 AM</span>
+                    </div>
+                    <div class="status-item">
+                        <span class="status-label">System Version</span>
+                        <span class="status-value">v2.4.1</span>
+                    </div>
+                    <div class="status-item">
+                        <span class="status-label">Uptime</span>
+                        <span class="status-value">99.8%</span>
+                    </div>
+                </div>
+
+                <!-- Save Actions -->
+                <div class="save-actions fade-in">
+                    <div class="save-content">
+                        <div class="save-info">
+                            <h3>Apply Changes</h3>
+                            <p>Save your settings configuration</p>
+                        </div>
+                        <div class="save-buttons">
+                            <button class="btn">Reset</button>
+                            <button class="btn btn-primary">
+                                <i class="fas fa-save mr-2"></i>
+                                Save Changes
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            <!-- Footer -->
+            <footer class="footer">
+                <div class="footer-content">
+                    <div class="footer-grid">
+                        <!-- Brand Section -->
+                        <div class="footer-brand">
+                            <h3>SchoolSys</h3>
+                            <p>Modern school management system designed to streamline educational administration and enhance learning experiences.</p>
+                            <div class="social-links">
+                                <a href="#" class="social-link">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="#" class="social-link">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#" class="social-link">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                                <a href="#" class="social-link">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Quick Links -->
+                        <div class="footer-section">
+                            <h4>Quick Links</h4>
+                            <ul class="footer-links">
+                                <li><a href="index.html"><i class="fas fa-chevron-right"></i> Dashboard</a></li>
+                                <li><a href="expenses.html"><i class="fas fa-chevron-right"></i> Expenses</a></li>
+                                <li><a href="reports.html"><i class="fas fa-chevron-right"></i> Reports</a></li>
+                                <li><a href="categories.html"><i class="fas fa-chevron-right"></i> Categories</a></li>
+                            </ul>
+                        </div>
+
+                        <!-- Resources -->
+                        <div class="footer-section">
+                            <h4>Resources</h4>
+                            <ul class="footer-links">
+                                <li><a href="#"><i class="fas fa-chevron-right"></i> Documentation</a></li>
+                                <li><a href="#"><i class="fas fa-chevron-right"></i> Tutorials</a></li>
+                                <li><a href="#"><i class="fas fa-chevron-right"></i> Support</a></li>
+                                <li><a href="#"><i class="fas fa-chevron-right"></i> API</a></li>
+                            </ul>
+                        </div>
+
+                        <!-- Contact Info -->
+                        <div class="footer-section">
+                            <h4>Contact Info</h4>
+                            <ul class="contact-info">
+                                <li>
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span>123 Education Street, Learning City</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-phone"></i>
+                                    <span>+1 (555) 123-4567</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-envelope"></i>
+                                    <span>info@schoolsys.com</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-clock"></i>
+                                    <span>Mon - Fri: 8:00 - 17:00</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="footer-bottom">
+                        <p>&copy; 2024 SchoolSys. All rights reserved. | Designed with ❤️ for better education</p>
+                    </div>
+                </div>
+            </footer>
         </div>
-      </div>
-    </main>
+    </div>
 
     <script>
-      document.addEventListener("DOMContentLoaded", function () {
         // Mobile sidebar functionality
-        const mobileToggle = document.getElementById("mobileToggle");
-        const closeSidebar = document.getElementById("closeSidebar");
-        const sidebar = document.querySelector(".sidebar");
-        const overlay = document.getElementById("overlay");
+        document.addEventListener("DOMContentLoaded", function () {
+            const mobileToggle = document.getElementById("mobileToggle");
+            const closeSidebar = document.getElementById("closeSidebar");
+            const sidebar = document.querySelector(".sidebar");
+            const overlay = document.getElementById("overlay");
 
-        function openSidebar() {
-          sidebar.classList.add("active");
-          overlay.classList.add("active");
-          document.body.style.overflow = "hidden";
-        }
+            function openSidebar() {
+                sidebar.classList.add("active");
+                overlay.classList.add("active");
+                document.body.style.overflow = "hidden";
+            }
 
-        function closeSidebarFunc() {
-          sidebar.classList.remove("active");
-          overlay.classList.remove("active");
-          document.body.style.overflow = "auto";
-        }
+            function closeSidebarFunc() {
+                sidebar.classList.remove("active");
+                overlay.classList.remove("active");
+                document.body.style.overflow = "auto";
+            }
 
-        mobileToggle.addEventListener("click", openSidebar);
-        closeSidebar.addEventListener("click", closeSidebarFunc);
-        overlay.addEventListener("click", closeSidebarFunc);
+            if (mobileToggle) {
+                mobileToggle.addEventListener("click", openSidebar);
+            }
+            
+            if (closeSidebar) {
+                closeSidebar.addEventListener("click", closeSidebarFunc);
+            }
+            
+            if (overlay) {
+                overlay.addEventListener("click", closeSidebarFunc);
+            }
 
-        // Navigation between sections
-        const sidebarLinks = document.querySelectorAll(".sidebar-link");
-        const contentSections = document.querySelectorAll(".content-section");
-        const pageTitle = document.getElementById("pageTitle");
-        const pageSubtitle = document.getElementById("pageSubtitle");
-
-        // Page titles and subtitles for each section
-        const pageData = {
-          dashboard: {
-            title: "Dashboard",
-            subtitle: "School management overview",
-          },
-          expenses: {
-            title: "Expenses",
-            subtitle: "Track and manage school expenses",
-          },
-          reports: {
-            title: "Reports & Analytics",
-            subtitle: "View detailed reports and analytics",
-          },
-          categories: {
-            title: "Categories",
-            subtitle: "Manage expense categories",
-          },
-          settings: {
-            title: "Settings",
-            subtitle: "Manage your school system preferences",
-          },
-        };
-
-        sidebarLinks.forEach((link) => {
-          link.addEventListener("click", function (e) {
-            e.preventDefault();
-
-            // Get the target section
-            const target = this.getAttribute("data-target");
-
-            // Update active states
-            sidebarLinks.forEach((l) => l.classList.remove("active"));
-            this.classList.add("active");
-
-            // Show the target section
-            contentSections.forEach((section) => {
-              section.classList.remove("active");
+            // Close sidebar when clicking on a link (mobile)
+            const sidebarLinks = document.querySelectorAll(".sidebar-link");
+            sidebarLinks.forEach((link) => {
+                link.addEventListener("click", () => {
+                    if (window.innerWidth < 1024) {
+                        closeSidebarFunc();
+                    }
+                });
             });
-            document.getElementById(target).classList.add("active");
 
-            // Update page title and subtitle
-            pageTitle.textContent = pageData[target].title;
-            pageSubtitle.textContent = pageData[target].subtitle;
+            // Tab functionality
+            const tabButtons = document.querySelectorAll(".tab-btn");
+            const tabContents = document.querySelectorAll(".tab-content");
 
-            // Close sidebar on mobile after selection
-            if (window.innerWidth < 1024) {
-              closeSidebarFunc();
+            tabButtons.forEach(button => {
+                button.addEventListener("click", function() {
+                    const tabId = this.getAttribute("data-tab");
+                    
+                    // Remove active class from all buttons and contents
+                    tabButtons.forEach(btn => btn.classList.remove("active"));
+                    tabContents.forEach(content => content.classList.remove("active"));
+                    
+                    // Add active class to current button and content
+                    this.classList.add("active");
+                    document.getElementById(tabId).classList.add("active");
+                });
+            });
+
+            // Toggle switch functionality
+            const toggleSwitches = document.querySelectorAll(".toggle-switch input");
+            toggleSwitches.forEach(toggle => {
+                toggle.addEventListener("change", function() {
+                    const label = this.parentElement;
+                    if (this.checked) {
+                        label.classList.add("active");
+                    } else {
+                        label.classList.remove("active");
+                    }
+                });
+            });
+
+            // Action card functionality
+            const actionCards = document.querySelectorAll(".action-card");
+            actionCards.forEach(card => {
+                card.addEventListener("click", function() {
+                    const actionTitle = this.querySelector("h4").textContent;
+                    alert(`Action: ${actionTitle}`);
+                });
+            });
+
+            // Save buttons functionality
+            const resetBtn = document.querySelector(".btn:not(.btn-primary)");
+            const saveBtn = document.querySelector(".btn-primary");
+
+            if (resetBtn) {
+                resetBtn.addEventListener("click", function() {
+                    if (confirm("Are you sure you want to reset all settings to default?")) {
+                        alert("Settings have been reset to default values");
+                    }
+                });
             }
-          });
-        });
 
-        // Tab functionality
-        const tabButtons = document.querySelectorAll(".tab-button");
-        tabButtons.forEach((button) => {
-          button.addEventListener("click", function () {
-            tabButtons.forEach((btn) => btn.classList.remove("active"));
-            this.classList.add("active");
-          });
-        });
-
-        // Settings card interactions
-        const settingsCards = document.querySelectorAll(".settings-card");
-        settingsCards.forEach((card) => {
-          card.addEventListener("mouseenter", function () {
-            this.style.transform = "translateY(-3px)";
-          });
-          card.addEventListener("mouseleave", function () {
-            this.style.transform = "translateY(0)";
-          });
-        });
-
-        // Toggle switch functionality
-        const toggleSwitches = document.querySelectorAll(
-          ".toggle-switch input"
-        );
-        toggleSwitches.forEach((toggle) => {
-          toggle.addEventListener("change", function () {
-            const label = this.parentElement;
-            if (this.checked) {
-              label.classList.add("active");
-            } else {
-              label.classList.remove("active");
+            if (saveBtn) {
+                saveBtn.addEventListener("click", function() {
+                    alert("Settings have been saved successfully!");
+                });
             }
-          });
         });
-      });
+
+        // Handle window resize
+        window.addEventListener('resize', function() {
+            if (window.innerWidth >= 1024) {
+                const sidebar = document.querySelector('.sidebar');
+                const overlay = document.getElementById('overlay');
+                if (sidebar) sidebar.classList.remove('active');
+                if (overlay) overlay.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
     </script>
-  </body>
+</body>
 </html>
