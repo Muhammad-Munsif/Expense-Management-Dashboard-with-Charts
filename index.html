@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SchoolSys | Modern School Management</title>
+  <title>SchoolSys | Expense Management</title>
   <!-- Tailwind + Recharts -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/recharts@2.8.0/umd/Recharts.js"></script>
@@ -27,12 +27,12 @@
       --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.12);
       --navbar-bg: #ffffff;
       --footer-bg: linear-gradient(135deg, #1f2937 0%, #374151 100%);
-      --stat-border: #f1f5f9;
       --input-bg: #ffffff;
       --input-border: #d1d5db;
       --toggle-bg: #d1d5db;
       --toggle-checked: #4f46e5;
       --modal-overlay: rgba(0, 0, 0, 0.5);
+      --stat-border: #f1f5f9;
     }
 
     [data-theme="dark"] {
@@ -46,11 +46,8 @@
       --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.5);
       --navbar-bg: #1e293b;
       --footer-bg: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-      --stat-border: #334155;
       --input-bg: #1e293b;
       --input-border: #475569;
-      --toggle-bg: #475569;
-      --toggle-checked: #818cf8;
       --modal-overlay: rgba(0, 0, 0, 0.7);
     }
 
@@ -62,7 +59,6 @@
       overflow-x: hidden;
     }
 
-    /* ===== APP CONTAINER ===== */
     .app-container {
       display: flex;
       min-height: 100vh;
@@ -632,7 +628,6 @@
       .modal-box { padding: 1.5rem; }
     }
 
-    /* scrollbar */
     .sidebar::-webkit-scrollbar { width: 6px; }
     .sidebar::-webkit-scrollbar-track { background: rgba(255,255,255,0.1); }
     .sidebar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.3); border-radius: 3px; }
@@ -653,15 +648,15 @@
       </div>
     </div>
     <nav class="sidebar-nav">
-      <a class="sidebar-link active" data-page="dashboard"><i class="fas fa-home"></i> Dashboard</a>
-      <a class="sidebar-link" data-page="expenses"><i class="fas fa-wallet"></i> Expenses</a>
+      <a class="sidebar-link" data-page="dashboard"><i class="fas fa-home"></i> Dashboard</a>
+      <a class="sidebar-link active" data-page="expenses"><i class="fas fa-wallet"></i> Expenses</a>
       <a class="sidebar-link" data-page="reports"><i class="fas fa-chart-pie"></i> Reports</a>
       <a class="sidebar-link" data-page="categories"><i class="fas fa-tags"></i> Categories</a>
       <a class="sidebar-link" data-page="settings"><i class="fas fa-cog"></i> Settings</a>
     </nav>
     <div class="sidebar-upgrade">
       <h4 class="font-semibold mb-2">Upgrade to Pro</h4>
-      <p class="text-sm opacity-80 mb-3">Unlock advanced features</p>
+      <p class="text-sm opacity-80 mb-3">Advanced expense tracking</p>
       <button class="w-full bg-white text-indigo-600 py-2 px-4 rounded-lg font-semibold text-sm hover:bg-opacity-90 transition-all">Upgrade Now</button>
     </div>
   </aside>
@@ -675,8 +670,8 @@
         <div class="flex items-center gap-4">
           <button class="mobile-menu-btn" id="mobileToggle"><i class="fas fa-bars"></i></button>
           <div class="navbar-title">
-            <h2 id="pageTitle">Dashboard Overview</h2>
-            <p id="pageSub">Welcome back, Administrator</p>
+            <h2 id="pageTitle">Expense Management</h2>
+            <p id="pageSub">Track and manage all school expenses</p>
           </div>
         </div>
         <div class="navbar-actions">
@@ -695,14 +690,14 @@
 
     <!-- ===== MAIN CONTENT ===== -->
     <main class="main-content" id="mainContent">
-      <!-- Dashboard View (default) -->
-      <div id="view-dashboard">
+      <!-- Expense View -->
+      <div id="view-expenses">
         <!-- Stats -->
         <div class="stats-grid" id="statsGrid">
-          <div class="stat-card"><div class="stat-header"><div class="stat-info"><h3>Total Students</h3><div class="value">1,248</div></div><div class="stat-icon"><i class="fas fa-users text-blue-600 text-xl"></i></div></div><div class="stat-trend trend-up"><i class="fas fa-arrow-up"></i><span>5.2% from last month</span></div></div>
-          <div class="stat-card"><div class="stat-header"><div class="stat-info"><h3>Total Staff</h3><div class="value">84</div></div><div class="stat-icon"><i class="fas fa-chalkboard-teacher text-green-600 text-xl"></i></div></div><div class="stat-trend trend-up"><i class="fas fa-arrow-up"></i><span>2 new hires</span></div></div>
-          <div class="stat-card"><div class="stat-header"><div class="stat-info"><h3>Monthly Expenses</h3><div class="value" id="totalExpenseDisplay">$24,580</div></div><div class="stat-icon"><i class="fas fa-wallet text-purple-600 text-xl"></i></div></div><div class="stat-trend trend-down"><i class="fas fa-arrow-up"></i><span>12% from last month</span></div></div>
-          <div class="stat-card"><div class="stat-header"><div class="stat-info"><h3>Attendance Rate</h3><div class="value">94.2%</div></div><div class="stat-icon"><i class="fas fa-user-check text-yellow-600 text-xl"></i></div></div><div class="stat-trend trend-up"><i class="fas fa-arrow-up"></i><span>1.5% from last week</span></div></div>
+          <div class="stat-card"><div class="stat-header"><div class="stat-info"><h3>Total Expenses</h3><div class="value" id="totalExpenseDisplay">$0</div></div><div class="stat-icon"><i class="fas fa-money-bill-wave text-red-600 text-xl"></i></div></div><div class="stat-trend trend-down"><i class="fas fa-arrow-up"></i><span>12% from last month</span></div></div>
+          <div class="stat-card"><div class="stat-header"><div class="stat-info"><h3>This Month</h3><div class="value" id="monthExpenseDisplay">$0</div></div><div class="stat-icon"><i class="fas fa-calendar-alt text-blue-600 text-xl"></i></div></div><div class="stat-trend trend-up"><i class="fas fa-arrow-down"></i><span>5% from last month</span></div></div>
+          <div class="stat-card"><div class="stat-header"><div class="stat-info"><h3>Pending</h3><div class="value">$1,240</div></div><div class="stat-icon"><i class="fas fa-clock text-yellow-600 text-xl"></i></div></div><div class="stat-trend trend-down"><i class="fas fa-exclamation-circle"></i><span>3 payments pending</span></div></div>
+          <div class="stat-card"><div class="stat-header"><div class="stat-info"><h3>Categories</h3><div class="value">5</div></div><div class="stat-icon"><i class="fas fa-tags text-green-600 text-xl"></i></div></div><div class="stat-trend trend-up"><i class="fas fa-check-circle"></i><span>All active</span></div></div>
         </div>
 
         <!-- Charts (Recharts) -->
@@ -710,7 +705,7 @@
           <div class="chart-card"><div class="chart-header"><h3>Expense Trends</h3><button class="text-sm text-indigo-600 font-semibold">View</button></div><div class="chart-container" id="lineChartContainer"></div></div>
           <div class="chart-card"><div class="chart-header"><h3>Category Distribution</h3><button class="text-sm text-indigo-600 font-semibold">View</button></div><div class="chart-container" id="pieChartContainer"></div></div>
           <div class="chart-card"><div class="chart-header"><h3>Monthly Budget vs Actual</h3><button class="text-sm text-indigo-600 font-semibold">View</button></div><div class="chart-container" id="barChartContainer"></div></div>
-          <div class="chart-card"><div class="chart-header"><h3>Category Spending (Horizontal)</h3><button class="text-sm text-indigo-600 font-semibold">View</button></div><div class="chart-container" id="horizontalBarContainer"></div></div>
+          <div class="chart-card"><div class="chart-header"><h3>Category Spending</h3><button class="text-sm text-indigo-600 font-semibold">View</button></div><div class="chart-container" id="horizontalBarContainer"></div></div>
         </div>
 
         <!-- CRUD Table: Expenses -->
@@ -729,12 +724,6 @@
           </div>
         </div>
       </div>
-
-      <!-- Other views (placeholder) -->
-      <div id="view-expenses" class="hidden"><p class="text-gray-500">Expenses view (CRUD table above covers this)</p></div>
-      <div id="view-reports" class="hidden"><p class="text-gray-500">Reports view (charts above)</p></div>
-      <div id="view-categories" class="hidden"><p class="text-gray-500">Categories management</p></div>
-      <div id="view-settings" class="hidden"><p class="text-gray-500">Settings panel</p></div>
     </main>
 
     <!-- Footer -->
@@ -789,6 +778,7 @@
     // ===== DOM REFS =====
     const tbody = document.getElementById('expenseTableBody');
     const totalDisplay = document.getElementById('totalExpenseDisplay');
+    const monthDisplay = document.getElementById('monthExpenseDisplay');
     const modal = document.getElementById('expenseModal');
     const form = document.getElementById('expenseForm');
     const descInput = document.getElementById('expDesc');
@@ -797,14 +787,22 @@
     const dateInput = document.getElementById('expDate');
     const editIdInput = document.getElementById('editId');
     const modalTitle = document.getElementById('modalTitle');
-    const modalSaveBtn = document.getElementById('modalSaveBtn');
 
     // ===== RENDER TABLE =====
     function renderTable() {
       let html = '';
       let total = 0;
+      let monthTotal = 0;
+      const now = new Date();
+      const currentMonth = now.getMonth();
+      const currentYear = now.getFullYear();
+
       expenses.forEach(e => {
         total += e.amount;
+        const d = new Date(e.date);
+        if (d.getMonth() === currentMonth && d.getFullYear() === currentYear) {
+          monthTotal += e.amount;
+        }
         html += `<tr>
           <td><strong>${e.description}</strong></td>
           <td><span class="px-2 py-1 rounded-full text-xs font-medium" style="background:var(--border-color);color:var(--text-primary)">${e.category}</span></td>
@@ -818,6 +816,7 @@
       });
       tbody.innerHTML = html;
       totalDisplay.textContent = '$' + total.toFixed(2);
+      monthDisplay.textContent = '$' + monthTotal.toFixed(2);
 
       // Attach events
       document.querySelectorAll('.editBtn').forEach(btn => btn.addEventListener('click', onEdit));
@@ -864,13 +863,11 @@
 
       const editId = parseInt(editIdInput.value);
       if (editId) {
-        // Edit
         const idx = expenses.findIndex(x => x.id === editId);
         if (idx > -1) {
           expenses[idx] = { ...expenses[idx], description: desc, category: cat, amount, date };
         }
       } else {
-        // Add
         expenses.push({ id: nextId++, description: desc, category: cat, amount, date });
       }
       modal.classList.remove('open');
@@ -881,30 +878,17 @@
     // ===== SIDEBAR / NAV =====
     function setupSidebar() {
       const links = document.querySelectorAll('.sidebar-link');
-      const pages = ['dashboard', 'expenses', 'reports', 'categories', 'settings'];
-      const titles = {
-        dashboard: 'Dashboard Overview',
-        expenses: 'Expense Management',
-        reports: 'Reports & Analytics',
-        categories: 'Category Management',
-        settings: 'System Settings'
-      };
       links.forEach(link => {
         link.addEventListener('click', function(e) {
           e.preventDefault();
           links.forEach(l => l.classList.remove('active'));
           this.classList.add('active');
           const page = this.dataset.page;
-          // hide all views
-          pages.forEach(p => {
-            const el = document.getElementById('view-' + p);
-            if (el) el.classList.add('hidden');
-          });
-          const view = document.getElementById('view-' + page);
-          if (view) view.classList.remove('hidden');
-          document.getElementById('pageTitle').textContent = titles[page] || 'Dashboard';
-          document.getElementById('pageSub').textContent = 'Welcome back, Administrator';
-          // close mobile
+          document.getElementById('pageTitle').textContent = 
+            page === 'dashboard' ? 'Dashboard Overview' :
+            page === 'expenses' ? 'Expense Management' :
+            page === 'reports' ? 'Reports & Analytics' :
+            page === 'categories' ? 'Category Management' : 'System Settings';
           if (window.innerWidth < 1024) closeSidebar();
         });
       });
@@ -943,7 +927,7 @@
 
     // ===== RECHARTS =====
     function renderCharts() {
-      // Line Chart (Expense Trends)
+      // Line Chart
       const lineData = [
         { month: 'Jan', value: 3200 }, { month: 'Feb', value: 4500 },
         { month: 'Mar', value: 3800 }, { month: 'Apr', value: 5200 },
@@ -962,12 +946,11 @@
       const lineRoot = Recharts.createRoot(lineContainer);
       lineRoot.render(lineChart);
 
-      // Pie Chart (Category Distribution)
+      // Pie Chart
       const pieData = [
         { name: 'Materials', value: 25 }, { name: 'Food', value: 35 },
         { name: 'Transport', value: 15 }, { name: 'Maintenance', value: 15 }, { name: 'Technology', value: 10 }
       ];
-      const COLORS = ['#3b82f6', '#10b981', '#8b5cf6', '#ef4444', '#f59e0b'];
       const pieChart = Recharts.createElement(
         Recharts.PieChart,
         { width: '100%', height: 260 },
@@ -987,7 +970,7 @@
       const pieRoot = Recharts.createRoot(pieContainer);
       pieRoot.render(pieChart);
 
-      // Vertical Bar (Budget vs Actual)
+      // Vertical Bar
       const barData = [
         { name: 'Materials', budget: 1000, actual: 650 },
         { name: 'Food', budget: 2500, actual: 2100 },
@@ -1008,7 +991,7 @@
       const barRoot = Recharts.createRoot(barContainer);
       barRoot.render(barChart);
 
-      // Horizontal Bar (Category Spending)
+      // Horizontal Bar
       const hData = [
         { cat: 'Materials', spent: 650 }, { cat: 'Food', spent: 2100 },
         { cat: 'Transport', spent: 950 }, { cat: 'Maintenance', spent: 1520 }, { cat: 'Technology', spent: 1200 }
@@ -1028,8 +1011,6 @@
     }
 
     function updateCharts() {
-      // Re-render only pie & bar with updated data (simplified)
-      // For real update, we'd re-create charts. We'll just re-run renderCharts.
       renderCharts();
     }
 
@@ -1038,11 +1019,10 @@
     renderCharts();
     setupSidebar();
 
-    // Ensure dashboard visible
+    // Ensure expenses view visible
     document.querySelectorAll('[id^="view-"]').forEach(el => el.classList.add('hidden'));
-    document.getElementById('view-dashboard').classList.remove('hidden');
+    document.getElementById('view-expenses').classList.remove('hidden');
 
-    // Fix initial state for dark mode
     if (document.documentElement.getAttribute('data-theme') === 'dark') {
       themeIcon.className = 'fas fa-sun';
     }
