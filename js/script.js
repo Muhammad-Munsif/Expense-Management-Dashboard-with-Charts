@@ -1,4 +1,4 @@
-<script>
+
     (function () {
       // ===== DATA =====
       let expenses = [
@@ -240,4 +240,4 @@
         themeIcon.className = 'fas fa-sun';
       }
     })();
-  </script>
+  
