@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -81,6 +82,7 @@
       padding: 2rem 1.5rem 1rem;
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
+
     .sidebar-header h1 {
       font-size: 1.5rem;
       font-weight: 700;
@@ -92,6 +94,7 @@
     .sidebar-nav {
       padding: 1rem 0;
     }
+
     .sidebar-link {
       display: flex;
       align-items: center;
@@ -105,18 +108,21 @@
       border: 1px solid transparent;
       cursor: pointer;
     }
+
     .sidebar-link:hover {
       background: rgba(255, 255, 255, 0.1);
       color: white;
       border-color: rgba(255, 255, 255, 0.2);
       transform: translateX(5px);
     }
+
     .sidebar-link.active {
       background: rgba(255, 255, 255, 0.15);
       color: white;
       border-color: rgba(255, 255, 255, 0.3);
       box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
     }
+
     .sidebar-link i {
       width: 20px;
       text-align: center;
@@ -153,6 +159,7 @@
       z-index: 100;
       transition: background 0.3s;
     }
+
     .navbar-content {
       display: flex;
       align-items: center;
@@ -160,6 +167,7 @@
       flex-wrap: wrap;
       gap: 1rem;
     }
+
     .navbar-title h2 {
       font-size: 1.5rem;
       font-weight: 700;
@@ -167,6 +175,7 @@
       margin-bottom: 0.25rem;
       transition: color 0.3s;
     }
+
     .navbar-title p {
       color: var(--text-secondary);
       font-size: 0.875rem;
@@ -177,6 +186,7 @@
       align-items: center;
       gap: 1rem;
     }
+
     .notification-btn {
       position: relative;
       padding: 0.5rem;
@@ -186,10 +196,12 @@
       transition: all 0.3s ease;
       color: var(--text-primary);
     }
+
     .notification-btn:hover {
       background: var(--border-color);
       transform: translateY(-2px);
     }
+
     .notification-badge {
       position: absolute;
       top: -5px;
@@ -204,6 +216,7 @@
       align-items: center;
       justify-content: center;
     }
+
     .user-profile {
       display: flex;
       align-items: center;
@@ -213,6 +226,7 @@
       background: var(--bg-body);
       border: 1px solid var(--border-color);
     }
+
     .user-avatar {
       width: 40px;
       height: 40px;
@@ -240,6 +254,7 @@
       gap: 1.5rem;
       margin-bottom: 2rem;
     }
+
     .stat-card {
       background: var(--bg-card);
       padding: 1.5rem;
@@ -251,6 +266,7 @@
       overflow: hidden;
       color: var(--text-primary);
     }
+
     .stat-card::before {
       content: '';
       position: absolute;
@@ -260,27 +276,32 @@
       height: 4px;
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     }
+
     .stat-card:hover {
       transform: translateY(-8px);
       box-shadow: var(--shadow-hover);
     }
+
     .stat-header {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
       margin-bottom: 1rem;
     }
+
     .stat-info h3 {
       font-size: 0.875rem;
       color: var(--text-secondary);
       font-weight: 500;
       margin-bottom: 0.5rem;
     }
+
     .stat-info .value {
       font-size: 2rem;
       font-weight: 700;
       color: var(--text-primary);
     }
+
     .stat-icon {
       padding: 0.75rem;
       border-radius: 12px;
@@ -289,6 +310,7 @@
       align-items: center;
       justify-content: center;
     }
+
     .stat-trend {
       display: flex;
       align-items: center;
@@ -296,8 +318,14 @@
       font-size: 0.875rem;
       font-weight: 500;
     }
-    .trend-up { color: #10b981; }
-    .trend-down { color: #ef4444; }
+
+    .trend-up {
+      color: #10b981;
+    }
+
+    .trend-down {
+      color: #ef4444;
+    }
 
     /* ===== CHARTS GRID (Recharts) ===== */
     .charts-grid {
@@ -306,6 +334,7 @@
       gap: 1.5rem;
       margin-bottom: 2rem;
     }
+
     .chart-card {
       background: var(--bg-card);
       padding: 1.5rem;
@@ -315,21 +344,25 @@
       transition: all 0.3s ease;
       color: var(--text-primary);
     }
+
     .chart-card:hover {
       transform: translateY(-5px);
       box-shadow: var(--shadow-hover);
     }
+
     .chart-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 1.5rem;
     }
+
     .chart-header h3 {
       font-size: 1.125rem;
       font-weight: 600;
       color: var(--text-primary);
     }
+
     .chart-container {
       height: 260px;
       position: relative;
@@ -344,6 +377,7 @@
       overflow: hidden;
       margin-bottom: 2rem;
     }
+
     .table-header {
       padding: 1.5rem;
       border-bottom: 1px solid var(--border-color);
@@ -353,11 +387,13 @@
       flex-wrap: wrap;
       gap: 1rem;
     }
+
     .table-header h3 {
       font-size: 1.125rem;
       font-weight: 600;
       color: var(--text-primary);
     }
+
     .btn {
       padding: 0.6rem 1.2rem;
       border-radius: 8px;
@@ -372,32 +408,39 @@
       align-items: center;
       gap: 0.5rem;
     }
+
     .btn-primary {
       background: #4f46e5;
       color: white;
       border-color: #4f46e5;
     }
+
     .btn-primary:hover {
       background: #4338ca;
       transform: translateY(-2px);
       box-shadow: 0 8px 25px rgba(79, 70, 229, 0.3);
     }
+
     .btn-danger {
       background: #ef4444;
       color: white;
       border-color: #ef4444;
     }
+
     .btn-danger:hover {
       background: #dc2626;
     }
+
     .btn-success {
       background: #10b981;
       color: white;
       border-color: #10b981;
     }
+
     .btn-success:hover {
       background: #059669;
     }
+
     .btn-sm {
       padding: 0.25rem 0.75rem;
       font-size: 0.75rem;
@@ -406,10 +449,12 @@
     .table-wrap {
       overflow-x: auto;
     }
+
     table {
       width: 100%;
       border-collapse: collapse;
     }
+
     th {
       padding: 1rem 1.5rem;
       text-align: left;
@@ -419,11 +464,13 @@
       border-bottom: 1px solid var(--border-color);
       background: var(--bg-body);
     }
+
     td {
       padding: 1rem 1.5rem;
       border-bottom: 1px solid var(--border-color);
       color: var(--text-primary);
     }
+
     tr:hover td {
       background: var(--border-color);
     }
@@ -440,31 +487,44 @@
       justify-content: center;
       padding: 1rem;
     }
+
     .modal-overlay.open {
       display: flex;
     }
+
     .modal-box {
       background: var(--bg-card);
       border-radius: 24px;
       max-width: 500px;
       width: 100%;
       padding: 2rem;
-      box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
       color: var(--text-primary);
       animation: modalFade 0.3s ease;
     }
+
     @keyframes modalFade {
-      from { opacity: 0; transform: scale(0.95); }
-      to { opacity: 1; transform: scale(1); }
+      from {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
     }
+
     .modal-box h2 {
       font-size: 1.5rem;
       font-weight: 700;
       margin-bottom: 1.5rem;
     }
+
     .form-group {
       margin-bottom: 1.2rem;
     }
+
     .form-group label {
       display: block;
       font-size: 0.875rem;
@@ -472,6 +532,7 @@
       color: var(--text-secondary);
       margin-bottom: 0.3rem;
     }
+
     .form-control {
       width: 100%;
       padding: 0.75rem 1rem;
@@ -482,10 +543,11 @@
       font-size: 0.875rem;
       transition: border 0.3s;
     }
+
     .form-control:focus {
       outline: none;
       border-color: #4f46e5;
-      box-shadow: 0 0 0 3px rgba(79,70,229,0.1);
+      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
     }
 
     /* ===== FOOTER ===== */
@@ -496,17 +558,20 @@
       margin-top: auto;
       transition: background 0.3s;
     }
+
     .footer-content {
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 2rem;
     }
+
     .footer-grid {
       display: grid;
       grid-template-columns: 2fr 1fr 1fr 1.5fr;
       gap: 3rem;
       margin-bottom: 2rem;
     }
+
     .footer-brand h3 {
       font-size: 1.5rem;
       font-weight: 700;
@@ -515,52 +580,97 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
-    .footer-brand p { color: #d1d5db; line-height: 1.6; margin-bottom: 1.5rem; }
-    .social-links { display: flex; gap: 1rem; }
+
+    .footer-brand p {
+      color: #d1d5db;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+    }
+
     .social-link {
-      width: 40px; height: 40px;
-      background: rgba(255,255,255,0.1);
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.1);
       border-radius: 12px;
-      display: flex; align-items: center; justify-content: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       color: #d1d5db;
       text-decoration: none;
       transition: all 0.3s ease;
-      border: 1px solid rgba(255,255,255,0.1);
+      border: 1px solid rgba(255, 255, 255, 0.1);
     }
+
     .social-link:hover {
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       color: white;
       transform: translateY(-3px);
     }
+
     .footer-section h4 {
       font-size: 1.125rem;
       font-weight: 600;
       margin-bottom: 1.25rem;
       position: relative;
     }
+
     .footer-section h4::after {
       content: '';
-      position: absolute; left: 0; bottom: -8px;
-      width: 40px; height: 3px;
+      position: absolute;
+      left: 0;
+      bottom: -8px;
+      width: 40px;
+      height: 3px;
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       border-radius: 2px;
     }
-    .footer-links { list-style: none; }
-    .footer-links li { margin-bottom: 0.75rem; }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 0.75rem;
+    }
+
     .footer-links a {
-      color: #d1d5db; text-decoration: none;
+      color: #d1d5db;
+      text-decoration: none;
       transition: all 0.3s ease;
-      display: flex; align-items: center; gap: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
     }
-    .footer-links a:hover { color: white; transform: translateX(5px); }
-    .contact-info { list-style: none; }
+
+    .footer-links a:hover {
+      color: white;
+      transform: translateX(5px);
+    }
+
+    .contact-info {
+      list-style: none;
+    }
+
     .contact-info li {
-      display: flex; align-items: center; gap: 0.75rem;
-      margin-bottom: 1rem; color: #d1d5db;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+      color: #d1d5db;
     }
-    .contact-info i { width: 20px; color: #667eea; }
+
+    .contact-info i {
+      width: 20px;
+      color: #667eea;
+    }
+
     .footer-bottom {
-      border-top: 1px solid rgba(255,255,255,0.1);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
       padding-top: 1.5rem;
       text-align: center;
       color: #9ca3af;
@@ -570,7 +680,8 @@
     /* ===== MOBILE ===== */
     .mobile-menu-btn {
       display: none;
-      background: none; border: none;
+      background: none;
+      border: none;
       color: var(--text-primary);
       font-size: 1.25rem;
       cursor: pointer;
@@ -578,506 +689,925 @@
       border-radius: 8px;
       transition: all 0.3s ease;
     }
-    .mobile-menu-btn:hover { background: var(--border-color); }
+
+    .mobile-menu-btn:hover {
+      background: var(--border-color);
+    }
+
     .overlay {
       display: none;
-      position: fixed; inset: 0;
-      background: rgba(0,0,0,0.5);
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
       backdrop-filter: blur(5px);
       z-index: 999;
     }
-    .overlay.active { display: block; }
+
+    .overlay.active {
+      display: block;
+    }
+
     .close-sidebar-btn {
       display: none;
-      background: none; border: none;
+      background: none;
+      border: none;
       color: white;
       font-size: 1.25rem;
       cursor: pointer;
       padding: 0.5rem;
       border-radius: 8px;
     }
-    .close-sidebar-btn:hover { background: rgba(255,255,255,0.1); }
+
+    .close-sidebar-btn:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
 
     /* ===== RESPONSIVE ===== */
     @media (max-width: 1024px) {
-      .sidebar { transform: translateX(-100%); }
-      .sidebar.active { transform: translateX(0); }
-      .main-wrapper { margin-left: 0; width: 100%; }
-      .mobile-menu-btn { display: block; }
-      .close-sidebar-btn { display: block; }
-      .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
-    }
-    @media (max-width: 768px) {
-      .main-content { padding: 1rem; }
-      .stats-grid { grid-template-columns: 1fr; }
-      .charts-grid { grid-template-columns: 1fr; }
-      .navbar { padding: 1rem; }
-      .navbar-content { flex-direction: column; align-items: stretch; }
-      .navbar-actions { justify-content: space-between; }
-      .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
-      .footer-content { padding: 0 1rem; }
-      .table-header { flex-direction: column; align-items: stretch; }
-    }
-    @media (max-width: 480px) {
-      .stat-card { padding: 1.25rem; }
-      .stat-info .value { font-size: 1.75rem; }
-      .chart-card { padding: 1rem; }
-      .modal-box { padding: 1.5rem; }
+      .sidebar {
+        transform: translateX(-100%);
+      }
+
+      .sidebar.active {
+        transform: translateX(0);
+      }
+
+      .main-wrapper {
+        margin-left: 0;
+        width: 100%;
+      }
+
+      .mobile-menu-btn {
+        display: block;
+      }
+
+      .close-sidebar-btn {
+        display: block;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+      }
     }
 
-    .sidebar::-webkit-scrollbar { width: 6px; }
-    .sidebar::-webkit-scrollbar-track { background: rgba(255,255,255,0.1); }
-    .sidebar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.3); border-radius: 3px; }
+    @media (max-width: 768px) {
+      .main-content {
+        padding: 1rem;
+      }
+
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .charts-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .navbar {
+        padding: 1rem;
+      }
+
+      .navbar-content {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .navbar-actions {
+        justify-content: space-between;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .footer-content {
+        padding: 0 1rem;
+      }
+
+      .table-header {
+        flex-direction: column;
+        align-items: stretch;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .stat-card {
+        padding: 1.25rem;
+      }
+
+      .stat-info .value {
+        font-size: 1.75rem;
+      }
+
+      .chart-card {
+        padding: 1rem;
+      }
+
+      .modal-box {
+        padding: 1.5rem;
+      }
+    }
+
+    .sidebar::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .sidebar::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .sidebar::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 3px;
+    }
 
     /* Page visibility */
-    .page-content { display: none; }
-    .page-content.active { display: block; }
+    .page-content {
+      display: none;
+    }
+
+    .page-content.active {
+      display: block;
+    }
   </style>
 </head>
+
 <body>
-<div class="app-container">
+  <div class="app-container">
 
-  <!-- Mobile Overlay -->
-  <div class="overlay" id="overlay"></div>
+    <!-- Mobile Overlay -->
+    <div class="overlay" id="overlay"></div>
 
-  <!-- ===== SIDEBAR ===== -->
-  <aside class="sidebar" id="sidebar">
-    <div class="sidebar-header">
-      <div class="flex justify-between items-center">
-        <h1><i class="fas fa-graduation-cap"></i> SchoolSys</h1>
-        <button class="close-sidebar-btn lg:hidden" id="closeSidebar"><i class="fas fa-times"></i></button>
+    <!-- ===== SIDEBAR ===== -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="flex justify-between items-center">
+          <h1><i class="fas fa-graduation-cap"></i> SchoolSys</h1>
+          <button class="close-sidebar-btn lg:hidden" id="closeSidebar"><i class="fas fa-times"></i></button>
+        </div>
       </div>
+      <nav class="sidebar-nav">
+        <a class="sidebar-link active" data-page="dashboard"><i class="fas fa-home"></i> Dashboard</a>
+        <a class="sidebar-link" data-page="expenses"><i class="fas fa-wallet"></i> Expenses</a>
+        <a class="sidebar-link" data-page="reports"><i class="fas fa-chart-pie"></i> Reports</a>
+        <a class="sidebar-link" data-page="categories"><i class="fas fa-tags"></i> Categories</a>
+        <a class="sidebar-link" data-page="settings"><i class="fas fa-cog"></i> Settings</a>
+      </nav>
+      <div class="sidebar-upgrade">
+        <h4 class="font-semibold mb-2">Upgrade to Pro</h4>
+        <p class="text-sm opacity-80 mb-3">Advanced features & analytics</p>
+        <button
+          class="w-full bg-white text-indigo-600 py-2 px-4 rounded-lg font-semibold text-sm hover:bg-opacity-90 transition-all">Upgrade
+          Now</button>
+      </div>
+    </aside>
+
+    <!-- ===== MAIN WRAPPER ===== -->
+    <div class="main-wrapper">
+
+      <!-- Navbar -->
+      <header class="navbar">
+        <div class="navbar-content">
+          <div class="flex items-center gap-4">
+            <button class="mobile-menu-btn" id="mobileToggle"><i class="fas fa-bars"></i></button>
+            <div class="navbar-title">
+              <h2 id="pageTitle">Dashboard Overview</h2>
+              <p id="pageSub">Welcome back, Administrator</p>
+            </div>
+          </div>
+          <div class="navbar-actions">
+            <button id="themeToggle"
+              class="text-gray-600 dark:text-gray-300 text-xl p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition">
+              <i class="fas fa-moon" id="themeIcon"></i>
+            </button>
+            <button class="notification-btn"><i class="fas fa-bell"></i><span
+                class="notification-badge">3</span></button>
+            <div class="user-profile">
+              <div class="user-avatar">A</div>
+              <div class="hidden sm:block">
+                <div class="font-semibold text-sm">Admin User</div>
+                <div class="text-xs text-gray-500">Administrator</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- ===== MAIN CONTENT ===== -->
+      <main class="main-content" id="mainContent">
+
+        <!-- ==================== DASHBOARD PAGE ==================== -->
+        <div class="page-content active" id="page-dashboard">
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-header">
+                <div class="stat-info">
+                  <h3>Total Students</h3>
+                  <div class="value">1,248</div>
+                </div>
+                <div class="stat-icon"><i class="fas fa-users text-blue-600 text-xl"></i></div>
+              </div>
+              <div class="stat-trend trend-up"><i class="fas fa-arrow-up"></i><span>5.2% from last month</span></div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-header">
+                <div class="stat-info">
+                  <h3>Total Staff</h3>
+                  <div class="value">84</div>
+                </div>
+                <div class="stat-icon"><i class="fas fa-chalkboard-teacher text-green-600 text-xl"></i></div>
+              </div>
+              <div class="stat-trend trend-up"><i class="fas fa-arrow-up"></i><span>2 new hires</span></div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-header">
+                <div class="stat-info">
+                  <h3>Monthly Expenses</h3>
+                  <div class="value" id="dashTotalExp">$24,580</div>
+                </div>
+                <div class="stat-icon"><i class="fas fa-wallet text-purple-600 text-xl"></i></div>
+              </div>
+              <div class="stat-trend trend-down"><i class="fas fa-arrow-up"></i><span>12% from last month</span></div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-header">
+                <div class="stat-info">
+                  <h3>Attendance Rate</h3>
+                  <div class="value">94.2%</div>
+                </div>
+                <div class="stat-icon"><i class="fas fa-user-check text-yellow-600 text-xl"></i></div>
+              </div>
+              <div class="stat-trend trend-up"><i class="fas fa-arrow-up"></i><span>1.5% from last week</span></div>
+            </div>
+          </div>
+          <div class="charts-grid">
+            <div class="chart-card">
+              <div class="chart-header">
+                <h3>Expense Trends</h3>
+              </div>
+              <div class="chart-container" id="dashLineChart"></div>
+            </div>
+            <div class="chart-card">
+              <div class="chart-header">
+                <h3>Category Distribution</h3>
+              </div>
+              <div class="chart-container" id="dashPieChart"></div>
+            </div>
+            <div class="chart-card">
+              <div class="chart-header">
+                <h3>Budget vs Actual</h3>
+              </div>
+              <div class="chart-container" id="dashBarChart"></div>
+            </div>
+            <div class="chart-card">
+              <div class="chart-header">
+                <h3>Category Spending</h3>
+              </div>
+              <div class="chart-container" id="dashHBarChart"></div>
+            </div>
+          </div>
+          <div class="table-container">
+            <div class="table-header">
+              <h3><i class="fas fa-list-ul mr-2"></i> Recent Expenses</h3>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Description</th>
+                    <th>Category</th>
+                    <th>Amount</th>
+                    <th>Date</th>
+                  </tr>
+                </thead>
+                <tbody id="dashTableBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================== EXPENSES PAGE ==================== -->
+        <div class="page-content" id="page-expenses">
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-header">
+                <div class="stat-info">
+                  <h3>Total Expenses</h3>
+                  <div class="value" id="expTotalDisplay">$0</div>
+                </div>
+                <div class="stat-icon"><i class="fas fa-money-bill-wave text-red-600 text-xl"></i></div>
+              </div>
+              <div class="stat-trend trend-down"><i class="fas fa-arrow-up"></i><span>12% from last month</span></div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-header">
+                <div class="stat-info">
+                  <h3>This Month</h3>
+                  <div class="value" id="expMonthDisplay">$0</div>
+                </div>
+                <div class="stat-icon"><i class="fas fa-calendar-alt text-blue-600 text-xl"></i></div>
+              </div>
+              <div class="stat-trend trend-up"><i class="fas fa-arrow-down"></i><span>5% from last month</span></div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-header">
+                <div class="stat-info">
+                  <h3>Pending</h3>
+                  <div class="value">$1,240</div>
+                </div>
+                <div class="stat-icon"><i class="fas fa-clock text-yellow-600 text-xl"></i></div>
+              </div>
+              <div class="stat-trend trend-down"><i class="fas fa-exclamation-circle"></i><span>3 pending</span></div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-header">
+                <div class="stat-info">
+                  <h3>Categories</h3>
+                  <div class="value">5</div>
+                </div>
+                <div class="stat-icon"><i class="fas fa-tags text-green-600 text-xl"></i></div>
+              </div>
+              <div class="stat-trend trend-up"><i class="fas fa-check-circle"></i><span>All active</span></div>
+            </div>
+          </div>
+          <div class="charts-grid">
+            <div class="chart-card">
+              <div class="chart-header">
+                <h3>Expense Trends</h3>
+              </div>
+              <div class="chart-container" id="expLineChart"></div>
+            </div>
+            <div class="chart-card">
+              <div class="chart-header">
+                <h3>Category Distribution</h3>
+              </div>
+              <div class="chart-container" id="expPieChart"></div>
+            </div>
+            <div class="chart-card">
+              <div class="chart-header">
+                <h3>Budget vs Actual</h3>
+              </div>
+              <div class="chart-container" id="expBarChart"></div>
+            </div>
+            <div class="chart-card">
+              <div class="chart-header">
+                <h3>Category Spending</h3>
+              </div>
+              <div class="chart-container" id="expHBarChart"></div>
+            </div>
+          </div>
+          <div class="table-container">
+            <div class="table-header">
+              <h3><i class="fas fa-list-ul mr-2"></i> Expense Records</h3><button class="btn btn-primary"
+                id="addExpenseBtn"><i class="fas fa-plus"></i> Add Expense</button>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Description</th>
+                    <th>Category</th>
+                    <th>Amount</th>
+                    <th>Date</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="expTableBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================== REPORTS PAGE ==================== -->
+        <div class="page-content" id="page-reports">
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-header">
+                <div class="stat-info">
+                  <h3>Total Expenses</h3>
+                  <div class="value">$24,580</div>
+                </div>
+                <div class="stat-icon"><i class="fas fa-money-bill-wave text-red-600 text-xl"></i></div>
+              </div>
+              <div class="stat-trend trend-down"><i class="fas fa-arrow-up"></i><span>12% from last month</span></div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-header">
+                <div class="stat-info">
+                  <h3>Student Attendance</h3>
+                  <div class="value">94.2%</div>
+                </div>
+                <div class="stat-icon"><i class="fas fa-user-check text-green-600 text-xl"></i></div>
+              </div>
+              <div class="stat-trend trend-up"><i class="fas fa-arrow-up"></i><span>2.5% from last month</span></div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-header">
+                <div class="stat-info">
+                  <h3>Budget Utilization</h3>
+                  <div class="value">78%</div>
+                </div>
+                <div class="stat-icon"><i class="fas fa-chart-pie text-blue-600 text-xl"></i></div>
+              </div>
+              <div class="stat-trend trend-up"><i class="fas fa-info-circle"></i><span>22% remaining</span></div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-header">
+                <div class="stat-info">
+                  <h3>Avg. Expense/Student</h3>
+                  <div class="value">$245</div>
+                </div>
+                <div class="stat-icon"><i class="fas fa-user-graduate text-purple-600 text-xl"></i></div>
+              </div>
+              <div class="stat-trend trend-up"><i class="fas fa-arrow-down"></i><span>5% from last quarter</span></div>
+            </div>
+          </div>
+          <div class="charts-grid">
+            <div class="chart-card">
+              <div class="chart-header">
+                <h3>Monthly Expenses</h3>
+              </div>
+              <div class="chart-container" id="repLineChart"></div>
+            </div>
+            <div class="chart-card">
+              <div class="chart-header">
+                <h3>Expense by Category</h3>
+              </div>
+              <div class="chart-container" id="repPieChart"></div>
+            </div>
+            <div class="chart-card">
+              <div class="chart-header">
+                <h3>Student Attendance</h3>
+              </div>
+              <div class="chart-container" id="repAttendanceChart"></div>
+            </div>
+            <div class="chart-card">
+              <div class="chart-header">
+                <h3>Budget vs Actual</h3>
+              </div>
+              <div class="chart-container" id="repBarChart"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================== CATEGORIES PAGE ==================== -->
+        <div class="page-content" id="page-categories">
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-header">
+                <div class="stat-info">
+                  <h3>Total Categories</h3>
+                  <div class="value">12</div>
+                </div>
+                <div class="stat-icon"><i class="fas fa-tags text-blue-600 text-xl"></i></div>
+              </div>
+              <div class="stat-trend trend-up"><i class="fas fa-arrow-up"></i><span>2 added this month</span></div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-header">
+                <div class="stat-info">
+                  <h3>Active Budgets</h3>
+                  <div class="value">8</div>
+                </div>
+                <div class="stat-icon"><i class="fas fa-wallet text-green-600 text-xl"></i></div>
+              </div>
+              <div class="stat-trend trend-down"><i class="fas fa-exclamation-circle"></i><span>4 nearing limit</span>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-header">
+                <div class="stat-info">
+                  <h3>Total Budget</h3>
+                  <div class="value">$15,240</div>
+                </div>
+                <div class="stat-icon"><i class="fas fa-dollar-sign text-purple-600 text-xl"></i></div>
+              </div>
+              <div class="stat-trend trend-up"><i class="fas fa-arrow-up"></i><span>12% from last month</span></div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-header">
+                <div class="stat-info">
+                  <h3>Spent This Month</h3>
+                  <div class="value">$8,560</div>
+                </div>
+                <div class="stat-icon"><i class="fas fa-chart-line text-red-600 text-xl"></i></div>
+              </div>
+              <div class="stat-trend trend-down"><i class="fas fa-exclamation-triangle"></i><span>56% of budget</span>
+              </div>
+            </div>
+          </div>
+          <div class="table-container">
+            <div class="table-header">
+              <h3><i class="fas fa-tags mr-2"></i> Category List</h3><button class="btn btn-primary"><i
+                  class="fas fa-plus"></i> Add Category</button>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Category</th>
+                    <th>Budget</th>
+                    <th>Spent</th>
+                    <th>Remaining</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Materials</td>
+                    <td>$1,000</td>
+                    <td>$650</td>
+                    <td>$350</td>
+                    <td><button class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></button> <button
+                        class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button></td>
+                  </tr>
+                  <tr>
+                    <td>Food</td>
+                    <td>$2,500</td>
+                    <td>$2,100</td>
+                    <td>$400</td>
+                    <td><button class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></button> <button
+                        class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button></td>
+                  </tr>
+                  <tr>
+                    <td>Transport</td>
+                    <td>$1,800</td>
+                    <td>$950</td>
+                    <td>$850</td>
+                    <td><button class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></button> <button
+                        class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================== SETTINGS PAGE ==================== -->
+        <div class="page-content" id="page-settings">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="bg-card p-6 rounded-2xl shadow border border-border"
+              style="background:var(--bg-card);border-color:var(--border-color);">
+              <h3 class="text-lg font-semibold text-primary" style="color:var(--text-primary)"><i
+                  class="fas fa-school mr-2"></i> School Info</h3>
+              <div class="mt-4 space-y-3">
+                <div><label class="text-sm text-secondary" style="color:var(--text-secondary)">School Name</label><input
+                    type="text" class="form-control" value="Greenwood High School" /></div>
+                <div><label class="text-sm text-secondary" style="color:var(--text-secondary)">Address</label><input
+                    type="text" class="form-control" value="123 Education Ave" /></div>
+                <button class="btn btn-primary"><i class="fas fa-save"></i> Update</button>
+              </div>
+            </div>
+            <div class="bg-card p-6 rounded-2xl shadow border border-border"
+              style="background:var(--bg-card);border-color:var(--border-color);">
+              <h3 class="text-lg font-semibold text-primary" style="color:var(--text-primary)"><i
+                  class="fas fa-shield-alt mr-2"></i> Security</h3>
+              <div class="mt-4 space-y-3">
+                <div><label class="text-sm text-secondary" style="color:var(--text-secondary)">Current
+                    Password</label><input type="password" class="form-control" value="••••••••" /></div>
+                <div><label class="text-sm text-secondary" style="color:var(--text-secondary)">New
+                    Password</label><input type="password" class="form-control" placeholder="Enter new password" />
+                </div>
+                <button class="btn btn-primary"><i class="fas fa-save"></i> Change Password</button>
+              </div>
+            </div>
+            <div class="bg-card p-6 rounded-2xl shadow border border-border md:col-span-2"
+              style="background:var(--bg-card);border-color:var(--border-color);">
+              <h3 class="text-lg font-semibold text-primary" style="color:var(--text-primary)"><i
+                  class="fas fa-bell mr-2"></i> Notifications</h3>
+              <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <label class="flex items-center gap-2 text-primary" style="color:var(--text-primary)"><input
+                    type="checkbox" checked /> Email Notifications</label>
+                <label class="flex items-center gap-2 text-primary" style="color:var(--text-primary)"><input
+                    type="checkbox" /> SMS Alerts</label>
+                <label class="flex items-center gap-2 text-primary" style="color:var(--text-primary)"><input
+                    type="checkbox" checked /> Auto Backup</label>
+                <label class="flex items-center gap-2 text-primary" style="color:var(--text-primary)"><input
+                    type="checkbox" /> Two-Factor Auth</label>
+              </div>
+              <button class="btn btn-primary mt-4"><i class="fas fa-save"></i> Save Preferences</button>
+            </div>
+          </div>
+        </div>
+
+      </main>
+
+      <!-- Footer -->
+      <footer class="footer">
+        <div class="footer-content">
+          <div class="footer-grid">
+            <div class="footer-brand">
+              <h3>SchoolSys</h3>
+              <p>Modern school management system designed to streamline educational administration.</p>
+              <div class="social-links"><a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a><a href="#"
+                  class="social-link"><i class="fab fa-twitter"></i></a><a href="#" class="social-link"><i
+                    class="fab fa-linkedin-in"></i></a><a href="#" class="social-link"><i class="fab fa-github"></i></a>
+              </div>
+            </div>
+            <div class="footer-section">
+              <h4>Quick Links</h4>
+              <ul class="footer-links">
+                <li><a href="#"><i class="fas fa-chevron-right"></i> Dashboard</a></li>
+                <li><a href="#"><i class="fas fa-chevron-right"></i> Expenses</a></li>
+                <li><a href="#"><i class="fas fa-chevron-right"></i> Reports</a></li>
+              </ul>
+            </div>
+            <div class="footer-section">
+              <h4>Resources</h4>
+              <ul class="footer-links">
+                <li><a href="#"><i class="fas fa-chevron-right"></i> Documentation</a></li>
+                <li><a href="#"><i class="fas fa-chevron-right"></i> Support</a></li>
+              </ul>
+            </div>
+            <div class="footer-section">
+              <h4>Contact</h4>
+              <ul class="contact-info">
+                <li><i class="fas fa-map-marker-alt"></i> 123 Education St</li>
+                <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+                <li><i class="fas fa-envelope"></i> info@schoolsys.com</li>
+              </ul>
+            </div>
+          </div>
+          <div class="footer-bottom">&copy; 2025 SchoolSys. All rights reserved.</div>
+        </div>
+      </footer>
     </div>
-    <nav class="sidebar-nav">
-      <a class="sidebar-link active" data-page="dashboard"><i class="fas fa-home"></i> Dashboard</a>
-      <a class="sidebar-link" data-page="expenses"><i class="fas fa-wallet"></i> Expenses</a>
-      <a class="sidebar-link" data-page="reports"><i class="fas fa-chart-pie"></i> Reports</a>
-      <a class="sidebar-link" data-page="categories"><i class="fas fa-tags"></i> Categories</a>
-      <a class="sidebar-link" data-page="settings"><i class="fas fa-cog"></i> Settings</a>
-    </nav>
-    <div class="sidebar-upgrade">
-      <h4 class="font-semibold mb-2">Upgrade to Pro</h4>
-      <p class="text-sm opacity-80 mb-3">Advanced features & analytics</p>
-      <button class="w-full bg-white text-indigo-600 py-2 px-4 rounded-lg font-semibold text-sm hover:bg-opacity-90 transition-all">Upgrade Now</button>
+  </div>
+
+  <!-- ===== MODAL ===== -->
+  <div class="modal-overlay" id="expenseModal">
+    <div class="modal-box">
+      <h2 id="modalTitle">Add Expense</h2>
+      <form id="expenseForm">
+        <div class="form-group"><label>Description</label><input type="text" id="expDesc" class="form-control"
+            placeholder="e.g. School Supplies" required /></div>
+        <div class="form-group"><label>Category</label>
+          <select id="expCategory" class="form-control">
+            <option value="Materials">Materials</option>
+            <option value="Food">Food</option>
+            <option value="Transport">Transport</option>
+            <option value="Maintenance">Maintenance</option>
+            <option value="Technology">Technology</option>
+          </select>
+        </div>
+        <div class="form-group"><label>Amount ($)</label><input type="number" id="expAmount" class="form-control"
+            placeholder="0.00" step="0.01" required /></div>
+        <div class="form-group"><label>Date</label><input type="date" id="expDate" class="form-control" required />
+        </div>
+        <input type="hidden" id="editId" value="" />
+        <div class="flex gap-3 mt-4">
+          <button type="submit" class="btn btn-primary flex-1"><i class="fas fa-save"></i> Save</button>
+          <button type="button" class="btn" id="modalCancelBtn">Cancel</button>
+        </div>
+      </form>
     </div>
-  </aside>
-
-  <!-- ===== MAIN WRAPPER ===== -->
-  <div class="main-wrapper">
-
-    <!-- Navbar -->
-    <header class="navbar">
-      <div class="navbar-content">
-        <div class="flex items-center gap-4">
-          <button class="mobile-menu-btn" id="mobileToggle"><i class="fas fa-bars"></i></button>
-          <div class="navbar-title">
-            <h2 id="pageTitle">Dashboard Overview</h2>
-            <p id="pageSub">Welcome back, Administrator</p>
-          </div>
-        </div>
-        <div class="navbar-actions">
-          <button id="themeToggle" class="text-gray-600 dark:text-gray-300 text-xl p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition">
-            <i class="fas fa-moon" id="themeIcon"></i>
-          </button>
-          <button class="notification-btn"><i class="fas fa-bell"></i><span class="notification-badge">3</span></button>
-          <div class="user-profile">
-            <div class="user-avatar">A</div>
-            <div class="hidden sm:block"><div class="font-semibold text-sm">Admin User</div><div class="text-xs text-gray-500">Administrator</div></div>
-          </div>
-        </div>
-      </div>
-    </header>
-
-    <!-- ===== MAIN CONTENT ===== -->
-    <main class="main-content" id="mainContent">
-
-      <!-- ==================== DASHBOARD PAGE ==================== -->
-      <div class="page-content active" id="page-dashboard">
-        <div class="stats-grid">
-          <div class="stat-card"><div class="stat-header"><div class="stat-info"><h3>Total Students</h3><div class="value">1,248</div></div><div class="stat-icon"><i class="fas fa-users text-blue-600 text-xl"></i></div></div><div class="stat-trend trend-up"><i class="fas fa-arrow-up"></i><span>5.2% from last month</span></div></div>
-          <div class="stat-card"><div class="stat-header"><div class="stat-info"><h3>Total Staff</h3><div class="value">84</div></div><div class="stat-icon"><i class="fas fa-chalkboard-teacher text-green-600 text-xl"></i></div></div><div class="stat-trend trend-up"><i class="fas fa-arrow-up"></i><span>2 new hires</span></div></div>
-          <div class="stat-card"><div class="stat-header"><div class="stat-info"><h3>Monthly Expenses</h3><div class="value" id="dashTotalExp">$24,580</div></div><div class="stat-icon"><i class="fas fa-wallet text-purple-600 text-xl"></i></div></div><div class="stat-trend trend-down"><i class="fas fa-arrow-up"></i><span>12% from last month</span></div></div>
-          <div class="stat-card"><div class="stat-header"><div class="stat-info"><h3>Attendance Rate</h3><div class="value">94.2%</div></div><div class="stat-icon"><i class="fas fa-user-check text-yellow-600 text-xl"></i></div></div><div class="stat-trend trend-up"><i class="fas fa-arrow-up"></i><span>1.5% from last week</span></div></div>
-        </div>
-        <div class="charts-grid">
-          <div class="chart-card"><div class="chart-header"><h3>Expense Trends</h3></div><div class="chart-container" id="dashLineChart"></div></div>
-          <div class="chart-card"><div class="chart-header"><h3>Category Distribution</h3></div><div class="chart-container" id="dashPieChart"></div></div>
-          <div class="chart-card"><div class="chart-header"><h3>Budget vs Actual</h3></div><div class="chart-container" id="dashBarChart"></div></div>
-          <div class="chart-card"><div class="chart-header"><h3>Category Spending</h3></div><div class="chart-container" id="dashHBarChart"></div></div>
-        </div>
-        <div class="table-container">
-          <div class="table-header"><h3><i class="fas fa-list-ul mr-2"></i> Recent Expenses</h3></div>
-          <div class="table-wrap"><table><thead><tr><th>Description</th><th>Category</th><th>Amount</th><th>Date</th></tr></thead><tbody id="dashTableBody"></tbody></table></div>
-        </div>
-      </div>
-
-      <!-- ==================== EXPENSES PAGE ==================== -->
-      <div class="page-content" id="page-expenses">
-        <div class="stats-grid">
-          <div class="stat-card"><div class="stat-header"><div class="stat-info"><h3>Total Expenses</h3><div class="value" id="expTotalDisplay">$0</div></div><div class="stat-icon"><i class="fas fa-money-bill-wave text-red-600 text-xl"></i></div></div><div class="stat-trend trend-down"><i class="fas fa-arrow-up"></i><span>12% from last month</span></div></div>
-          <div class="stat-card"><div class="stat-header"><div class="stat-info"><h3>This Month</h3><div class="value" id="expMonthDisplay">$0</div></div><div class="stat-icon"><i class="fas fa-calendar-alt text-blue-600 text-xl"></i></div></div><div class="stat-trend trend-up"><i class="fas fa-arrow-down"></i><span>5% from last month</span></div></div>
-          <div class="stat-card"><div class="stat-header"><div class="stat-info"><h3>Pending</h3><div class="value">$1,240</div></div><div class="stat-icon"><i class="fas fa-clock text-yellow-600 text-xl"></i></div></div><div class="stat-trend trend-down"><i class="fas fa-exclamation-circle"></i><span>3 pending</span></div></div>
-          <div class="stat-card"><div class="stat-header"><div class="stat-info"><h3>Categories</h3><div class="value">5</div></div><div class="stat-icon"><i class="fas fa-tags text-green-600 text-xl"></i></div></div><div class="stat-trend trend-up"><i class="fas fa-check-circle"></i><span>All active</span></div></div>
-        </div>
-        <div class="charts-grid">
-          <div class="chart-card"><div class="chart-header"><h3>Expense Trends</h3></div><div class="chart-container" id="expLineChart"></div></div>
-          <div class="chart-card"><div class="chart-header"><h3>Category Distribution</h3></div><div class="chart-container" id="expPieChart"></div></div>
-          <div class="chart-card"><div class="chart-header"><h3>Budget vs Actual</h3></div><div class="chart-container" id="expBarChart"></div></div>
-          <div class="chart-card"><div class="chart-header"><h3>Category Spending</h3></div><div class="chart-container" id="expHBarChart"></div></div>
-        </div>
-        <div class="table-container">
-          <div class="table-header"><h3><i class="fas fa-list-ul mr-2"></i> Expense Records</h3><button class="btn btn-primary" id="addExpenseBtn"><i class="fas fa-plus"></i> Add Expense</button></div>
-          <div class="table-wrap"><table><thead><tr><th>Description</th><th>Category</th><th>Amount</th><th>Date</th><th>Actions</th></tr></thead><tbody id="expTableBody"></tbody></table></div>
-        </div>
-      </div>
-
-      <!-- ==================== REPORTS PAGE ==================== -->
-      <div class="page-content" id="page-reports">
-        <div class="stats-grid">
-          <div class="stat-card"><div class="stat-header"><div class="stat-info"><h3>Total Expenses</h3><div class="value">$24,580</div></div><div class="stat-icon"><i class="fas fa-money-bill-wave text-red-600 text-xl"></i></div></div><div class="stat-trend trend-down"><i class="fas fa-arrow-up"></i><span>12% from last month</span></div></div>
-          <div class="stat-card"><div class="stat-header"><div class="stat-info"><h3>Student Attendance</h3><div class="value">94.2%</div></div><div class="stat-icon"><i class="fas fa-user-check text-green-600 text-xl"></i></div></div><div class="stat-trend trend-up"><i class="fas fa-arrow-up"></i><span>2.5% from last month</span></div></div>
-          <div class="stat-card"><div class="stat-header"><div class="stat-info"><h3>Budget Utilization</h3><div class="value">78%</div></div><div class="stat-icon"><i class="fas fa-chart-pie text-blue-600 text-xl"></i></div></div><div class="stat-trend trend-up"><i class="fas fa-info-circle"></i><span>22% remaining</span></div></div>
-          <div class="stat-card"><div class="stat-header"><div class="stat-info"><h3>Avg. Expense/Student</h3><div class="value">$245</div></div><div class="stat-icon"><i class="fas fa-user-graduate text-purple-600 text-xl"></i></div></div><div class="stat-trend trend-up"><i class="fas fa-arrow-down"></i><span>5% from last quarter</span></div></div>
-        </div>
-        <div class="charts-grid">
-          <div class="chart-card"><div class="chart-header"><h3>Monthly Expenses</h3></div><div class="chart-container" id="repLineChart"></div></div>
-          <div class="chart-card"><div class="chart-header"><h3>Expense by Category</h3></div><div class="chart-container" id="repPieChart"></div></div>
-          <div class="chart-card"><div class="chart-header"><h3>Student Attendance</h3></div><div class="chart-container" id="repAttendanceChart"></div></div>
-          <div class="chart-card"><div class="chart-header"><h3>Budget vs Actual</h3></div><div class="chart-container" id="repBarChart"></div></div>
-        </div>
-      </div>
-
-      <!-- ==================== CATEGORIES PAGE ==================== -->
-      <div class="page-content" id="page-categories">
-        <div class="stats-grid">
-          <div class="stat-card"><div class="stat-header"><div class="stat-info"><h3>Total Categories</h3><div class="value">12</div></div><div class="stat-icon"><i class="fas fa-tags text-blue-600 text-xl"></i></div></div><div class="stat-trend trend-up"><i class="fas fa-arrow-up"></i><span>2 added this month</span></div></div>
-          <div class="stat-card"><div class="stat-header"><div class="stat-info"><h3>Active Budgets</h3><div class="value">8</div></div><div class="stat-icon"><i class="fas fa-wallet text-green-600 text-xl"></i></div></div><div class="stat-trend trend-down"><i class="fas fa-exclamation-circle"></i><span>4 nearing limit</span></div></div>
-          <div class="stat-card"><div class="stat-header"><div class="stat-info"><h3>Total Budget</h3><div class="value">$15,240</div></div><div class="stat-icon"><i class="fas fa-dollar-sign text-purple-600 text-xl"></i></div></div><div class="stat-trend trend-up"><i class="fas fa-arrow-up"></i><span>12% from last month</span></div></div>
-          <div class="stat-card"><div class="stat-header"><div class="stat-info"><h3>Spent This Month</h3><div class="value">$8,560</div></div><div class="stat-icon"><i class="fas fa-chart-line text-red-600 text-xl"></i></div></div><div class="stat-trend trend-down"><i class="fas fa-exclamation-triangle"></i><span>56% of budget</span></div></div>
-        </div>
-        <div class="table-container">
-          <div class="table-header"><h3><i class="fas fa-tags mr-2"></i> Category List</h3><button class="btn btn-primary"><i class="fas fa-plus"></i> Add Category</button></div>
-          <div class="table-wrap"><table><thead><tr><th>Category</th><th>Budget</th><th>Spent</th><th>Remaining</th><th>Actions</th></tr></thead><tbody>
-            <tr><td>Materials</td><td>$1,000</td><td>$650</td><td>$350</td><td><button class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></button> <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button></td></tr>
-            <tr><td>Food</td><td>$2,500</td><td>$2,100</td><td>$400</td><td><button class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></button> <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button></td></tr>
-            <tr><td>Transport</td><td>$1,800</td><td>$950</td><td>$850</td><td><button class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></button> <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button></td></tr>
-          </tbody></table></div>
-        </div>
-      </div>
-
-      <!-- ==================== SETTINGS PAGE ==================== -->
-      <div class="page-content" id="page-settings">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div class="bg-card p-6 rounded-2xl shadow border border-border" style="background:var(--bg-card);border-color:var(--border-color);">
-            <h3 class="text-lg font-semibold text-primary" style="color:var(--text-primary)"><i class="fas fa-school mr-2"></i> School Info</h3>
-            <div class="mt-4 space-y-3">
-              <div><label class="text-sm text-secondary" style="color:var(--text-secondary)">School Name</label><input type="text" class="form-control" value="Greenwood High School" /></div>
-              <div><label class="text-sm text-secondary" style="color:var(--text-secondary)">Address</label><input type="text" class="form-control" value="123 Education Ave" /></div>
-              <button class="btn btn-primary"><i class="fas fa-save"></i> Update</button>
-            </div>
-          </div>
-          <div class="bg-card p-6 rounded-2xl shadow border border-border" style="background:var(--bg-card);border-color:var(--border-color);">
-            <h3 class="text-lg font-semibold text-primary" style="color:var(--text-primary)"><i class="fas fa-shield-alt mr-2"></i> Security</h3>
-            <div class="mt-4 space-y-3">
-              <div><label class="text-sm text-secondary" style="color:var(--text-secondary)">Current Password</label><input type="password" class="form-control" value="••••••••" /></div>
-              <div><label class="text-sm text-secondary" style="color:var(--text-secondary)">New Password</label><input type="password" class="form-control" placeholder="Enter new password" /></div>
-              <button class="btn btn-primary"><i class="fas fa-save"></i> Change Password</button>
-            </div>
-          </div>
-          <div class="bg-card p-6 rounded-2xl shadow border border-border md:col-span-2" style="background:var(--bg-card);border-color:var(--border-color);">
-            <h3 class="text-lg font-semibold text-primary" style="color:var(--text-primary)"><i class="fas fa-bell mr-2"></i> Notifications</h3>
-            <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <label class="flex items-center gap-2 text-primary" style="color:var(--text-primary)"><input type="checkbox" checked /> Email Notifications</label>
-              <label class="flex items-center gap-2 text-primary" style="color:var(--text-primary)"><input type="checkbox" /> SMS Alerts</label>
-              <label class="flex items-center gap-2 text-primary" style="color:var(--text-primary)"><input type="checkbox" checked /> Auto Backup</label>
-              <label class="flex items-center gap-2 text-primary" style="color:var(--text-primary)"><input type="checkbox" /> Two-Factor Auth</label>
-            </div>
-            <button class="btn btn-primary mt-4"><i class="fas fa-save"></i> Save Preferences</button>
-          </div>
-        </div>
-      </div>
-
-    </main>
-
-    <!-- Footer -->
-    <footer class="footer">
-      <div class="footer-content">
-        <div class="footer-grid">
-          <div class="footer-brand"><h3>SchoolSys</h3><p>Modern school management system designed to streamline educational administration.</p><div class="social-links"><a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a><a href="#" class="social-link"><i class="fab fa-twitter"></i></a><a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a><a href="#" class="social-link"><i class="fab fa-github"></i></a></div></div>
-          <div class="footer-section"><h4>Quick Links</h4><ul class="footer-links"><li><a href="#"><i class="fas fa-chevron-right"></i> Dashboard</a></li><li><a href="#"><i class="fas fa-chevron-right"></i> Expenses</a></li><li><a href="#"><i class="fas fa-chevron-right"></i> Reports</a></li></ul></div>
-          <div class="footer-section"><h4>Resources</h4><ul class="footer-links"><li><a href="#"><i class="fas fa-chevron-right"></i> Documentation</a></li><li><a href="#"><i class="fas fa-chevron-right"></i> Support</a></li></ul></div>
-          <div class="footer-section"><h4>Contact</h4><ul class="contact-info"><li><i class="fas fa-map-marker-alt"></i> 123 Education St</li><li><i class="fas fa-phone"></i> +1 (555) 123-4567</li><li><i class="fas fa-envelope"></i> info@schoolsys.com</li></ul></div>
-        </div>
-        <div class="footer-bottom">&copy; 2025 SchoolSys. All rights reserved.</div>
-      </div>
-    </footer>
   </div>
-</div>
 
-<!-- ===== MODAL ===== -->
-<div class="modal-overlay" id="expenseModal">
-  <div class="modal-box">
-    <h2 id="modalTitle">Add Expense</h2>
-    <form id="expenseForm">
-      <div class="form-group"><label>Description</label><input type="text" id="expDesc" class="form-control" placeholder="e.g. School Supplies" required /></div>
-      <div class="form-group"><label>Category</label>
-        <select id="expCategory" class="form-control">
-          <option value="Materials">Materials</option><option value="Food">Food</option><option value="Transport">Transport</option><option value="Maintenance">Maintenance</option><option value="Technology">Technology</option>
-        </select>
-      </div>
-      <div class="form-group"><label>Amount ($)</label><input type="number" id="expAmount" class="form-control" placeholder="0.00" step="0.01" required /></div>
-      <div class="form-group"><label>Date</label><input type="date" id="expDate" class="form-control" required /></div>
-      <input type="hidden" id="editId" value="" />
-      <div class="flex gap-3 mt-4">
-        <button type="submit" class="btn btn-primary flex-1"><i class="fas fa-save"></i> Save</button>
-        <button type="button" class="btn" id="modalCancelBtn">Cancel</button>
-      </div>
-    </form>
-  </div>
-</div>
+  <script>
+    (function () {
+      // ===== DATA =====
+      let expenses = [
+        { id: 1, description: 'School Supplies', category: 'Materials', amount: 250.00, date: '2025-01-15' },
+        { id: 2, description: 'Cafeteria Food', category: 'Food', amount: 420.50, date: '2025-01-12' },
+        { id: 3, description: 'Bus Maintenance', category: 'Transport', amount: 180.00, date: '2025-01-10' },
+        { id: 4, description: 'Building Repairs', category: 'Maintenance', amount: 350.75, date: '2025-01-08' },
+        { id: 5, description: 'New Computers', category: 'Technology', amount: 1200.00, date: '2025-01-05' },
+      ];
+      let nextId = 6;
 
-<script>
-  (function() {
-    // ===== DATA =====
-    let expenses = [
-      { id: 1, description: 'School Supplies', category: 'Materials', amount: 250.00, date: '2025-01-15' },
-      { id: 2, description: 'Cafeteria Food', category: 'Food', amount: 420.50, date: '2025-01-12' },
-      { id: 3, description: 'Bus Maintenance', category: 'Transport', amount: 180.00, date: '2025-01-10' },
-      { id: 4, description: 'Building Repairs', category: 'Maintenance', amount: 350.75, date: '2025-01-08' },
-      { id: 5, description: 'New Computers', category: 'Technology', amount: 1200.00, date: '2025-01-05' },
-    ];
-    let nextId = 6;
+      // ===== DOM REFS =====
+      const dashTbody = document.getElementById('dashTableBody');
+      const expTbody = document.getElementById('expTableBody');
+      const expTotal = document.getElementById('expTotalDisplay');
+      const expMonth = document.getElementById('expMonthDisplay');
+      const dashTotal = document.getElementById('dashTotalExp');
 
-    // ===== DOM REFS =====
-    const dashTbody = document.getElementById('dashTableBody');
-    const expTbody = document.getElementById('expTableBody');
-    const expTotal = document.getElementById('expTotalDisplay');
-    const expMonth = document.getElementById('expMonthDisplay');
-    const dashTotal = document.getElementById('dashTotalExp');
+      const modal = document.getElementById('expenseModal');
+      const form = document.getElementById('expenseForm');
+      const descInput = document.getElementById('expDesc');
+      const catInput = document.getElementById('expCategory');
+      const amountInput = document.getElementById('expAmount');
+      const dateInput = document.getElementById('expDate');
+      const editIdInput = document.getElementById('editId');
+      const modalTitle = document.getElementById('modalTitle');
 
-    const modal = document.getElementById('expenseModal');
-    const form = document.getElementById('expenseForm');
-    const descInput = document.getElementById('expDesc');
-    const catInput = document.getElementById('expCategory');
-    const amountInput = document.getElementById('expAmount');
-    const dateInput = document.getElementById('expDate');
-    const editIdInput = document.getElementById('editId');
-    const modalTitle = document.getElementById('modalTitle');
+      // ===== RENDER TABLES =====
+      function renderAll() {
+        let dashHtml = '';
+        let expHtml = '';
+        let total = 0;
+        let monthTotal = 0;
+        const now = new Date();
+        const currentMonth = now.getMonth();
+        const currentYear = now.getFullYear();
 
-    // ===== RENDER TABLES =====
-    function renderAll() {
-      let dashHtml = '';
-      let expHtml = '';
-      let total = 0;
-      let monthTotal = 0;
-      const now = new Date();
-      const currentMonth = now.getMonth();
-      const currentYear = now.getFullYear();
-
-      expenses.forEach(e => {
-        total += e.amount;
-        const d = new Date(e.date);
-        if (d.getMonth() === currentMonth && d.getFullYear() === currentYear) {
-          monthTotal += e.amount;
-        }
-        const row = `<tr><td><strong>${e.description}</strong></td><td><span class="px-2 py-1 rounded-full text-xs font-medium" style="background:var(--border-color);color:var(--text-primary)">${e.category}</span></td><td>$${e.amount.toFixed(2)}</td><td>${e.date}</td></tr>`;
-        dashHtml += row;
-        expHtml += row.replace('</td><td>', '</td><td><div class="flex gap-2"><button class="btn btn-sm btn-primary editBtn" data-id="'+e.id+'"><i class="fas fa-edit"></i></button><button class="btn btn-sm btn-danger deleteBtn" data-id="'+e.id+'"><i class="fas fa-trash"></i></button></div></td><td>');
-      });
-
-      dashTbody.innerHTML = dashHtml;
-      expTbody.innerHTML = expHtml;
-      expTotal.textContent = '$' + total.toFixed(2);
-      expMonth.textContent = '$' + monthTotal.toFixed(2);
-      dashTotal.textContent = '$' + total.toFixed(2);
-
-      document.querySelectorAll('.editBtn').forEach(b => b.addEventListener('click', onEdit));
-      document.querySelectorAll('.deleteBtn').forEach(b => b.addEventListener('click', onDelete));
-    }
-
-    // ===== CRUD =====
-    function onAdd() {
-      modalTitle.textContent = 'Add Expense';
-      editIdInput.value = '';
-      form.reset();
-      document.getElementById('expDate').value = new Date().toISOString().slice(0,10);
-      modal.classList.add('open');
-    }
-
-    function onEdit(e) {
-      const id = parseInt(e.currentTarget.dataset.id);
-      const exp = expenses.find(x => x.id === id);
-      if (!exp) return;
-      modalTitle.textContent = 'Edit Expense';
-      editIdInput.value = id;
-      descInput.value = exp.description;
-      catInput.value = exp.category;
-      amountInput.value = exp.amount;
-      dateInput.value = exp.date;
-      modal.classList.add('open');
-    }
-
-    function onDelete(e) {
-      const id = parseInt(e.currentTarget.dataset.id);
-      if (!confirm('Delete this expense?')) return;
-      expenses = expenses.filter(x => x.id !== id);
-      renderAll();
-      renderCharts();
-    }
-
-    function saveExpense(e) {
-      e.preventDefault();
-      const desc = descInput.value.trim();
-      const cat = catInput.value;
-      const amount = parseFloat(amountInput.value);
-      const date = dateInput.value;
-      if (!desc || !amount || !date) return alert('Please fill all fields');
-
-      const editId = parseInt(editIdInput.value);
-      if (editId) {
-        const idx = expenses.findIndex(x => x.id === editId);
-        if (idx > -1) expenses[idx] = { ...expenses[idx], description: desc, category: cat, amount, date };
-      } else {
-        expenses.push({ id: nextId++, description: desc, category: cat, amount, date });
-      }
-      modal.classList.remove('open');
-      renderAll();
-      renderCharts();
-    }
-
-    // ===== SIDEBAR NAV =====
-    function setupSidebar() {
-      const links = document.querySelectorAll('.sidebar-link');
-      const pages = ['dashboard', 'expenses', 'reports', 'categories', 'settings'];
-      const titles = {
-        dashboard: 'Dashboard Overview',
-        expenses: 'Expense Management',
-        reports: 'Reports & Analytics',
-        categories: 'Category Management',
-        settings: 'System Settings'
-      };
-      links.forEach(link => {
-        link.addEventListener('click', function(e) {
-          e.preventDefault();
-          links.forEach(l => l.classList.remove('active'));
-          this.classList.add('active');
-          const page = this.dataset.page;
-          document.querySelectorAll('.page-content').forEach(p => p.classList.remove('active'));
-          document.getElementById('page-' + page).classList.add('active');
-          document.getElementById('pageTitle').textContent = titles[page] || 'Dashboard';
-          if (window.innerWidth < 1024) closeSidebar();
+        expenses.forEach(e => {
+          total += e.amount;
+          const d = new Date(e.date);
+          if (d.getMonth() === currentMonth && d.getFullYear() === currentYear) {
+            monthTotal += e.amount;
+          }
+          const row = `<tr><td><strong>${e.description}</strong></td><td><span class="px-2 py-1 rounded-full text-xs font-medium" style="background:var(--border-color);color:var(--text-primary)">${e.category}</span></td><td>$${e.amount.toFixed(2)}</td><td>${e.date}</td></tr>`;
+          dashHtml += row;
+          expHtml += row.replace('</td><td>', '</td><td><div class="flex gap-2"><button class="btn btn-sm btn-primary editBtn" data-id="' + e.id + '"><i class="fas fa-edit"></i></button><button class="btn btn-sm btn-danger deleteBtn" data-id="' + e.id + '"><i class="fas fa-trash"></i></button></div></td><td>');
         });
+
+        dashTbody.innerHTML = dashHtml;
+        expTbody.innerHTML = expHtml;
+        expTotal.textContent = '$' + total.toFixed(2);
+        expMonth.textContent = '$' + monthTotal.toFixed(2);
+        dashTotal.textContent = '$' + total.toFixed(2);
+
+        document.querySelectorAll('.editBtn').forEach(b => b.addEventListener('click', onEdit));
+        document.querySelectorAll('.deleteBtn').forEach(b => b.addEventListener('click', onDelete));
+      }
+
+      // ===== CRUD =====
+      function onAdd() {
+        modalTitle.textContent = 'Add Expense';
+        editIdInput.value = '';
+        form.reset();
+        document.getElementById('expDate').value = new Date().toISOString().slice(0, 10);
+        modal.classList.add('open');
+      }
+
+      function onEdit(e) {
+        const id = parseInt(e.currentTarget.dataset.id);
+        const exp = expenses.find(x => x.id === id);
+        if (!exp) return;
+        modalTitle.textContent = 'Edit Expense';
+        editIdInput.value = id;
+        descInput.value = exp.description;
+        catInput.value = exp.category;
+        amountInput.value = exp.amount;
+        dateInput.value = exp.date;
+        modal.classList.add('open');
+      }
+
+      function onDelete(e) {
+        const id = parseInt(e.currentTarget.dataset.id);
+        if (!confirm('Delete this expense?')) return;
+        expenses = expenses.filter(x => x.id !== id);
+        renderAll();
+        renderCharts();
+      }
+
+      function saveExpense(e) {
+        e.preventDefault();
+        const desc = descInput.value.trim();
+        const cat = catInput.value;
+        const amount = parseFloat(amountInput.value);
+        const date = dateInput.value;
+        if (!desc || !amount || !date) return alert('Please fill all fields');
+
+        const editId = parseInt(editIdInput.value);
+        if (editId) {
+          const idx = expenses.findIndex(x => x.id === editId);
+          if (idx > -1) expenses[idx] = { ...expenses[idx], description: desc, category: cat, amount, date };
+        } else {
+          expenses.push({ id: nextId++, description: desc, category: cat, amount, date });
+        }
+        modal.classList.remove('open');
+        renderAll();
+        renderCharts();
+      }
+
+      // ===== SIDEBAR NAV =====
+      function setupSidebar() {
+        const links = document.querySelectorAll('.sidebar-link');
+        const pages = ['dashboard', 'expenses', 'reports', 'categories', 'settings'];
+        const titles = {
+          dashboard: 'Dashboard Overview',
+          expenses: 'Expense Management',
+          reports: 'Reports & Analytics',
+          categories: 'Category Management',
+          settings: 'System Settings'
+        };
+        links.forEach(link => {
+          link.addEventListener('click', function (e) {
+            e.preventDefault();
+            links.forEach(l => l.classList.remove('active'));
+            this.classList.add('active');
+            const page = this.dataset.page;
+            document.querySelectorAll('.page-content').forEach(p => p.classList.remove('active'));
+            document.getElementById('page-' + page).classList.add('active');
+            document.getElementById('pageTitle').textContent = titles[page] || 'Dashboard';
+            if (window.innerWidth < 1024) closeSidebar();
+          });
+        });
+      }
+
+      // ===== MOBILE SIDEBAR =====
+      function openSidebar() {
+        document.querySelector('.sidebar').classList.add('active');
+        document.getElementById('overlay').classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+      function closeSidebar() {
+        document.querySelector('.sidebar').classList.remove('active');
+        document.getElementById('overlay').classList.remove('active');
+        document.body.style.overflow = 'auto';
+      }
+      document.getElementById('mobileToggle').addEventListener('click', openSidebar);
+      document.getElementById('closeSidebar').addEventListener('click', closeSidebar);
+      document.getElementById('overlay').addEventListener('click', closeSidebar);
+
+      // ===== THEME =====
+      const themeToggle = document.getElementById('themeToggle');
+      const themeIcon = document.getElementById('themeIcon');
+      let darkMode = false;
+      themeToggle.addEventListener('click', function () {
+        darkMode = !darkMode;
+        document.documentElement.setAttribute('data-theme', darkMode ? 'dark' : 'light');
+        themeIcon.className = darkMode ? 'fas fa-sun' : 'fas fa-moon';
       });
-    }
 
-    // ===== MOBILE SIDEBAR =====
-    function openSidebar() {
-      document.querySelector('.sidebar').classList.add('active');
-      document.getElementById('overlay').classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
-    function closeSidebar() {
-      document.querySelector('.sidebar').classList.remove('active');
-      document.getElementById('overlay').classList.remove('active');
-      document.body.style.overflow = 'auto';
-    }
-    document.getElementById('mobileToggle').addEventListener('click', openSidebar);
-    document.getElementById('closeSidebar').addEventListener('click', closeSidebar);
-    document.getElementById('overlay').addEventListener('click', closeSidebar);
+      // ===== MODAL CONTROLS =====
+      document.getElementById('addExpenseBtn').addEventListener('click', onAdd);
+      document.getElementById('modalCancelBtn').addEventListener('click', () => modal.classList.remove('open'));
+      modal.addEventListener('click', function (e) { if (e.target === this) this.classList.remove('open'); });
+      form.addEventListener('submit', saveExpense);
 
-    // ===== THEME =====
-    const themeToggle = document.getElementById('themeToggle');
-    const themeIcon = document.getElementById('themeIcon');
-    let darkMode = false;
-    themeToggle.addEventListener('click', function() {
-      darkMode = !darkMode;
-      document.documentElement.setAttribute('data-theme', darkMode ? 'dark' : 'light');
-      themeIcon.className = darkMode ? 'fas fa-sun' : 'fas fa-moon';
-    });
+      // ===== RECHARTS HELPER =====
+      function renderChart(containerId, chartFn) {
+        const container = document.getElementById(containerId);
+        if (!container) return;
+        const root = Recharts.createRoot(container);
+        root.render(chartFn());
+      }
 
-    // ===== MODAL CONTROLS =====
-    document.getElementById('addExpenseBtn').addEventListener('click', onAdd);
-    document.getElementById('modalCancelBtn').addEventListener('click', () => modal.classList.remove('open'));
-    modal.addEventListener('click', function(e) { if (e.target === this) this.classList.remove('open'); });
-    form.addEventListener('submit', saveExpense);
+      function renderCharts() {
+        // Line data
+        const lineData = [{ month: 'Jan', value: 3200 }, { month: 'Feb', value: 4500 }, { month: 'Mar', value: 3800 }, { month: 'Apr', value: 5200 }, { month: 'May', value: 4800 }, { month: 'Jun', value: 6100 }];
+        const lineChart = () => Recharts.createElement(
+          Recharts.LineChart, { width: '100%', height: 260, data: lineData, margin: { top: 5, right: 20, left: 0, bottom: 5 } },
+          Recharts.createElement(Recharts.CartesianGrid, { strokeDasharray: '3 3' }),
+          Recharts.createElement(Recharts.XAxis, { dataKey: 'month' }),
+          Recharts.createElement(Recharts.YAxis, { tickFormatter: v => '$' + v }),
+          Recharts.createElement(Recharts.Tooltip, { formatter: v => '$' + v }),
+          Recharts.createElement(Recharts.Line, { type: 'monotone', dataKey: 'value', stroke: '#4f46e5', strokeWidth: 3, dot: { r: 4 } })
+        );
+        ['dashLineChart', 'expLineChart', 'repLineChart'].forEach(id => renderChart(id, lineChart));
 
-    // ===== RECHARTS HELPER =====
-    function renderChart(containerId, chartFn) {
-      const container = document.getElementById(containerId);
-      if (!container) return;
-      const root = Recharts.createRoot(container);
-      root.render(chartFn());
-    }
+        // Pie
+        const pieData = [{ name: 'Materials', value: 25 }, { name: 'Food', value: 35 }, { name: 'Transport', value: 15 }, { name: 'Maintenance', value: 15 }, { name: 'Technology', value: 10 }];
+        const pieChart = () => Recharts.createElement(
+          Recharts.PieChart, { width: '100%', height: 260 },
+          Recharts.createElement(Recharts.Pie, { data: pieData, cx: '50%', cy: '50%', innerRadius: 60, outerRadius: 90, fill: '#8884d8', paddingAngle: 2, dataKey: 'value', label: ({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%` }),
+          Recharts.createElement(Recharts.Tooltip, { formatter: v => v + '%' })
+        );
+        ['dashPieChart', 'expPieChart', 'repPieChart'].forEach(id => renderChart(id, pieChart));
 
-    function renderCharts() {
-      // Line data
-      const lineData = [{ month: 'Jan', value: 3200 }, { month: 'Feb', value: 4500 }, { month: 'Mar', value: 3800 }, { month: 'Apr', value: 5200 }, { month: 'May', value: 4800 }, { month: 'Jun', value: 6100 }];
-      const lineChart = () => Recharts.createElement(
-        Recharts.LineChart, { width: '100%', height: 260, data: lineData, margin: { top: 5, right: 20, left: 0, bottom: 5 } },
-        Recharts.createElement(Recharts.CartesianGrid, { strokeDasharray: '3 3' }),
-        Recharts.createElement(Recharts.XAxis, { dataKey: 'month' }),
-        Recharts.createElement(Recharts.YAxis, { tickFormatter: v => '$'+v }),
-        Recharts.createElement(Recharts.Tooltip, { formatter: v => '$'+v }),
-        Recharts.createElement(Recharts.Line, { type: 'monotone', dataKey: 'value', stroke: '#4f46e5', strokeWidth: 3, dot: { r: 4 } })
-      );
-      ['dashLineChart', 'expLineChart', 'repLineChart'].forEach(id => renderChart(id, lineChart));
+        // Bar
+        const barData = [{ name: 'Materials', budget: 1000, actual: 650 }, { name: 'Food', budget: 2500, actual: 2100 }, { name: 'Transport', budget: 1800, actual: 950 }, { name: 'Maintenance', budget: 3000, actual: 1520 }];
+        const barChart = () => Recharts.createElement(
+          Recharts.BarChart, { width: '100%', height: 260, data: barData, margin: { top: 5, right: 20, left: 0, bottom: 5 } },
+          Recharts.createElement(Recharts.CartesianGrid, { strokeDasharray: '3 3' }),
+          Recharts.createElement(Recharts.XAxis, { dataKey: 'name' }),
+          Recharts.createElement(Recharts.YAxis, { tickFormatter: v => '$' + v }),
+          Recharts.createElement(Recharts.Tooltip, { formatter: v => '$' + v }),
+          Recharts.createElement(Recharts.Bar, { dataKey: 'budget', fill: '#c7d2fe', radius: [4, 4, 0, 0] }),
+          Recharts.createElement(Recharts.Bar, { dataKey: 'actual', fill: '#4f46e5', radius: [4, 4, 0, 0] })
+        );
+        ['dashBarChart', 'expBarChart', 'repBarChart'].forEach(id => renderChart(id, barChart));
 
-      // Pie
-      const pieData = [{ name: 'Materials', value: 25 }, { name: 'Food', value: 35 }, { name: 'Transport', value: 15 }, { name: 'Maintenance', value: 15 }, { name: 'Technology', value: 10 }];
-      const pieChart = () => Recharts.createElement(
-        Recharts.PieChart, { width: '100%', height: 260 },
-        Recharts.createElement(Recharts.Pie, { data: pieData, cx: '50%', cy: '50%', innerRadius: 60, outerRadius: 90, fill: '#8884d8', paddingAngle: 2, dataKey: 'value', label: ({ name, percent }) => `${name} ${(percent*100).toFixed(0)}%` }),
-        Recharts.createElement(Recharts.Tooltip, { formatter: v => v+'%' })
-      );
-      ['dashPieChart', 'expPieChart', 'repPieChart'].forEach(id => renderChart(id, pieChart));
+        // Horizontal Bar
+        const hData = [{ cat: 'Materials', spent: 650 }, { cat: 'Food', spent: 2100 }, { cat: 'Transport', spent: 950 }, { cat: 'Maintenance', spent: 1520 }, { cat: 'Technology', spent: 1200 }];
+        const hBarChart = () => Recharts.createElement(
+          Recharts.BarChart, { width: '100%', height: 260, data: hData, layout: 'vertical', margin: { top: 5, right: 20, left: 50, bottom: 5 } },
+          Recharts.createElement(Recharts.CartesianGrid, { strokeDasharray: '3 3' }),
+          Recharts.createElement(Recharts.XAxis, { type: 'number', tickFormatter: v => '$' + v }),
+          Recharts.createElement(Recharts.YAxis, { type: 'category', dataKey: 'cat' }),
+          Recharts.createElement(Recharts.Tooltip, { formatter: v => '$' + v }),
+          Recharts.createElement(Recharts.Bar, { dataKey: 'spent', fill: '#8b5cf6', radius: [0, 4, 4, 0] })
+        );
+        ['dashHBarChart', 'expHBarChart'].forEach(id => renderChart(id, hBarChart));
 
-      // Bar
-      const barData = [{ name: 'Materials', budget: 1000, actual: 650 }, { name: 'Food', budget: 2500, actual: 2100 }, { name: 'Transport', budget: 1800, actual: 950 }, { name: 'Maintenance', budget: 3000, actual: 1520 }];
-      const barChart = () => Recharts.createElement(
-        Recharts.BarChart, { width: '100%', height: 260, data: barData, margin: { top: 5, right: 20, left: 0, bottom: 5 } },
-        Recharts.createElement(Recharts.CartesianGrid, { strokeDasharray: '3 3' }),
-        Recharts.createElement(Recharts.XAxis, { dataKey: 'name' }),
-        Recharts.createElement(Recharts.YAxis, { tickFormatter: v => '$'+v }),
-        Recharts.createElement(Recharts.Tooltip, { formatter: v => '$'+v }),
-        Recharts.createElement(Recharts.Bar, { dataKey: 'budget', fill: '#c7d2fe', radius: [4,4,0,0] }),
-        Recharts.createElement(Recharts.Bar, { dataKey: 'actual', fill: '#4f46e5', radius: [4,4,0,0] })
-      );
-      ['dashBarChart', 'expBarChart', 'repBarChart'].forEach(id => renderChart(id, barChart));
+        // Attendance Chart (reports only)
+        const attData = [{ day: 'Mon', rate: 92 }, { day: 'Tue', rate: 95 }, { day: 'Wed', rate: 94 }, { day: 'Thu', rate: 96 }, { day: 'Fri', rate: 91 }];
+        const attChart = () => Recharts.createElement(
+          Recharts.BarChart, { width: '100%', height: 260, data: attData, margin: { top: 5, right: 20, left: 0, bottom: 5 } },
+          Recharts.createElement(Recharts.CartesianGrid, { strokeDasharray: '3 3' }),
+          Recharts.createElement(Recharts.XAxis, { dataKey: 'day' }),
+          Recharts.createElement(Recharts.YAxis, { domain: [80, 100] }),
+          Recharts.createElement(Recharts.Tooltip, { formatter: v => v + '%' }),
+          Recharts.createElement(Recharts.Bar, { dataKey: 'rate', fill: '#10b981', radius: [4, 4, 0, 0] })
+        );
+        renderChart('repAttendanceChart', attChart);
+      }
 
-      // Horizontal Bar
-      const hData = [{ cat: 'Materials', spent: 650 }, { cat: 'Food', spent: 2100 }, { cat: 'Transport', spent: 950 }, { cat: 'Maintenance', spent: 1520 }, { cat: 'Technology', spent: 1200 }];
-      const hBarChart = () => Recharts.createElement(
-        Recharts.BarChart, { width: '100%', height: 260, data: hData, layout: 'vertical', margin: { top: 5, right: 20, left: 50, bottom: 5 } },
-        Recharts.createElement(Recharts.CartesianGrid, { strokeDasharray: '3 3' }),
-        Recharts.createElement(Recharts.XAxis, { type: 'number', tickFormatter: v => '$'+v }),
-        Recharts.createElement(Recharts.YAxis, { type: 'category', dataKey: 'cat' }),
-        Recharts.createElement(Recharts.Tooltip, { formatter: v => '$'+v }),
-        Recharts.createElement(Recharts.Bar, { dataKey: 'spent', fill: '#8b5cf6', radius: [0,4,4,0] })
-      );
-      ['dashHBarChart', 'expHBarChart'].forEach(id => renderChart(id, hBarChart));
+      // ===== INIT =====
+      renderAll();
+      renderCharts();
+      setupSidebar();
 
-      // Attendance Chart (reports only)
-      const attData = [{ day: 'Mon', rate: 92 }, { day: 'Tue', rate: 95 }, { day: 'Wed', rate: 94 }, { day: 'Thu', rate: 96 }, { day: 'Fri', rate: 91 }];
-      const attChart = () => Recharts.createElement(
-        Recharts.BarChart, { width: '100%', height: 260, data: attData, margin: { top: 5, right: 20, left: 0, bottom: 5 } },
-        Recharts.createElement(Recharts.CartesianGrid, { strokeDasharray: '3 3' }),
-        Recharts.createElement(Recharts.XAxis, { dataKey: 'day' }),
-        Recharts.createElement(Recharts.YAxis, { domain: [80, 100] }),
-        Recharts.createElement(Recharts.Tooltip, { formatter: v => v+'%' }),
-        Recharts.createElement(Recharts.Bar, { dataKey: 'rate', fill: '#10b981', radius: [4,4,0,0] })
-      );
-      renderChart('repAttendanceChart', attChart);
-    }
-
-    // ===== INIT =====
-    renderAll();
-    renderCharts();
-    setupSidebar();
-
-    if (document.documentElement.getAttribute('data-theme') === 'dark') {
-      themeIcon.className = 'fas fa-sun';
-    }
-  })();
-</script>
+      if (document.documentElement.getAttribute('data-theme') === 'dark') {
+        themeIcon.className = 'fas fa-sun';
+      }
+    })();
+  </script>
 </body>
+
 </html>
