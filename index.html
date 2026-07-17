@@ -3,6 +3,7 @@
      ============================================================ -->
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -12,145 +13,224 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
+
 <body>
-<div class="app-container">
-  <!-- Sidebar (shared) -->
-  <aside class="sidebar" id="sidebar">
-    <div class="sidebar-header">
-      <div class="flex justify-between items-center">
-        <h1><i class="fas fa-graduation-cap"></i> SchoolSys</h1>
-        <button class="close-sidebar-btn lg:hidden" id="closeSidebar"><i class="fas fa-times"></i></button>
-      </div>
-    </div>
-    <nav class="sidebar-nav">
-      <a href="index.html" class="sidebar-link active"><i class="fas fa-home"></i> Dashboard</a>
-      <a href="pages/expenses.html" class="sidebar-link"><i class="fas fa-wallet"></i> Expenses</a>
-      <a href="pages/reports.html" class="sidebar-link"><i class="fas fa-chart-pie"></i> Reports</a>
-      <a href="pages/categories.html" class="sidebar-link"><i class="fas fa-tags"></i> Categories</a>
-      <a href="pages/settings.html" class="sidebar-link"><i class="fas fa-cog"></i> Settings</a>
-    </nav>
-    <div class="sidebar-upgrade">
-      <h4 class="font-semibold mb-2">Upgrade to Pro</h4>
-      <p class="text-sm opacity-80 mb-3">Unlock advanced features</p>
-      <button class="w-full bg-white text-indigo-600 py-2 px-4 rounded-lg font-semibold text-sm hover:bg-opacity-90 transition-all">Upgrade Now</button>
-    </div>
-  </aside>
-
-  <!-- Main Wrapper -->
-  <div class="main-wrapper">
-    <!-- Navbar -->
-    <header class="navbar">
-      <div class="navbar-content">
-        <div class="flex items-center gap-4">
-          <button class="mobile-menu-btn" id="mobileToggle"><i class="fas fa-bars"></i></button>
-          <div class="navbar-title">
-            <h2>Dashboard Overview</h2>
-            <p>Welcome back, Administrator</p>
-          </div>
-        </div>
-        <div class="navbar-actions">
-          <button id="themeToggle" class="theme-btn"><i class="fas fa-moon" id="themeIcon"></i></button>
-          <button class="notification-btn"><i class="fas fa-bell"></i><span class="notification-badge">3</span></button>
-          <div class="user-profile">
-            <div class="user-avatar">A</div>
-            <div class="hidden sm:block"><div class="font-semibold text-sm">Admin User</div><div class="text-xs text-gray-500">Administrator</div></div>
-          </div>
+  <div class="app-container">
+    <!-- Sidebar (shared) -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="flex justify-between items-center">
+          <h1><i class="fas fa-graduation-cap"></i> SchoolSys</h1>
+          <button class="close-sidebar-btn lg:hidden" id="closeSidebar"><i class="fas fa-times"></i></button>
         </div>
       </div>
-    </header>
-
-    <!-- Main Content -->
-    <main class="main-content">
-      <!-- Stats -->
-      <div class="stats-grid">
-        <div class="stat-card"><div class="stat-header"><div class="stat-info"><h3>Total Students</h3><div class="value">1,248</div></div><div class="stat-icon"><i class="fas fa-users text-blue-600 text-xl"></i></div></div><div class="stat-trend trend-up"><i class="fas fa-arrow-up"></i><span>5.2% from last month</span></div></div>
-        <div class="stat-card"><div class="stat-header"><div class="stat-info"><h3>Total Staff</h3><div class="value">84</div></div><div class="stat-icon"><i class="fas fa-chalkboard-teacher text-green-600 text-xl"></i></div></div><div class="stat-trend trend-up"><i class="fas fa-arrow-up"></i><span>2 new hires</span></div></div>
-        <div class="stat-card"><div class="stat-header"><div class="stat-info"><h3>Monthly Expenses</h3><div class="value" id="dashTotalExp">$24,580</div></div><div class="stat-icon"><i class="fas fa-wallet text-purple-600 text-xl"></i></div></div><div class="stat-trend trend-down"><i class="fas fa-arrow-up"></i><span>12% from last month</span></div></div>
-        <div class="stat-card"><div class="stat-header"><div class="stat-info"><h3>Attendance Rate</h3><div class="value">94.2%</div></div><div class="stat-icon"><i class="fas fa-user-check text-yellow-600 text-xl"></i></div></div><div class="stat-trend trend-up"><i class="fas fa-arrow-up"></i><span>1.5% from last week</span></div></div>
+      <nav class="sidebar-nav">
+        <a href="index.html" class="sidebar-link active"><i class="fas fa-home"></i> Dashboard</a>
+        <a href="pages/expenses.html" class="sidebar-link"><i class="fas fa-wallet"></i> Expenses</a>
+        <a href="pages/reports.html" class="sidebar-link"><i class="fas fa-chart-pie"></i> Reports</a>
+        <a href="pages/categories.html" class="sidebar-link"><i class="fas fa-tags"></i> Categories</a>
+        <a href="pages/settings.html" class="sidebar-link"><i class="fas fa-cog"></i> Settings</a>
+      </nav>
+      <div class="sidebar-upgrade">
+        <h4 class="font-semibold mb-2">Upgrade to Pro</h4>
+        <p class="text-sm opacity-80 mb-3">Unlock advanced features</p>
+        <button
+          class="w-full bg-white text-indigo-600 py-2 px-4 rounded-lg font-semibold text-sm hover:bg-opacity-90 transition-all">Upgrade
+          Now</button>
       </div>
+    </aside>
 
-      <!-- Charts -->
-      <div class="charts-grid">
-        <div class="chart-card"><div class="chart-header"><h3>Expense Trends</h3></div><div class="chart-container" id="dashLineChart"></div></div>
-        <div class="chart-card"><div class="chart-header"><h3>Category Distribution</h3></div><div class="chart-container" id="dashPieChart"></div></div>
-        <div class="chart-card"><div class="chart-header"><h3>Budget vs Actual</h3></div><div class="chart-container" id="dashBarChart"></div></div>
-        <div class="chart-card"><div class="chart-header"><h3>Category Spending</h3></div><div class="chart-container" id="dashHBarChart"></div></div>
-      </div>
+    <!-- Main Wrapper -->
+    <div class="main-wrapper">
+      <!-- Navbar -->
+      <header class="navbar">
+        <div class="navbar-content">
+          <div class="flex items-center gap-4">
+            <button class="mobile-menu-btn" id="mobileToggle"><i class="fas fa-bars"></i></button>
+            <div class="navbar-title">
+              <h2>Dashboard Overview</h2>
+              <p>Welcome back, Administrator</p>
+            </div>
+          </div>
+          <div class="navbar-actions">
+            <button id="themeToggle" class="theme-btn"><i class="fas fa-moon" id="themeIcon"></i></button>
+            <button class="notification-btn"><i class="fas fa-bell"></i><span
+                class="notification-badge">3</span></button>
+            <div class="user-profile">
+              <div class="user-avatar">A</div>
+              <div class="hidden sm:block">
+                <div class="font-semibold text-sm">Admin User</div>
+                <div class="text-xs text-gray-500">Administrator</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
 
-      <!-- Recent Expenses Table -->
-      <div class="table-container">
-        <div class="table-header"><h3><i class="fas fa-list-ul mr-2"></i> Recent Expenses</h3><a href="pages/expenses.html" class="btn btn-primary btn-sm">View All</a></div>
-        <div class="table-wrap"><table><thead><tr><th>Description</th><th>Category</th><th>Amount</th><th>Date</th></tr></thead><tbody id="dashTableBody"></tbody></table></div>
-      </div>
-    </main>
+      <!-- Main Content -->
+      <main class="main-content">
+        <!-- Stats -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-header">
+              <div class="stat-info">
+                <h3>Total Students</h3>
+                <div class="value">1,248</div>
+              </div>
+              <div class="stat-icon"><i class="fas fa-users text-blue-600 text-xl"></i></div>
+            </div>
+            <div class="stat-trend trend-up"><i class="fas fa-arrow-up"></i><span>5.2% from last month</span></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-header">
+              <div class="stat-info">
+                <h3>Total Staff</h3>
+                <div class="value">84</div>
+              </div>
+              <div class="stat-icon"><i class="fas fa-chalkboard-teacher text-green-600 text-xl"></i></div>
+            </div>
+            <div class="stat-trend trend-up"><i class="fas fa-arrow-up"></i><span>2 new hires</span></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-header">
+              <div class="stat-info">
+                <h3>Monthly Expenses</h3>
+                <div class="value" id="dashTotalExp">$24,580</div>
+              </div>
+              <div class="stat-icon"><i class="fas fa-wallet text-purple-600 text-xl"></i></div>
+            </div>
+            <div class="stat-trend trend-down"><i class="fas fa-arrow-up"></i><span>12% from last month</span></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-header">
+              <div class="stat-info">
+                <h3>Attendance Rate</h3>
+                <div class="value">94.2%</div>
+              </div>
+              <div class="stat-icon"><i class="fas fa-user-check text-yellow-600 text-xl"></i></div>
+            </div>
+            <div class="stat-trend trend-up"><i class="fas fa-arrow-up"></i><span>1.5% from last week</span></div>
+          </div>
+        </div>
 
-    <!-- Footer -->
-    <footer class="footer">[Footer content - same as other pages]</footer>
+        <!-- Charts -->
+        <div class="charts-grid">
+          <div class="chart-card">
+            <div class="chart-header">
+              <h3>Expense Trends</h3>
+            </div>
+            <div class="chart-container" id="dashLineChart"></div>
+          </div>
+          <div class="chart-card">
+            <div class="chart-header">
+              <h3>Category Distribution</h3>
+            </div>
+            <div class="chart-container" id="dashPieChart"></div>
+          </div>
+          <div class="chart-card">
+            <div class="chart-header">
+              <h3>Budget vs Actual</h3>
+            </div>
+            <div class="chart-container" id="dashBarChart"></div>
+          </div>
+          <div class="chart-card">
+            <div class="chart-header">
+              <h3>Category Spending</h3>
+            </div>
+            <div class="chart-container" id="dashHBarChart"></div>
+          </div>
+        </div>
+
+        <!-- Recent Expenses Table -->
+        <div class="table-container">
+          <div class="table-header">
+            <h3><i class="fas fa-list-ul mr-2"></i> Recent Expenses</h3><a href="pages/expenses.html"
+              class="btn btn-primary btn-sm">View All</a>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Description</th>
+                  <th>Category</th>
+                  <th>Amount</th>
+                  <th>Date</th>
+                </tr>
+              </thead>
+              <tbody id="dashTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </main>
+
+      <!-- Footer -->
+      <footer class="footer">[Footer content - same as other pages]</footer>
+    </div>
   </div>
-</div>
 
-<script src="js/script.js"></script>
-<script>
-  // Dashboard-specific data and chart rendering
-  (function() {
-    const expenses = [
-      { id: 1, description: 'School Supplies', category: 'Materials', amount: 250.00, date: '2025-01-15' },
-      { id: 2, description: 'Cafeteria Food', category: 'Food', amount: 420.50, date: '2025-01-12' },
-      { id: 3, description: 'Bus Maintenance', category: 'Transport', amount: 180.00, date: '2025-01-10' },
-      { id: 4, description: 'Building Repairs', category: 'Maintenance', amount: 350.75, date: '2025-01-08' },
-      { id: 5, description: 'New Computers', category: 'Technology', amount: 1200.00, date: '2025-01-05' },
-    ];
-    const tbody = document.getElementById('dashTableBody');
-    let total = 0;
-    expenses.forEach(e => { total += e.amount; tbody.innerHTML += `<tr><td><strong>${e.description}</strong></td><td><span class="px-2 py-1 rounded-full text-xs font-medium" style="background:var(--border-color);color:var(--text-primary)">${e.category}</span></td><td>$${e.amount.toFixed(2)}</td><td>${e.date}</td></tr>`; });
-    document.getElementById('dashTotalExp').textContent = '$' + total.toFixed(2);
+  <script src="js/script.js"></script>
+  <script>
+    // Dashboard-specific data and chart rendering
+    (function () {
+      const expenses = [
+        { id: 1, description: 'School Supplies', category: 'Materials', amount: 250.00, date: '2025-01-15' },
+        { id: 2, description: 'Cafeteria Food', category: 'Food', amount: 420.50, date: '2025-01-12' },
+        { id: 3, description: 'Bus Maintenance', category: 'Transport', amount: 180.00, date: '2025-01-10' },
+        { id: 4, description: 'Building Repairs', category: 'Maintenance', amount: 350.75, date: '2025-01-08' },
+        { id: 5, description: 'New Computers', category: 'Technology', amount: 1200.00, date: '2025-01-05' },
+      ];
+      const tbody = document.getElementById('dashTableBody');
+      let total = 0;
+      expenses.forEach(e => { total += e.amount; tbody.innerHTML += `<tr><td><strong>${e.description}</strong></td><td><span class="px-2 py-1 rounded-full text-xs font-medium" style="background:var(--border-color);color:var(--text-primary)">${e.category}</span></td><td>$${e.amount.toFixed(2)}</td><td>${e.date}</td></tr>`; });
+      document.getElementById('dashTotalExp').textContent = '$' + total.toFixed(2);
 
-    // Render charts with Recharts
-    function renderChart(containerId, chartFn) {
-      const container = document.getElementById(containerId);
-      if (!container) return;
-      const root = Recharts.createRoot(container);
-      root.render(chartFn());
-    }
+      // Render charts with Recharts
+      function renderChart(containerId, chartFn) {
+        const container = document.getElementById(containerId);
+        if (!container) return;
+        const root = Recharts.createRoot(container);
+        root.render(chartFn());
+      }
 
-    const lineData = [{ month: 'Jan', value: 3200 }, { month: 'Feb', value: 4500 }, { month: 'Mar', value: 3800 }, { month: 'Apr', value: 5200 }, { month: 'May', value: 4800 }, { month: 'Jun', value: 6100 }];
-    const lineChart = () => Recharts.createElement(Recharts.LineChart, { width: '100%', height: 260, data: lineData, margin: { top: 5, right: 20, left: 0, bottom: 5 } },
-      Recharts.createElement(Recharts.CartesianGrid, { strokeDasharray: '3 3' }),
-      Recharts.createElement(Recharts.XAxis, { dataKey: 'month' }),
-      Recharts.createElement(Recharts.YAxis, { tickFormatter: v => '$'+v }),
-      Recharts.createElement(Recharts.Tooltip, { formatter: v => '$'+v }),
-      Recharts.createElement(Recharts.Line, { type: 'monotone', dataKey: 'value', stroke: '#4f46e5', strokeWidth: 3, dot: { r: 4 } })
-    );
-    renderChart('dashLineChart', lineChart);
+      const lineData = [{ month: 'Jan', value: 3200 }, { month: 'Feb', value: 4500 }, { month: 'Mar', value: 3800 }, { month: 'Apr', value: 5200 }, { month: 'May', value: 4800 }, { month: 'Jun', value: 6100 }];
+      const lineChart = () => Recharts.createElement(Recharts.LineChart, { width: '100%', height: 260, data: lineData, margin: { top: 5, right: 20, left: 0, bottom: 5 } },
+        Recharts.createElement(Recharts.CartesianGrid, { strokeDasharray: '3 3' }),
+        Recharts.createElement(Recharts.XAxis, { dataKey: 'month' }),
+        Recharts.createElement(Recharts.YAxis, { tickFormatter: v => '$' + v }),
+        Recharts.createElement(Recharts.Tooltip, { formatter: v => '$' + v }),
+        Recharts.createElement(Recharts.Line, { type: 'monotone', dataKey: 'value', stroke: '#4f46e5', strokeWidth: 3, dot: { r: 4 } })
+      );
+      renderChart('dashLineChart', lineChart);
 
-    const pieData = [{ name: 'Materials', value: 25 }, { name: 'Food', value: 35 }, { name: 'Transport', value: 15 }, { name: 'Maintenance', value: 15 }, { name: 'Technology', value: 10 }];
-    const pieChart = () => Recharts.createElement(Recharts.PieChart, { width: '100%', height: 260 },
-      Recharts.createElement(Recharts.Pie, { data: pieData, cx: '50%', cy: '50%', innerRadius: 60, outerRadius: 90, fill: '#8884d8', paddingAngle: 2, dataKey: 'value', label: ({ name, percent }) => `${name} ${(percent*100).toFixed(0)}%` }),
-      Recharts.createElement(Recharts.Tooltip, { formatter: v => v+'%' })
-    );
-    renderChart('dashPieChart', pieChart);
+      const pieData = [{ name: 'Materials', value: 25 }, { name: 'Food', value: 35 }, { name: 'Transport', value: 15 }, { name: 'Maintenance', value: 15 }, { name: 'Technology', value: 10 }];
+      const pieChart = () => Recharts.createElement(Recharts.PieChart, { width: '100%', height: 260 },
+        Recharts.createElement(Recharts.Pie, { data: pieData, cx: '50%', cy: '50%', innerRadius: 60, outerRadius: 90, fill: '#8884d8', paddingAngle: 2, dataKey: 'value', label: ({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%` }),
+        Recharts.createElement(Recharts.Tooltip, { formatter: v => v + '%' })
+      );
+      renderChart('dashPieChart', pieChart);
 
-    const barData = [{ name: 'Materials', budget: 1000, actual: 650 }, { name: 'Food', budget: 2500, actual: 2100 }, { name: 'Transport', budget: 1800, actual: 950 }, { name: 'Maintenance', budget: 3000, actual: 1520 }];
-    const barChart = () => Recharts.createElement(Recharts.BarChart, { width: '100%', height: 260, data: barData, margin: { top: 5, right: 20, left: 0, bottom: 5 } },
-      Recharts.createElement(Recharts.CartesianGrid, { strokeDasharray: '3 3' }),
-      Recharts.createElement(Recharts.XAxis, { dataKey: 'name' }),
-      Recharts.createElement(Recharts.YAxis, { tickFormatter: v => '$'+v }),
-      Recharts.createElement(Recharts.Tooltip, { formatter: v => '$'+v }),
-      Recharts.createElement(Recharts.Bar, { dataKey: 'budget', fill: '#c7d2fe', radius: [4,4,0,0] }),
-      Recharts.createElement(Recharts.Bar, { dataKey: 'actual', fill: '#4f46e5', radius: [4,4,0,0] })
-    );
-    renderChart('dashBarChart', barChart);
+      const barData = [{ name: 'Materials', budget: 1000, actual: 650 }, { name: 'Food', budget: 2500, actual: 2100 }, { name: 'Transport', budget: 1800, actual: 950 }, { name: 'Maintenance', budget: 3000, actual: 1520 }];
+      const barChart = () => Recharts.createElement(Recharts.BarChart, { width: '100%', height: 260, data: barData, margin: { top: 5, right: 20, left: 0, bottom: 5 } },
+        Recharts.createElement(Recharts.CartesianGrid, { strokeDasharray: '3 3' }),
+        Recharts.createElement(Recharts.XAxis, { dataKey: 'name' }),
+        Recharts.createElement(Recharts.YAxis, { tickFormatter: v => '$' + v }),
+        Recharts.createElement(Recharts.Tooltip, { formatter: v => '$' + v }),
+        Recharts.createElement(Recharts.Bar, { dataKey: 'budget', fill: '#c7d2fe', radius: [4, 4, 0, 0] }),
+        Recharts.createElement(Recharts.Bar, { dataKey: 'actual', fill: '#4f46e5', radius: [4, 4, 0, 0] })
+      );
+      renderChart('dashBarChart', barChart);
 
-    const hData = [{ cat: 'Materials', spent: 650 }, { cat: 'Food', spent: 2100 }, { cat: 'Transport', spent: 950 }, { cat: 'Maintenance', spent: 1520 }, { cat: 'Technology', spent: 1200 }];
-    const hBarChart = () => Recharts.createElement(Recharts.BarChart, { width: '100%', height: 260, data: hData, layout: 'vertical', margin: { top: 5, right: 20, left: 50, bottom: 5 } },
-      Recharts.createElement(Recharts.CartesianGrid, { strokeDasharray: '3 3' }),
-      Recharts.createElement(Recharts.XAxis, { type: 'number', tickFormatter: v => '$'+v }),
-      Recharts.createElement(Recharts.YAxis, { type: 'category', dataKey: 'cat' }),
-      Recharts.createElement(Recharts.Tooltip, { formatter: v => '$'+v }),
-      Recharts.createElement(Recharts.Bar, { dataKey: 'spent', fill: '#8b5cf6', radius: [0,4,4,0] })
-    );
-    renderChart('dashHBarChart', hBarChart);
-  })();
-</script>
+      const hData = [{ cat: 'Materials', spent: 650 }, { cat: 'Food', spent: 2100 }, { cat: 'Transport', spent: 950 }, { cat: 'Maintenance', spent: 1520 }, { cat: 'Technology', spent: 1200 }];
+      const hBarChart = () => Recharts.createElement(Recharts.BarChart, { width: '100%', height: 260, data: hData, layout: 'vertical', margin: { top: 5, right: 20, left: 50, bottom: 5 } },
+        Recharts.createElement(Recharts.CartesianGrid, { strokeDasharray: '3 3' }),
+        Recharts.createElement(Recharts.XAxis, { type: 'number', tickFormatter: v => '$' + v }),
+        Recharts.createElement(Recharts.YAxis, { type: 'category', dataKey: 'cat' }),
+        Recharts.createElement(Recharts.Tooltip, { formatter: v => '$' + v }),
+        Recharts.createElement(Recharts.Bar, { dataKey: 'spent', fill: '#8b5cf6', radius: [0, 4, 4, 0] })
+      );
+      renderChart('dashHBarChart', hBarChart);
+    })();
+  </script>
 </body>
+
 </html>
