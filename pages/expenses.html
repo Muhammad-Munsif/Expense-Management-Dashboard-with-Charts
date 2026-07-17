@@ -1,0 +1,69 @@
+<!-- ============================================================
+     PAGES/EXPENSES.HTML
+     ============================================================ -->
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SchoolSys | Expenses</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/recharts@2.8.0/umd/Recharts.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+<div class="app-container">
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="flex justify-between items-center">
+        <h1><i class="fas fa-graduation-cap"></i> SchoolSys</h1>
+        <button class="close-sidebar-btn lg:hidden" id="closeSidebar"><i class="fas fa-times"></i></button>
+      </div>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="../index.html" class="sidebar-link"><i class="fas fa-home"></i> Dashboard</a>
+      <a href="expenses.html" class="sidebar-link active"><i class="fas fa-wallet"></i> Expenses</a>
+      <a href="reports.html" class="sidebar-link"><i class="fas fa-chart-pie"></i> Reports</a>
+      <a href="categories.html" class="sidebar-link"><i class="fas fa-tags"></i> Categories</a>
+      <a href="settings.html" class="sidebar-link"><i class="fas fa-cog"></i> Settings</a>
+    </nav>
+    <div class="sidebar-upgrade">...</div>
+  </aside>
+
+  <div class="main-wrapper">
+    <header class="navbar">[Navbar same as index]</header>
+    <main class="main-content">
+      <!-- Stats -->
+      <div class="stats-grid">
+        <div class="stat-card"><div class="stat-header"><div class="stat-info"><h3>Total Expenses</h3><div class="value" id="expTotalDisplay">$0</div></div><div class="stat-icon"><i class="fas fa-money-bill-wave text-red-600 text-xl"></i></div></div><div class="stat-trend trend-down"><i class="fas fa-arrow-up"></i><span>12% from last month</span></div></div>
+        <div class="stat-card"><div class="stat-header"><div class="stat-info"><h3>This Month</h3><div class="value" id="expMonthDisplay">$0</div></div><div class="stat-icon"><i class="fas fa-calendar-alt text-blue-600 text-xl"></i></div></div><div class="stat-trend trend-up"><i class="fas fa-arrow-down"></i><span>5% from last month</span></div></div>
+        <div class="stat-card"><div class="stat-header"><div class="stat-info"><h3>Pending</h3><div class="value">$1,240</div></div><div class="stat-icon"><i class="fas fa-clock text-yellow-600 text-xl"></i></div></div><div class="stat-trend trend-down"><i class="fas fa-exclamation-circle"></i><span>3 pending</span></div></div>
+        <div class="stat-card"><div class="stat-header"><div class="stat-info"><h3>Categories</h3><div class="value">5</div></div><div class="stat-icon"><i class="fas fa-tags text-green-600 text-xl"></i></div></div><div class="stat-trend trend-up"><i class="fas fa-check-circle"></i><span>All active</span></div></div>
+      </div>
+
+      <!-- Charts -->
+      <div class="charts-grid">
+        <div class="chart-card"><div class="chart-header"><h3>Expense Trends</h3></div><div class="chart-container" id="expLineChart"></div></div>
+        <div class="chart-card"><div class="chart-header"><h3>Category Distribution</h3></div><div class="chart-container" id="expPieChart"></div></div>
+        <div class="chart-card"><div class="chart-header"><h3>Budget vs Actual</h3></div><div class="chart-container" id="expBarChart"></div></div>
+        <div class="chart-card"><div class="chart-header"><h3>Category Spending</h3></div><div class="chart-container" id="expHBarChart"></div></div>
+      </div>
+
+      <!-- CRUD Table -->
+      <div class="table-container">
+        <div class="table-header"><h3><i class="fas fa-list-ul mr-2"></i> Expense Records</h3><button class="btn btn-primary" id="addExpenseBtn"><i class="fas fa-plus"></i> Add Expense</button></div>
+        <div class="table-wrap"><table><thead><tr><th>Description</th><th>Category</th><th>Amount</th><th>Date</th><th>Actions</th></tr></thead><tbody id="expTableBody"></tbody></table></div>
+      </div>
+    </main>
+    <footer class="footer">[Footer]</footer>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal-overlay" id="expenseModal">[Modal form]</div>
+
+<script src="../js/script.js"></script>
+<script src="../js/expenses.js"></script>
+</body>
+</html>
