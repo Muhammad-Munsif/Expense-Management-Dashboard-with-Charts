@@ -1,0 +1,44 @@
+<!-- ============================================================
+     PAGES/CATEGORIES.HTML
+     ============================================================ -->
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SchoolSys | Categories</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+<div class="app-container">
+  <aside class="sidebar" id="sidebar">[Sidebar with categories active]</aside>
+  <div class="main-wrapper">
+    <header class="navbar">[Navbar]</header>
+    <main class="main-content">
+      <!-- Stats -->
+      <div class="stats-grid">
+        <div class="stat-card"><div class="stat-header"><div class="stat-info"><h3>Total Categories</h3><div class="value">12</div></div><div class="stat-icon"><i class="fas fa-tags text-blue-600 text-xl"></i></div></div><div class="stat-trend trend-up"><i class="fas fa-arrow-up"></i><span>2 added this month</span></div></div>
+        <div class="stat-card"><div class="stat-header"><div class="stat-info"><h3>Active Budgets</h3><div class="value">8</div></div><div class="stat-icon"><i class="fas fa-wallet text-green-600 text-xl"></i></div></div><div class="stat-trend trend-down"><i class="fas fa-exclamation-circle"></i><span>4 nearing limit</span></div></div>
+        <div class="stat-card"><div class="stat-header"><div class="stat-info"><h3>Total Budget</h3><div class="value">$15,240</div></div><div class="stat-icon"><i class="fas fa-dollar-sign text-purple-600 text-xl"></i></div></div><div class="stat-trend trend-up"><i class="fas fa-arrow-up"></i><span>12% from last month</span></div></div>
+        <div class="stat-card"><div class="stat-header"><div class="stat-info"><h3>Spent This Month</h3><div class="value">$8,560</div></div><div class="stat-icon"><i class="fas fa-chart-line text-red-600 text-xl"></i></div></div><div class="stat-trend trend-down"><i class="fas fa-exclamation-triangle"></i><span>56% of budget</span></div></div>
+      </div>
+
+      <!-- Category CRUD -->
+      <div class="table-container">
+        <div class="table-header"><h3><i class="fas fa-tags mr-2"></i> Category List</h3><button class="btn btn-primary" id="addCategoryBtn"><i class="fas fa-plus"></i> Add Category</button></div>
+        <div class="table-wrap"><table><thead><tr><th>Category</th><th>Budget</th><th>Spent</th><th>Remaining</th><th>Actions</th></tr></thead><tbody id="categoryTableBody">
+          <tr><td>Materials</td><td>$1,000</td><td>$650</td><td>$350</td><td><button class="btn btn-sm btn-primary editCat"><i class="fas fa-edit"></i></button> <button class="btn btn-sm btn-danger deleteCat"><i class="fas fa-trash"></i></button></td></tr>
+          <tr><td>Food</td><td>$2,500</td><td>$2,100</td><td>$400</td><td><button class="btn btn-sm btn-primary editCat"><i class="fas fa-edit"></i></button> <button class="btn btn-sm btn-danger deleteCat"><i class="fas fa-trash"></i></button></td></tr>
+          <tr><td>Transport</td><td>$1,800</td><td>$950</td><td>$850</td><td><button class="btn btn-sm btn-primary editCat"><i class="fas fa-edit"></i></button> <button class="btn btn-sm btn-danger deleteCat"><i class="fas fa-trash"></i></button></td></tr>
+        </tbody></table></div>
+      </div>
+    </main>
+    <footer class="footer">[Footer]</footer>
+  </div>
+</div>
+<script src="../js/script.js"></script>
+<script src="../js/categories.js"></script>
+</body>
+</html>
