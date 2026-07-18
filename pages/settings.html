@@ -3,6 +3,7 @@
      ============================================================ -->
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -11,48 +12,64 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <link rel="stylesheet" href="../css/style.css" />
 </head>
+
 <body>
-<div class="app-container">
-  <aside class="sidebar" id="sidebar">[Sidebar with settings active]</aside>
-  <div class="main-wrapper">
-    <header class="navbar">[Navbar]</header>
-    <main class="main-content">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <!-- School Info -->
-        <div class="bg-card p-6 rounded-2xl shadow border" style="background:var(--bg-card);border-color:var(--border-color);">
-          <h3 class="text-lg font-semibold text-primary" style="color:var(--text-primary)"><i class="fas fa-school mr-2"></i> School Info</h3>
-          <div class="mt-4 space-y-3">
-            <div><label class="text-sm text-secondary" style="color:var(--text-secondary)">School Name</label><input type="text" class="form-control" value="Greenwood High School" /></div>
-            <div><label class="text-sm text-secondary" style="color:var(--text-secondary)">Address</label><input type="text" class="form-control" value="123 Education Ave" /></div>
-            <button class="btn btn-primary"><i class="fas fa-save"></i> Update</button>
+  <div class="app-container">
+    <aside class="sidebar" id="sidebar">[Sidebar with settings active]</aside>
+    <div class="main-wrapper">
+      <header class="navbar">[Navbar]</header>
+      <main class="main-content">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- School Info -->
+          <div class="bg-card p-6 rounded-2xl shadow border"
+            style="background:var(--bg-card);border-color:var(--border-color);">
+            <h3 class="text-lg font-semibold text-primary" style="color:var(--text-primary)"><i
+                class="fas fa-school mr-2"></i> School Info</h3>
+            <div class="mt-4 space-y-3">
+              <div><label class="text-sm text-secondary" style="color:var(--text-secondary)">School Name</label><input
+                  type="text" class="form-control" value="Greenwood High School" /></div>
+              <div><label class="text-sm text-secondary" style="color:var(--text-secondary)">Address</label><input
+                  type="text" class="form-control" value="123 Education Ave" /></div>
+              <button class="btn btn-primary"><i class="fas fa-save"></i> Update</button>
+            </div>
+          </div>
+          <!-- Security -->
+          <div class="bg-card p-6 rounded-2xl shadow border"
+            style="background:var(--bg-card);border-color:var(--border-color);">
+            <h3 class="text-lg font-semibold text-primary" style="color:var(--text-primary)"><i
+                class="fas fa-shield-alt mr-2"></i> Security</h3>
+            <div class="mt-4 space-y-3">
+              <div><label class="text-sm text-secondary" style="color:var(--text-secondary)">Current
+                  Password</label><input type="password" class="form-control" value="••••••••" /></div>
+              <div><label class="text-sm text-secondary" style="color:var(--text-secondary)">New Password</label><input
+                  type="password" class="form-control" placeholder="Enter new password" /></div>
+              <button class="btn btn-primary"><i class="fas fa-save"></i> Change Password</button>
+            </div>
+          </div>
+          <!-- Notifications -->
+          <div class="bg-card p-6 rounded-2xl shadow border md:col-span-2"
+            style="background:var(--bg-card);border-color:var(--border-color);">
+            <h3 class="text-lg font-semibold text-primary" style="color:var(--text-primary)"><i
+                class="fas fa-bell mr-2"></i> Notifications</h3>
+            <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <label class="flex items-center gap-2 text-primary" style="color:var(--text-primary)"><input
+                  type="checkbox" checked /> Email Notifications</label>
+              <label class="flex items-center gap-2 text-primary" style="color:var(--text-primary)"><input
+                  type="checkbox" /> SMS Alerts</label>
+              <label class="flex items-center gap-2 text-primary" style="color:var(--text-primary)"><input
+                  type="checkbox" checked /> Auto Backup</label>
+              <label class="flex items-center gap-2 text-primary" style="color:var(--text-primary)"><input
+                  type="checkbox" /> Two-Factor Auth</label>
+            </div>
+            <button class="btn btn-primary mt-4"><i class="fas fa-save"></i> Save Preferences</button>
           </div>
         </div>
-        <!-- Security -->
-        <div class="bg-card p-6 rounded-2xl shadow border" style="background:var(--bg-card);border-color:var(--border-color);">
-          <h3 class="text-lg font-semibold text-primary" style="color:var(--text-primary)"><i class="fas fa-shield-alt mr-2"></i> Security</h3>
-          <div class="mt-4 space-y-3">
-            <div><label class="text-sm text-secondary" style="color:var(--text-secondary)">Current Password</label><input type="password" class="form-control" value="••••••••" /></div>
-            <div><label class="text-sm text-secondary" style="color:var(--text-secondary)">New Password</label><input type="password" class="form-control" placeholder="Enter new password" /></div>
-            <button class="btn btn-primary"><i class="fas fa-save"></i> Change Password</button>
-          </div>
-        </div>
-        <!-- Notifications -->
-        <div class="bg-card p-6 rounded-2xl shadow border md:col-span-2" style="background:var(--bg-card);border-color:var(--border-color);">
-          <h3 class="text-lg font-semibold text-primary" style="color:var(--text-primary)"><i class="fas fa-bell mr-2"></i> Notifications</h3>
-          <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <label class="flex items-center gap-2 text-primary" style="color:var(--text-primary)"><input type="checkbox" checked /> Email Notifications</label>
-            <label class="flex items-center gap-2 text-primary" style="color:var(--text-primary)"><input type="checkbox" /> SMS Alerts</label>
-            <label class="flex items-center gap-2 text-primary" style="color:var(--text-primary)"><input type="checkbox" checked /> Auto Backup</label>
-            <label class="flex items-center gap-2 text-primary" style="color:var(--text-primary)"><input type="checkbox" /> Two-Factor Auth</label>
-          </div>
-          <button class="btn btn-primary mt-4"><i class="fas fa-save"></i> Save Preferences</button>
-        </div>
-      </div>
-    </main>
-    <footer class="footer">[Footer]</footer>
+      </main>
+      <footer class="footer">[Footer]</footer>
+    </div>
   </div>
-</div>
-<script src="../js/script.js"></script>
-<script src="../js/settings.js"></script>
+  <script src="../js/script.js"></script>
+  <script src="../js/settings.js"></script>
 </body>
+
 </html>
