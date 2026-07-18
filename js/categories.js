@@ -1,7 +1,7 @@
 /* ============================================================
    JS/CATEGORIES.JS (Categories page - basic CRUD)
    ============================================================ */
-(function() {
+(function () {
   // Simple category management with static data
   let categories = [
     { id: 1, name: 'Materials', budget: 1000, spent: 650 },
@@ -49,7 +49,7 @@
     renderTable();
   }
 
-  document.getElementById('addCategoryBtn')?.addEventListener('click', function() {
+  document.getElementById('addCategoryBtn')?.addEventListener('click', function () {
     const name = prompt('Category name:');
     if (!name) return;
     const budget = parseFloat(prompt('Budget:'));
