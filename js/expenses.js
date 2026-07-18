@@ -1,7 +1,7 @@
 /* ============================================================
    JS/EXPENSES.JS (Expenses page CRUD)
    ============================================================ */
-(function() {
+(function () {
   let expenses = [
     { id: 1, description: 'School Supplies', category: 'Materials', amount: 250.00, date: '2025-01-15' },
     { id: 2, description: 'Cafeteria Food', category: 'Food', amount: 420.50, date: '2025-01-12' },
@@ -52,7 +52,7 @@
     modalTitle.textContent = 'Add Expense';
     editIdInput.value = '';
     form.reset();
-    dateInput.value = new Date().toISOString().slice(0,10);
+    dateInput.value = new Date().toISOString().slice(0, 10);
     modal.classList.add('open');
   }
 
@@ -98,7 +98,7 @@
 
   document.getElementById('addExpenseBtn')?.addEventListener('click', onAdd);
   document.getElementById('modalCancelBtn')?.addEventListener('click', () => modal.classList.remove('open'));
-  modal?.addEventListener('click', function(e) { if (e.target === this) this.classList.remove('open'); });
+  modal?.addEventListener('click', function (e) { if (e.target === this) this.classList.remove('open'); });
   form?.addEventListener('submit', saveExpense);
 
   // Charts (same as dashboard but with exp prefix)
@@ -119,28 +119,28 @@
     const lineChart = () => Recharts.createElement(Recharts.LineChart, { width: '100%', height: 260, data: lineData, margin: { top: 5, right: 20, left: 0, bottom: 5 } },
       Recharts.createElement(Recharts.CartesianGrid, { strokeDasharray: '3 3' }),
       Recharts.createElement(Recharts.XAxis, { dataKey: 'month' }),
-      Recharts.createElement(Recharts.YAxis, { tickFormatter: v => '$'+v }),
-      Recharts.createElement(Recharts.Tooltip, { formatter: v => '$'+v }),
+      Recharts.createElement(Recharts.YAxis, { tickFormatter: v => '$' + v }),
+      Recharts.createElement(Recharts.Tooltip, { formatter: v => '$' + v }),
       Recharts.createElement(Recharts.Line, { type: 'monotone', dataKey: 'value', stroke: '#4f46e5', strokeWidth: 3, dot: { r: 4 } })
     );
     const pieChart = () => Recharts.createElement(Recharts.PieChart, { width: '100%', height: 260 },
-      Recharts.createElement(Recharts.Pie, { data: pieData, cx: '50%', cy: '50%', innerRadius: 60, outerRadius: 90, fill: '#8884d8', paddingAngle: 2, dataKey: 'value', label: ({ name, percent }) => `${name} ${(percent*100).toFixed(0)}%` }),
-      Recharts.createElement(Recharts.Tooltip, { formatter: v => v+'%' })
+      Recharts.createElement(Recharts.Pie, { data: pieData, cx: '50%', cy: '50%', innerRadius: 60, outerRadius: 90, fill: '#8884d8', paddingAngle: 2, dataKey: 'value', label: ({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%` }),
+      Recharts.createElement(Recharts.Tooltip, { formatter: v => v + '%' })
     );
     const barChart = () => Recharts.createElement(Recharts.BarChart, { width: '100%', height: 260, data: barData, margin: { top: 5, right: 20, left: 0, bottom: 5 } },
       Recharts.createElement(Recharts.CartesianGrid, { strokeDasharray: '3 3' }),
       Recharts.createElement(Recharts.XAxis, { dataKey: 'name' }),
-      Recharts.createElement(Recharts.YAxis, { tickFormatter: v => '$'+v }),
-      Recharts.createElement(Recharts.Tooltip, { formatter: v => '$'+v }),
-      Recharts.createElement(Recharts.Bar, { dataKey: 'budget', fill: '#c7d2fe', radius: [4,4,0,0] }),
-      Recharts.createElement(Recharts.Bar, { dataKey: 'actual', fill: '#4f46e5', radius: [4,4,0,0] })
+      Recharts.createElement(Recharts.YAxis, { tickFormatter: v => '$' + v }),
+      Recharts.createElement(Recharts.Tooltip, { formatter: v => '$' + v }),
+      Recharts.createElement(Recharts.Bar, { dataKey: 'budget', fill: '#c7d2fe', radius: [4, 4, 0, 0] }),
+      Recharts.createElement(Recharts.Bar, { dataKey: 'actual', fill: '#4f46e5', radius: [4, 4, 0, 0] })
     );
     const hBarChart = () => Recharts.createElement(Recharts.BarChart, { width: '100%', height: 260, data: hData, layout: 'vertical', margin: { top: 5, right: 20, left: 50, bottom: 5 } },
       Recharts.createElement(Recharts.CartesianGrid, { strokeDasharray: '3 3' }),
-      Recharts.createElement(Recharts.XAxis, { type: 'number', tickFormatter: v => '$'+v }),
+      Recharts.createElement(Recharts.XAxis, { type: 'number', tickFormatter: v => '$' + v }),
       Recharts.createElement(Recharts.YAxis, { type: 'category', dataKey: 'cat' }),
-      Recharts.createElement(Recharts.Tooltip, { formatter: v => '$'+v }),
-      Recharts.createElement(Recharts.Bar, { dataKey: 'spent', fill: '#8b5cf6', radius: [0,4,4,0] })
+      Recharts.createElement(Recharts.Tooltip, { formatter: v => '$' + v }),
+      Recharts.createElement(Recharts.Bar, { dataKey: 'spent', fill: '#8b5cf6', radius: [0, 4, 4, 0] })
     );
     renderChart('expLineChart', lineChart);
     renderChart('expPieChart', pieChart);
