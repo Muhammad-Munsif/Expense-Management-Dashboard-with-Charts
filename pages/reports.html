@@ -3,6 +3,7 @@
      ============================================================ -->
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -12,51 +13,116 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <link rel="stylesheet" href="../css/style.css" />
 </head>
+
 <body>
-<div class="app-container">
-  <aside class="sidebar" id="sidebar">[Sidebar with reports active]</aside>
-  <div class="main-wrapper">
-    <header class="navbar">[Navbar]</header>
-    <main class="main-content">
-      <!-- Stats -->
-      <div class="stats-grid">
-        <div class="stat-card"><div class="stat-header"><div class="stat-info"><h3>Total Expenses</h3><div class="value">$24,580</div></div><div class="stat-icon"><i class="fas fa-money-bill-wave text-red-600 text-xl"></i></div></div><div class="stat-trend trend-down"><i class="fas fa-arrow-up"></i><span>12% from last month</span></div></div>
-        <div class="stat-card"><div class="stat-header"><div class="stat-info"><h3>Student Attendance</h3><div class="value">94.2%</div></div><div class="stat-icon"><i class="fas fa-user-check text-green-600 text-xl"></i></div></div><div class="stat-trend trend-up"><i class="fas fa-arrow-up"></i><span>2.5% from last month</span></div></div>
-        <div class="stat-card"><div class="stat-header"><div class="stat-info"><h3>Budget Utilization</h3><div class="value">78%</div></div><div class="stat-icon"><i class="fas fa-chart-pie text-blue-600 text-xl"></i></div></div><div class="stat-trend trend-up"><i class="fas fa-info-circle"></i><span>22% remaining</span></div></div>
-        <div class="stat-card"><div class="stat-header"><div class="stat-info"><h3>Avg. Expense/Student</h3><div class="value">$245</div></div><div class="stat-icon"><i class="fas fa-user-graduate text-purple-600 text-xl"></i></div></div><div class="stat-trend trend-up"><i class="fas fa-arrow-down"></i><span>5% from last quarter</span></div></div>
-      </div>
+  <div class="app-container">
+    <aside class="sidebar" id="sidebar">[Sidebar with reports active]</aside>
+    <div class="main-wrapper">
+      <header class="navbar">[Navbar]</header>
+      <main class="main-content">
+        <!-- Stats -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-header">
+              <div class="stat-info">
+                <h3>Total Expenses</h3>
+                <div class="value">$24,580</div>
+              </div>
+              <div class="stat-icon"><i class="fas fa-money-bill-wave text-red-600 text-xl"></i></div>
+            </div>
+            <div class="stat-trend trend-down"><i class="fas fa-arrow-up"></i><span>12% from last month</span></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-header">
+              <div class="stat-info">
+                <h3>Student Attendance</h3>
+                <div class="value">94.2%</div>
+              </div>
+              <div class="stat-icon"><i class="fas fa-user-check text-green-600 text-xl"></i></div>
+            </div>
+            <div class="stat-trend trend-up"><i class="fas fa-arrow-up"></i><span>2.5% from last month</span></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-header">
+              <div class="stat-info">
+                <h3>Budget Utilization</h3>
+                <div class="value">78%</div>
+              </div>
+              <div class="stat-icon"><i class="fas fa-chart-pie text-blue-600 text-xl"></i></div>
+            </div>
+            <div class="stat-trend trend-up"><i class="fas fa-info-circle"></i><span>22% remaining</span></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-header">
+              <div class="stat-info">
+                <h3>Avg. Expense/Student</h3>
+                <div class="value">$245</div>
+              </div>
+              <div class="stat-icon"><i class="fas fa-user-graduate text-purple-600 text-xl"></i></div>
+            </div>
+            <div class="stat-trend trend-up"><i class="fas fa-arrow-down"></i><span>5% from last quarter</span></div>
+          </div>
+        </div>
 
-      <!-- Charts Grid - 4 charts -->
-      <div class="charts-grid">
-        <div class="chart-card"><div class="chart-header"><h3>Monthly Expenses</h3></div><div class="chart-container" id="repLineChart"></div></div>
-        <div class="chart-card"><div class="chart-header"><h3>Expense by Category</h3></div><div class="chart-container" id="repPieChart"></div></div>
-        <div class="chart-card"><div class="chart-header"><h3>Student Attendance</h3></div><div class="chart-container" id="repAttendanceChart"></div></div>
-        <div class="chart-card"><div class="chart-header"><h3>Budget vs Actual</h3></div><div class="chart-container" id="repBarChart"></div></div>
-      </div>
+        <!-- Charts Grid - 4 charts -->
+        <div class="charts-grid">
+          <div class="chart-card">
+            <div class="chart-header">
+              <h3>Monthly Expenses</h3>
+            </div>
+            <div class="chart-container" id="repLineChart"></div>
+          </div>
+          <div class="chart-card">
+            <div class="chart-header">
+              <h3>Expense by Category</h3>
+            </div>
+            <div class="chart-container" id="repPieChart"></div>
+          </div>
+          <div class="chart-card">
+            <div class="chart-header">
+              <h3>Student Attendance</h3>
+            </div>
+            <div class="chart-container" id="repAttendanceChart"></div>
+          </div>
+          <div class="chart-card">
+            <div class="chart-header">
+              <h3>Budget vs Actual</h3>
+            </div>
+            <div class="chart-container" id="repBarChart"></div>
+          </div>
+        </div>
 
-      <!-- Report summary cards -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
-        <div class="bg-card p-6 rounded-2xl shadow border" style="background:var(--bg-card);border-color:var(--border-color);">
-          <h4 class="font-semibold text-primary" style="color:var(--text-primary)"><i class="fas fa-file-invoice-dollar mr-2"></i> Financial Summary</h4>
-          <p class="text-sm text-secondary" style="color:var(--text-secondary)">Total expenses, budget usage, and trends.</p>
-          <button class="btn btn-primary mt-4 btn-sm">Download Report</button>
+        <!-- Report summary cards -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+          <div class="bg-card p-6 rounded-2xl shadow border"
+            style="background:var(--bg-card);border-color:var(--border-color);">
+            <h4 class="font-semibold text-primary" style="color:var(--text-primary)"><i
+                class="fas fa-file-invoice-dollar mr-2"></i> Financial Summary</h4>
+            <p class="text-sm text-secondary" style="color:var(--text-secondary)">Total expenses, budget usage, and
+              trends.</p>
+            <button class="btn btn-primary mt-4 btn-sm">Download Report</button>
+          </div>
+          <div class="bg-card p-6 rounded-2xl shadow border"
+            style="background:var(--bg-card);border-color:var(--border-color);">
+            <h4 class="font-semibold text-primary" style="color:var(--text-primary)"><i
+                class="fas fa-user-graduate mr-2"></i> Student Performance</h4>
+            <p class="text-sm text-secondary" style="color:var(--text-secondary)">Academic results and analytics.</p>
+            <button class="btn btn-primary mt-4 btn-sm">Download Report</button>
+          </div>
+          <div class="bg-card p-6 rounded-2xl shadow border"
+            style="background:var(--bg-card);border-color:var(--border-color);">
+            <h4 class="font-semibold text-primary" style="color:var(--text-primary)"><i
+                class="fas fa-chart-line mr-2"></i> Attendance Analytics</h4>
+            <p class="text-sm text-secondary" style="color:var(--text-secondary)">Patterns and trends in attendance.</p>
+            <button class="btn btn-primary mt-4 btn-sm">Download Report</button>
+          </div>
         </div>
-        <div class="bg-card p-6 rounded-2xl shadow border" style="background:var(--bg-card);border-color:var(--border-color);">
-          <h4 class="font-semibold text-primary" style="color:var(--text-primary)"><i class="fas fa-user-graduate mr-2"></i> Student Performance</h4>
-          <p class="text-sm text-secondary" style="color:var(--text-secondary)">Academic results and analytics.</p>
-          <button class="btn btn-primary mt-4 btn-sm">Download Report</button>
-        </div>
-        <div class="bg-card p-6 rounded-2xl shadow border" style="background:var(--bg-card);border-color:var(--border-color);">
-          <h4 class="font-semibold text-primary" style="color:var(--text-primary)"><i class="fas fa-chart-line mr-2"></i> Attendance Analytics</h4>
-          <p class="text-sm text-secondary" style="color:var(--text-secondary)">Patterns and trends in attendance.</p>
-          <button class="btn btn-primary mt-4 btn-sm">Download Report</button>
-        </div>
-      </div>
-    </main>
-    <footer class="footer">[Footer]</footer>
+      </main>
+      <footer class="footer">[Footer]</footer>
+    </div>
   </div>
-</div>
-<script src="../js/script.js"></script>
-<script src="../js/report.js"></script>
+  <script src="../js/script.js"></script>
+  <script src="../js/report.js"></script>
 </body>
+
 </html>
